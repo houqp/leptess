@@ -1,0 +1,16 @@
+[package]
+name = "leptess"
+version = "0.1.0"
+authors = ["QP Hou <dave2008713@gmail.com>"]
+description = "Rust binding for Tesseract and Leptonica."
+homepage = "https://github.com/houqp/pagesense/leptess"
+repository = "https://github.com/houqp/pagesense/leptess"
+readme = "README.md"
+keywords = ["leptonica", "tesseract", "ocr"]
+license = "MIT"
+
+[dependencies]
+libc = "*"
+
+[build-dependencies]
+bindgen = "0.49.*"
