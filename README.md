@@ -32,3 +32,13 @@ println!("{}", api.get_utf8_text());
 ```
 
 For more examples, see `examples` directory.
+
+
+Development
+-----------
+
+Regenerate capi binding:
+
+```
+make gen
+```
