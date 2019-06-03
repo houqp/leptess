@@ -1,5 +1,6 @@
 extern crate leptess;
 
+use std::path::Path;
 use leptess::{leptonica, tesseract};
 
 fn main() {
@@ -22,7 +23,7 @@ fn main() {
     // run OCR on each word bounding box
     for b in boxes {
         api.set_rectangle(b.get_val());
-        let text = api.get_utf8_text();
+        let text = api.get_utf8_text().unwrap();
         let confi = api.mean_text_conf();
         println!(
             "{:?}, confidence: {}, text: {}",

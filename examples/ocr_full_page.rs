@@ -1,5 +1,6 @@
 extern crate leptess;
 
+use std::path::Path;
 use leptess::{leptonica, tesseract};
 
 fn main() {
@@ -12,5 +13,5 @@ fn main() {
     api.set_image(pix);
 
     let text = api.get_utf8_text();
-    println!("{}", text);
+    println!("{}", text.unwrap());
 }
