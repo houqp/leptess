@@ -10,7 +10,10 @@ pub struct TessApi {
 
 impl Drop for TessApi {
     fn drop(&mut self) {
-        unsafe { capi::TessBaseAPIDelete(self.raw) }
+        unsafe {
+            capi::TessBaseAPIEnd(self.raw);
+            capi::TessBaseAPIDelete(self.raw);
+        }
     }
 }
 
@@ -41,10 +44,20 @@ impl TessApi {
         }
     }
 
-    pub fn get_utf8_text(&self) -> &str {
+    pub fn get_utf8_text(&self) -> Result<String, std::str::Utf8Error> {
         unsafe {
+            let re: Result<String, std::str::Utf8Error>;
             let sptr = capi::TessBaseAPIGetUTF8Text(self.raw);
-            CStr::from_ptr(sptr).to_str().unwrap()
+            match CStr::from_ptr(sptr).to_str() {
+                Ok(s) => {
+                    re = Ok(s.to_string());
+                },
+                Err(e) => {
+                    re = Err(e);
+                },
+            }
+            capi::TessDeleteText(sptr);
+            return re;
         }
     }
 

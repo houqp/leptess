@@ -16,6 +16,12 @@ impl Pix {
     }
 }
 
+impl Drop for Pix {
+    fn drop(&mut self) {
+        unsafe { capi::pixDestroy(&mut (self.raw as *mut capi::Pix)) }
+    }
+}
+
 pub fn pix_read(path: &Path) -> Option<Pix> {
     let s = path.to_str().unwrap();
 
