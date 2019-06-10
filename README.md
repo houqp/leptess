@@ -17,6 +17,12 @@ For Ubuntu user:
 sudo apt-get install libleptonica-dev libtesseract-dev
 ```
 
+You will also need to install tesseract language data based on your OCR needs:
+
+```bash
+sudo apt-get install tesseract-ocr-eng
+```
+
 
 Usage
 -----
