@@ -14,10 +14,7 @@ impl Pix {
     pub fn get_h(&self) -> u32 {
         unsafe { (*self.raw).h }
     }
-}
-
-impl Drop for Pix {
-    fn drop(&mut self) {
+    pub fn destroy(&self) {
         unsafe { capi::pixDestroy(&mut (self.raw as *mut capi::Pix)) }
     }
 }
@@ -35,6 +32,7 @@ pub fn pix_read(path: &Path) -> Option<Pix> {
 }
 
 #[derive(Debug)]
+#[derive(PartialEq)]
 pub struct BoxVal {
     pub x: i32,
     pub y: i32,
@@ -86,7 +84,7 @@ impl IntoIterator for Boxa {
 
     fn into_iter(self) -> Self::IntoIter {
         let count = self.get_n();
-        BoxaIterator{
+        BoxaIterator {
             boxa: self,
             index: 0,
             count: count,
@@ -101,6 +99,42 @@ pub struct BoxaIterator {
 }
 
 impl Iterator for BoxaIterator {
+    type Item = Box;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.index >= self.count {
+            return None;
+        }
+
+        let re = self.boxa.get_box(self.index, capi::L_CLONE);
+        self.index += 1;
+
+        re
+    }
+}
+
+impl<'a> IntoIterator for &'a Boxa {
+    type Item = Box;
+    type IntoIter = BoxaRefIterator<'a>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        let count = self.get_n();
+        BoxaRefIterator {
+            boxa: self,
+            index: 0,
+            count: count,
+        }
+    }
+}
+
+
+pub struct BoxaRefIterator<'a> {
+    boxa: &'a Boxa,
+    index: usize,
+    count: usize,
+}
+
+impl<'a> Iterator for BoxaRefIterator<'a> {
     type Item = Box;
 
     fn next(&mut self) -> Option<Self::Item> {

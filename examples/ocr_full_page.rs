@@ -10,8 +10,11 @@ fn main() {
     }
 
     let pix = leptonica::pix_read(Path::new("path/page.bmp")).unwrap();
-    api.set_image(pix);
+    api.set_image(&pix);
 
     let text = api.get_utf8_text();
     println!("{}", text.unwrap());
+
+    api.destroy();
+    pix.destroy();
 }

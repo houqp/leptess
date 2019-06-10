@@ -8,15 +8,6 @@ pub struct TessApi {
     pub raw: *mut capi::TessBaseAPI,
 }
 
-impl Drop for TessApi {
-    fn drop(&mut self) {
-        unsafe {
-            capi::TessBaseAPIEnd(self.raw);
-            capi::TessBaseAPIDelete(self.raw);
-        }
-    }
-}
-
 impl TessApi {
     pub fn new() -> TessApi {
         TessApi {
@@ -30,7 +21,14 @@ impl TessApi {
         }
     }
 
-    pub fn set_image(&self, img: leptonica::Pix) {
+    pub fn destroy(&self) {
+        unsafe {
+            capi::TessBaseAPIEnd(self.raw);
+            capi::TessBaseAPIDelete(self.raw);
+        }
+    }
+
+    pub fn set_image(&self, img: &leptonica::Pix) {
         unsafe { capi::TessBaseAPISetImage2(self.raw, img.raw as *mut capi::Pix) }
     }
 
@@ -38,9 +36,10 @@ impl TessApi {
         unsafe { capi::TessBaseAPIRecognize(self.raw, ptr::null_mut()) }
     }
 
-    pub fn set_rectangle(&self, b: leptonica::BoxVal) {
+    pub fn set_rectangle(&self, b: &leptonica::Box) {
+        let v = b.get_val();
         unsafe {
-            capi::TessBaseAPISetRectangle(self.raw, b.x, b.y, b.w, b.h);
+            capi::TessBaseAPISetRectangle(self.raw, v.x, v.y, v.w, v.h);
         }
     }
 

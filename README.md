@@ -31,9 +31,12 @@ let api = tesseract::TessApi::new();
 api.init("eng");
 
 let pix = leptonica::pix_read(Path::new("path/page.bmp")).unwrap();
-api.set_image(pix);
+api.set_image(&pix);
 
 println!("{}", api.get_utf8_text().unwrap());
+
+api.destroy();
+pix.destroy();
 ```
 
 For more examples, see `examples` directory.
