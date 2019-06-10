@@ -3,10 +3,7 @@ Leptess
 
 High level Rust binding for Tesseract and Leptonica.
 
-On top of the vanilla C API, it adds the following features:
-
-* Iterator for array like types
-* Drop trait for automatic memory management
+Low level C API bindings are auto generated using bindgen.
 
 
 Build dependencies
