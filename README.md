@@ -53,3 +53,5 @@ Regenerate capi binding:
 ```
 make gen
 ```
+
+To run tests, you will need at Tesseract 4.x to match what we have in `tests/tessdata/eng.traineddata`.
