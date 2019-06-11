@@ -2,22 +2,58 @@ use super::capi;
 use super::leptonica;
 
 use std::ffi::{CStr, CString};
+use std::os::raw::c_char;
 use std::ptr;
 
+#[derive(Debug, PartialEq)]
 pub struct TessApi {
     pub raw: *mut capi::TessBaseAPI,
+    pub data_path_cptr: *mut c_char,
+}
+
+impl Drop for TessApi {
+    fn drop(&mut self) {
+        if !self.data_path_cptr.is_null() {
+            // free data_path_cptr
+            unsafe {
+                CString::from_raw(self.data_path_cptr);
+            }
+        }
+    }
 }
 
 impl TessApi {
-    pub fn new() -> TessApi {
-        TessApi {
-            raw: unsafe { capi::TessBaseAPICreate() },
+    pub fn new<'a>(data_path: Option<&'a str>, lang: &'a str) -> Option<TessApi> {
+        let data_path_cptr;
+        let data_path_cstr;
+        match data_path {
+            Some(dstr) => {
+                data_path_cstr = CString::new(dstr).unwrap();
+                data_path_cptr = data_path_cstr.into_raw();
+            }
+            None => {
+                data_path_cptr = ptr::null_mut();
+            }
         }
-    }
 
-    pub fn init(&self, lang: &str) -> i32 {
+        let api = TessApi {
+            raw: unsafe { capi::TessBaseAPICreate() },
+            data_path_cptr: data_path_cptr,
+        };
+
         unsafe {
-            capi::TessBaseAPIInit3(self.raw, ptr::null(), CString::new(lang).unwrap().as_ptr())
+            let re = capi::TessBaseAPIInit3(
+                api.raw,
+                api.data_path_cptr,
+                CString::new(lang).unwrap().as_ptr(),
+            );
+
+            if re == 0 {
+                return Some(api);
+            } else {
+                api.destroy();
+                None
+            }
         }
     }
 
@@ -50,10 +86,10 @@ impl TessApi {
             match CStr::from_ptr(sptr).to_str() {
                 Ok(s) => {
                     re = Ok(s.to_string());
-                },
+                }
                 Err(e) => {
                     re = Err(e);
-                },
+                }
             }
             capi::TessDeleteText(sptr);
             return re;
@@ -66,10 +102,7 @@ impl TessApi {
 
     pub fn get_regions(&self) -> Option<leptonica::Boxa> {
         unsafe {
-            let boxes = capi::TessBaseAPIGetRegions(
-                self.raw,
-                ptr::null_mut(),
-            );
+            let boxes = capi::TessBaseAPIGetRegions(self.raw, ptr::null_mut());
             match boxes.as_ref() {
                 Some(p) => Some(leptonica::Boxa { raw: p }),
                 None => None,

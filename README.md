@@ -1,6 +1,8 @@
 Leptess
 =======
 
+[![CircleCI](https://circleci.com/gh/houqp/leptess.svg?style=svg)](https://circleci.com/gh/houqp/leptess)
+
 High level Rust binding for Tesseract and Leptonica.
 
 Low level C API bindings are auto generated using bindgen.
@@ -30,9 +32,7 @@ Usage
 Minimal example:
 
 ```rust
-let api = tesseract::TessApi::new();
-api.init("eng");
-
+let api = tesseract::TessApi::new(None, "eng");
 let pix = leptonica::pix_read(Path::new("path/page.bmp")).unwrap();
 api.set_image(&pix);
 

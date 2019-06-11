@@ -31,8 +31,7 @@ pub fn pix_read(path: &Path) -> Option<Pix> {
     }
 }
 
-#[derive(Debug)]
-#[derive(PartialEq)]
+#[derive(Debug, PartialEq)]
 pub struct BoxVal {
     pub x: i32,
     pub y: i32,
@@ -126,7 +125,6 @@ impl<'a> IntoIterator for &'a Boxa {
         }
     }
 }
-
 
 pub struct BoxaRefIterator<'a> {
     boxa: &'a Boxa,
