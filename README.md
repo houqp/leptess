@@ -2,6 +2,7 @@ Leptess
 =======
 
 [![CircleCI](https://circleci.com/gh/houqp/leptess.svg?style=svg)](https://circleci.com/gh/houqp/leptess)
+[![Crates.io](https://img.shields.io/crates/v/leptess.svg)](https://crates.io/crates/leptess)
 
 High level Rust binding for Tesseract and Leptonica.
 
