@@ -3,13 +3,13 @@ version: 2
 jobs:
   test:
     docker:
-      - image: cirepo/rust:1.33.0-bionic
+      - image: rust:1.35-slim-stretch
     steps:
       - checkout
       - run:
           name: install leptonica & tesseract
           command: |
-              echo 'deb http://deb.debian.org/debian stretch-backports main' | sudo tee -a /etc/apt/sources.list
+              echo 'deb http://deb.debian.org/debian stretch-backports main' | tee -a /etc/apt/sources.list
               apt-get update
               apt-get -t stretch-backports -y install libleptonica-dev libtesseract-dev=4.0.0-2~bpo9+1 tesseract-ocr-eng
       - run:
