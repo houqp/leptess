@@ -33,8 +33,8 @@ Usage
 Minimal example:
 
 ```rust
-let api = tesseract::TessApi::new(None, "eng");
-let pix = leptonica::pix_read(Path::new("path/page.bmp")).unwrap();
+let mut api = tesseract::TessApi::new(None, "eng");
+let mut pix = leptonica::pix_read(Path::new("path/page.bmp")).unwrap();
 api.set_image(&pix);
 
 println!("{}", api.get_utf8_text().unwrap());

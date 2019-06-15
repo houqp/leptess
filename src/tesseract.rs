@@ -36,7 +36,7 @@ impl TessApi {
             }
         }
 
-        let api = TessApi {
+        let mut api = TessApi {
             raw: unsafe { capi::TessBaseAPICreate() },
             data_path_cptr: data_path_cptr,
         };
@@ -57,14 +57,14 @@ impl TessApi {
         }
     }
 
-    pub fn destroy(&self) {
+    pub fn destroy(&mut self) {
         unsafe {
             capi::TessBaseAPIEnd(self.raw);
             capi::TessBaseAPIDelete(self.raw);
         }
     }
 
-    pub fn set_image(&self, img: &leptonica::Pix) {
+    pub fn set_image(&mut self, img: &leptonica::Pix) {
         unsafe { capi::TessBaseAPISetImage2(self.raw, img.raw as *mut capi::Pix) }
     }
 
@@ -72,7 +72,7 @@ impl TessApi {
         unsafe { capi::TessBaseAPIRecognize(self.raw, ptr::null_mut()) }
     }
 
-    pub fn set_rectangle(&self, b: &leptonica::Box) {
+    pub fn set_rectangle(&mut self, b: &leptonica::Box) {
         let v = b.get_val();
         unsafe {
             capi::TessBaseAPISetRectangle(self.raw, v.x, v.y, v.w, v.h);
@@ -103,10 +103,10 @@ impl TessApi {
     pub fn get_regions(&self) -> Option<leptonica::Boxa> {
         unsafe {
             let boxes = capi::TessBaseAPIGetRegions(self.raw, ptr::null_mut());
-            match boxes.as_ref() {
-                Some(p) => Some(leptonica::Boxa { raw: p }),
-                None => None,
+            if boxes.is_null() {
+                return None;
             }
+            return Some(leptonica::Boxa { raw: boxes });
         }
     }
 
@@ -129,10 +129,10 @@ impl TessApi {
                 ptr::null_mut(),
             );
 
-            match boxes.as_ref() {
-                Some(p) => Some(leptonica::Boxa { raw: p }),
-                None => None,
+            if boxes.is_null() {
+                return None;
             }
+            return Some(leptonica::Boxa { raw: boxes });
         }
     }
 }

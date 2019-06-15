@@ -4,7 +4,7 @@ use std::ffi::CString;
 use std::path::Path;
 
 pub struct Pix {
-    pub raw: *const capi::Pix,
+    pub raw: *mut capi::Pix,
 }
 
 impl Pix {
@@ -14,8 +14,8 @@ impl Pix {
     pub fn get_h(&self) -> u32 {
         unsafe { (*self.raw).h }
     }
-    pub fn destroy(&self) {
-        unsafe { capi::pixDestroy(&mut (self.raw as *mut capi::Pix)) }
+    pub fn destroy(&mut self) {
+        unsafe { capi::pixDestroy(&mut self.raw) }
     }
 }
 
@@ -24,10 +24,11 @@ pub fn pix_read(path: &Path) -> Option<Pix> {
 
     unsafe {
         let pix = capi::pixRead(CString::new(s).unwrap().as_ptr());
-        match pix.as_ref() {
-            Some(p) => Some(Pix { raw: p }),
-            None => None,
+        if pix.is_null() {
+            return None;
         }
+
+        return Some(Pix { raw: pix });
     }
 }
 
@@ -58,7 +59,7 @@ impl Box {
 }
 
 pub struct Boxa {
-    pub raw: *const capi::Boxa,
+    pub raw: *mut capi::Boxa,
 }
 
 impl Boxa {
@@ -68,7 +69,7 @@ impl Boxa {
 
     pub fn get_box(&self, i: usize, flag: u32) -> Option<Box> {
         unsafe {
-            let b = capi::boxaGetBox(self.raw as *mut capi::Boxa, i as i32, flag as i32);
+            let b = capi::boxaGetBox(self.raw, i as i32, flag as i32);
             match b.as_ref() {
                 Some(p) => Some(Box { raw: p }),
                 None => None,

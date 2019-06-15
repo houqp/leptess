@@ -7,9 +7,9 @@ use std::path::Path;
 #[test]
 fn test_get_text() {
     let path = Path::new("./tests/di.png");
-    let img = leptonica::pix_read(path).unwrap();
+    let mut img = leptonica::pix_read(path).unwrap();
 
-    let api = tesseract::TessApi::new(Some("./tests/tessdata"), "eng").unwrap();
+    let mut api = tesseract::TessApi::new(Some("./tests/tessdata"), "eng").unwrap();
     api.set_image(&img);
 
     let text = api.get_utf8_text().unwrap();
@@ -31,9 +31,9 @@ fn test_get_text() {
 #[test]
 fn test_ocr_iterate_word() {
     let path = Path::new("./tests/di.png");
-    let img = leptonica::pix_read(path).unwrap();
+    let mut img = leptonica::pix_read(path).unwrap();
 
-    let api = tesseract::TessApi::new(Some("./tests/tessdata"), "eng").unwrap();
+    let mut api = tesseract::TessApi::new(Some("./tests/tessdata"), "eng").unwrap();
     api.set_image(&img);
 
     let boxes = api
@@ -80,6 +80,6 @@ fn test_invalid_data_path() {
 #[test]
 fn test_read_data_path_from_env() {
     env::set_var("TESSDATA_PREFIX", "./tests/tessdata");
-    let api = tesseract::TessApi::new(None, "eng").unwrap();
+    let mut api = tesseract::TessApi::new(None, "eng").unwrap();
     api.destroy();
 }

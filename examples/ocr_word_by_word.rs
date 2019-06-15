@@ -4,9 +4,9 @@ use std::path::Path;
 use leptess::{leptonica, tesseract};
 
 fn main() {
-    let api = tesseract::TessApi::new(None, "eng").unwrap();
+    let mut api = tesseract::TessApi::new(None, "eng").unwrap();
 
-    let pix = leptonica::pix_read(Path::new("path/page.bmp")).unwrap();
+    let mut pix = leptonica::pix_read(Path::new("path/page.bmp")).unwrap();
     api.set_image(&pix);
 
     // detect bounding boxes for words
