@@ -10,7 +10,5 @@ keywords = ["leptonica", "tesseract", "ocr"]
 license = "MIT"
 
 [dependencies]
-libc = "0.*"
-
-[build-dependencies]
-bindgen = "0.49.*"
+leptonica-sys = "0.2.0"
+tesseract-sys = "0.3.0"
