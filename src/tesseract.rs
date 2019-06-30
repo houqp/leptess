@@ -1,9 +1,22 @@
+//! Low level wrapper for Tesseract C API
+
 use super::capi;
 use super::leptonica;
 
 use std::ffi::{CStr, CString};
 use std::os::raw::c_char;
 use std::ptr;
+
+#[derive(Debug, PartialEq)]
+pub struct TessInitError{
+    pub code: i32,
+}
+
+impl std::fmt::Display for TessInitError {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "TessInitError{{{}}}", self.code)
+    }
+}
 
 #[derive(Debug, PartialEq)]
 pub struct TessApi {
@@ -23,7 +36,7 @@ impl Drop for TessApi {
 }
 
 impl TessApi {
-    pub fn new<'a>(data_path: Option<&'a str>, lang: &'a str) -> Option<TessApi> {
+    pub fn new<'a>(data_path: Option<&'a str>, lang: &'a str) -> Result<TessApi, TessInitError> {
         let data_path_cptr;
         let data_path_cstr;
         match data_path {
@@ -49,10 +62,10 @@ impl TessApi {
             );
 
             if re == 0 {
-                return Some(api);
+                return Ok(api);
             } else {
                 api.destroy();
-                None
+                return Err(TessInitError{code: re});
             }
         }
     }
@@ -110,6 +123,8 @@ impl TessApi {
         }
     }
 
+    /// Get the given level kind of components (block, textline, word etc.) as a leptonica-style
+    /// Boxa, in reading order.If text_only is true, then only text components are returned.
     pub fn get_component_images(
         &self,
         level: capi::TessPageIteratorLevel,

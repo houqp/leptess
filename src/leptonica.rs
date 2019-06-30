@@ -1,3 +1,5 @@
+//! Low level wrapper for Leptonica C API
+
 use super::capi;
 
 use std::ffi::CString;
@@ -41,10 +43,27 @@ pub struct BoxVal {
 }
 
 pub struct Box {
-    pub raw: *const capi::Box,
+    pub raw: *mut capi::Box,
+}
+
+impl Drop for Box {
+    fn drop(&mut self) {
+        self.destroy();
+    }
 }
 
 impl Box {
+    pub fn new(x: i32, y: i32, w: i32, h: i32) -> Option<Box> {
+        unsafe {
+            let p = capi::boxCreateValid(x, y, w, h);
+            if p.is_null() {
+                None
+            } else {
+                Some(Box{raw: p})
+            }
+        }
+    }
+
     pub fn get_val(&self) -> BoxVal {
         unsafe {
             let v = *self.raw;
@@ -56,10 +75,22 @@ impl Box {
             }
         }
     }
+
+    pub fn destroy(&mut self) {
+        unsafe{
+            capi::boxDestroy(&mut self.raw);
+        }
+    }
 }
 
 pub struct Boxa {
     pub raw: *mut capi::Boxa,
+}
+
+impl Drop for Boxa {
+    fn drop(&mut self) {
+        self.destroy();
+    }
 }
 
 impl Boxa {
@@ -70,10 +101,16 @@ impl Boxa {
     pub fn get_box(&self, i: usize, flag: u32) -> Option<Box> {
         unsafe {
             let b = capi::boxaGetBox(self.raw, i as i32, flag as i32);
-            match b.as_ref() {
-                Some(p) => Some(Box { raw: p }),
-                None => None,
+            if b.is_null() {
+                return None;
             }
+            Some(Box { raw: b })
+        }
+    }
+
+    pub fn destroy(&mut self) {
+        unsafe{
+            capi::boxaDestroy(&mut self.raw);
         }
     }
 }
