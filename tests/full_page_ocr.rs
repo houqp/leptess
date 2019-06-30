@@ -62,7 +62,7 @@ fn test_ocr_iterate_word() {
 #[test]
 fn test_low_lvl_get_text() {
     let path = Path::new("./tests/di.png");
-    let mut img = leptonica::pix_read(path).unwrap();
+    let img = leptonica::pix_read(path).unwrap();
 
     let mut api = tesseract::TessApi::new(Some("./tests/tessdata"), "eng").unwrap();
     api.set_image(&img);
@@ -80,13 +80,12 @@ fn test_low_lvl_get_text() {
     );
 
     api.destroy();
-    img.destroy();
 }
 
 #[test]
 fn test_low_lvl_ocr_iterate_word() {
     let path = Path::new("./tests/di.png");
-    let mut img = leptonica::pix_read(path).unwrap();
+    let img = leptonica::pix_read(path).unwrap();
 
     let mut api = tesseract::TessApi::new(Some("./tests/tessdata"), "eng").unwrap();
     api.set_image(&img);
@@ -123,7 +122,6 @@ fn test_low_lvl_ocr_iterate_word() {
     assert_eq!("people\n", api.get_utf8_text().unwrap());
 
     api.destroy();
-    img.destroy();
 }
 
 #[test]

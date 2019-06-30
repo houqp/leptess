@@ -16,8 +16,13 @@ impl Pix {
     pub fn get_h(&self) -> u32 {
         unsafe { (*self.raw).h }
     }
-    pub fn destroy(&mut self) {
-        unsafe { capi::pixDestroy(&mut self.raw) }
+}
+
+impl Drop for Pix {
+    fn drop(&mut self) {
+        unsafe {
+            capi::pixDestroy(&mut self.raw);
+        }
     }
 }
 
