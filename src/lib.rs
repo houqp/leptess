@@ -51,10 +51,9 @@
 //! sudo apt-get install tesseract-ocr-eng
 //! ```
 
-
+pub mod capi;
 pub mod leptonica;
 pub mod tesseract;
-pub mod capi;
 
 use std::path::Path;
 
@@ -106,14 +105,14 @@ impl Drop for LepTess {
         self.tess_api.destroy();
         match self.img {
             Some(ref mut x) => x.destroy(),
-            _ => {},
+            _ => {}
         }
     }
 }
 
 impl LepTess {
     pub fn new(data_path: Option<&str>, lang: &str) -> Result<LepTess, tesseract::TessInitError> {
-        Ok(LepTess{
+        Ok(LepTess {
             tess_api: tesseract::TessApi::new(data_path, lang)?,
             img: None,
         })
@@ -130,13 +129,13 @@ impl LepTess {
                 match self.img {
                     Some(ref mut x) => {
                         x.destroy();
-                    },
-                    _ => {},
+                    }
+                    _ => {}
                 }
                 self.tess_api.set_image(&pix);
                 self.img = Some(pix);
                 true
-            },
+            }
             None => false,
         }
     }

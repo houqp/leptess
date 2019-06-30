@@ -59,7 +59,7 @@ impl Box {
             if p.is_null() {
                 None
             } else {
-                Some(Box{raw: p})
+                Some(Box { raw: p })
             }
         }
     }
@@ -77,7 +77,7 @@ impl Box {
     }
 
     pub fn destroy(&mut self) {
-        unsafe{
+        unsafe {
             capi::boxDestroy(&mut self.raw);
         }
     }
@@ -109,7 +109,7 @@ impl Boxa {
     }
 
     pub fn destroy(&mut self) {
-        unsafe{
+        unsafe {
             capi::boxaDestroy(&mut self.raw);
         }
     }

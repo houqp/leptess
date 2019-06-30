@@ -8,7 +8,7 @@ use std::os::raw::c_char;
 use std::ptr;
 
 #[derive(Debug, PartialEq)]
-pub struct TessInitError{
+pub struct TessInitError {
     pub code: i32,
 }
 
@@ -65,7 +65,7 @@ impl TessApi {
                 return Ok(api);
             } else {
                 api.destroy();
-                return Err(TessInitError{code: re});
+                return Err(TessInitError { code: re });
             }
         }
     }

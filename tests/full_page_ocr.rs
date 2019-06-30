@@ -1,7 +1,7 @@
 extern crate leptess;
 
-use std::env;
 use leptess::{leptonica, tesseract, LepTess};
+use std::env;
 use std::path::Path;
 
 #[test]
@@ -129,7 +129,7 @@ fn test_low_lvl_ocr_iterate_word() {
 #[test]
 fn test_low_lvl_invalid_data_path() {
     let re = tesseract::TessApi::new(Some("tests_foo"), "eng");
-    assert_eq!(Err(tesseract::TessInitError{code: -1}), re);
+    assert_eq!(Err(tesseract::TessInitError { code: -1 }), re);
 }
 
 #[test]
