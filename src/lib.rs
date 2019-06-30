@@ -24,7 +24,6 @@
 //! println!("{}", text.unwrap());
 //!
 //! api.destroy();
-//! pix.destroy();
 //! ```
 //!
 //! Raw unsafe C API [bindings](capi/index.html) are auto-generated using bindgen. To update the
@@ -103,10 +102,6 @@ pub struct LepTess {
 impl Drop for LepTess {
     fn drop(&mut self) {
         self.tess_api.destroy();
-        match self.img {
-            Some(ref mut x) => x.destroy(),
-            _ => {}
-        }
     }
 }
 
@@ -126,12 +121,6 @@ impl LepTess {
 
         match re {
             Some(pix) => {
-                match self.img {
-                    Some(ref mut x) => {
-                        x.destroy();
-                    }
-                    _ => {}
-                }
                 self.tess_api.set_image(&pix);
                 self.img = Some(pix);
                 true
