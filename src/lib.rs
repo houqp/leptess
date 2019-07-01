@@ -96,7 +96,6 @@ use std::path::Path;
 
 pub struct LepTess {
     tess_api: tesseract::TessApi,
-    img: Option<leptonica::Pix>,
 }
 
 impl Drop for LepTess {
@@ -108,8 +107,7 @@ impl Drop for LepTess {
 impl LepTess {
     pub fn new(data_path: Option<&str>, lang: &str) -> Result<LepTess, tesseract::TessInitError> {
         Ok(LepTess {
-            tess_api: tesseract::TessApi::new(data_path, lang)?,
-            img: None,
+            tess_api: tesseract::TessApi::new(data_path, lang)?
         })
     }
 
@@ -122,7 +120,6 @@ impl LepTess {
         match re {
             Some(pix) => {
                 self.tess_api.set_image(&pix);
-                self.img = Some(pix);
                 true
             }
             None => false,
