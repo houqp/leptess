@@ -11,6 +11,4 @@ fn main() {
 
     let text = api.get_utf8_text();
     println!("{}", text.unwrap());
-
-    api.destroy();
 }

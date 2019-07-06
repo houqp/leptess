@@ -29,6 +29,4 @@ fn main() {
             text
         );
     }
-
-    api.destroy();
 }

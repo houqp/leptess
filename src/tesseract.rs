@@ -21,14 +21,16 @@ impl std::fmt::Display for TessInitError {
 #[derive(Debug, PartialEq)]
 pub struct TessApi {
     pub raw: *mut capi::TessBaseAPI,
-    pub data_path_cptr: *mut c_char,
+    data_path_cptr: *mut c_char,
 }
 
 impl Drop for TessApi {
     fn drop(&mut self) {
         if !self.data_path_cptr.is_null() {
-            // free data_path_cptr
             unsafe {
+                capi::TessBaseAPIEnd(self.raw);
+                capi::TessBaseAPIDelete(self.raw);
+                // free data_path_cptr, drop trait will take care of it
                 CString::from_raw(self.data_path_cptr);
             }
         }
@@ -49,7 +51,7 @@ impl TessApi {
             }
         }
 
-        let mut api = TessApi {
+        let api = TessApi {
             raw: unsafe { capi::TessBaseAPICreate() },
             data_path_cptr: data_path_cptr,
         };
@@ -64,16 +66,8 @@ impl TessApi {
             if re == 0 {
                 return Ok(api);
             } else {
-                api.destroy();
                 return Err(TessInitError { code: re });
             }
-        }
-    }
-
-    pub fn destroy(&mut self) {
-        unsafe {
-            capi::TessBaseAPIEnd(self.raw);
-            capi::TessBaseAPIDelete(self.raw);
         }
     }
 

@@ -78,8 +78,6 @@ fn test_low_lvl_get_text() {
         "are created equal, that they are endowed by their",
         lines.nth(0).unwrap()
     );
-
-    api.destroy();
 }
 
 #[test]
@@ -120,8 +118,6 @@ fn test_low_lvl_ocr_iterate_word() {
     let b = iter.nth(14).unwrap();
     api.set_rectangle(&b);
     assert_eq!("people\n", api.get_utf8_text().unwrap());
-
-    api.destroy();
 }
 
 #[test]
@@ -133,6 +129,5 @@ fn test_low_lvl_invalid_data_path() {
 #[test]
 fn test_low_lvl_read_data_path_from_env() {
     env::set_var("TESSDATA_PREFIX", "./tests/tessdata");
-    let mut api = tesseract::TessApi::new(None, "eng").unwrap();
-    api.destroy();
+    tesseract::TessApi::new(None, "eng").unwrap();
 }

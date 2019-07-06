@@ -22,8 +22,6 @@
 //!
 //! let text = api.get_utf8_text();
 //! println!("{}", text.unwrap());
-//!
-//! api.destroy();
 //! ```
 //!
 //! Raw unsafe C API [bindings](capi/index.html) are auto-generated using bindgen. To update the
@@ -96,12 +94,6 @@ use std::path::Path;
 
 pub struct LepTess {
     tess_api: tesseract::TessApi,
-}
-
-impl Drop for LepTess {
-    fn drop(&mut self) {
-        self.tess_api.destroy();
-    }
 }
 
 impl LepTess {
