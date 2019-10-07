@@ -26,10 +26,11 @@ pub struct TessApi {
 
 impl Drop for TessApi {
     fn drop(&mut self) {
-        if !self.data_path_cptr.is_null() {
-            unsafe {
-                capi::TessBaseAPIEnd(self.raw);
-                capi::TessBaseAPIDelete(self.raw);
+        unsafe {
+            capi::TessBaseAPIEnd(self.raw);
+            capi::TessBaseAPIDelete(self.raw);
+
+            if !self.data_path_cptr.is_null() {
                 // free data_path_cptr, drop trait will take care of it
                 CString::from_raw(self.data_path_cptr);
             }
