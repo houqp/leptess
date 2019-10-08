@@ -11,7 +11,7 @@ jobs:
           command: |
               echo 'deb http://deb.debian.org/debian stretch-backports main' | tee -a /etc/apt/sources.list
               apt-get update
-              apt-get -t stretch-backports -y install libleptonica-dev libtesseract-dev=4.0.0-2~bpo9+1 tesseract-ocr-eng
+              apt-get -t stretch-backports -y install libleptonica-dev libtesseract-dev=4.0.0-2~bpo9+1 tesseract-ocr-eng clang
       - run:
           name: Version information
           command: rustc --version; cargo --version; rustup --version

@@ -11,12 +11,12 @@ Productive and safe Rust bindings/wrappers for Tesseract and Leptonica.
 Build dependencies
 ------------------
 
-Make sure you have Leptonica and Tesseract installed.
+Make sure you have clang, Leptonica and Tesseract installed.
 
 For Ubuntu user:
 
 ```bash
-sudo apt-get install libleptonica-dev libtesseract-dev
+sudo apt-get install libleptonica-dev libtesseract-dev clang
 ```
 
 You will also need to install tesseract language data based on your OCR needs:
