@@ -41,12 +41,6 @@ For more examples, see [docs](https://docs.rs/leptess) and `examples` directory.
 Development
 -----------
 
-Regenerate capi binding:
-
-```
-make gen
-```
-
 To run tests, you will need at Tesseract 4.x to match what we have in
 `tests/tessdata/eng.traineddata`. See CircleCI config to see how to replicate
 the setup.
