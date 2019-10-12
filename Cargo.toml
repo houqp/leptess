@@ -12,3 +12,6 @@ license = "MIT"
 [dependencies]
 leptonica-sys = "0.2.0"
 tesseract-sys = "0.3.0"
+
+[package.metadata.docs.rs]
+dependencies = [ "libleptonica-dev", "libtesseract-dev", "clang" ]
