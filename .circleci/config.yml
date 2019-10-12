@@ -46,17 +46,17 @@ jobs:
       - image: node:8.10.0
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "ea:dc:be:cb:ad:a0:6e:fd:70:53:cc:a9:a2:55:20:f8"
       - attach_workspace:
           at: target
       - run:
           name: Install and configure dependencies
           command: |
             npm install -g --silent gh-pages@2.0.1
-            git config user.name "Qingping Hou"
+            git config user.name "QP CircleCI docs build"
             git config user.email "dave2008713@gmail.com"
+      - add_ssh_keys:
+          fingerprints:
+            - "ea:dc:be:cb:ad:a0:6e:fd:70:53:cc:a9:a2:55:20:f8"
       - run:
           name: Deploy docs to gh-pages branch
           command: gh-pages --dist target/doc/
