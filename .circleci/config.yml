@@ -25,11 +25,8 @@ jobs:
           name: Build all targets
           command: cargo build --all --all-targets
       - run:
-          name: Build doc
-          command: cargo doc
-      - persist_to_workspace:
-          root: target/
-          paths: doc/
+          name: Run all tests
+          command: cargo test --all
       - save_cache:
           paths:
             - /usr/local/cargo/registry
@@ -38,13 +35,20 @@ jobs:
             - target/debug/deps
           key: v4-cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
       - run:
-          name: Run all tests
-          command: cargo test --all
+          name: Build doc
+          command: cargo doc
+      - persist_to_workspace:
+          root: target/
+          paths: doc/
+
   docs-deploy:
     docker:
       - image: node:8.10.0
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "ea:dc:be:cb:ad:a0:6e:fd:70:53:cc:a9:a2:55:20:f8"
       - attach_workspace:
           at: target
       - run:
