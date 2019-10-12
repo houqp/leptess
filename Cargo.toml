@@ -8,10 +8,8 @@ repository = "https://github.com/houqp/leptess"
 readme = "README.md"
 keywords = ["leptonica", "tesseract", "ocr"]
 license = "MIT"
+documentation = "https://houqp.github.io/leptess/leptess/index.html"
 
 [dependencies]
 leptonica-sys = "0.2.0"
 tesseract-sys = "0.3.0"
-
-[package.metadata.docs.rs]
-dependencies = [ "libleptonica-dev", "libtesseract-dev", "clang" ]
