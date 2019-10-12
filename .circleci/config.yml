@@ -25,8 +25,11 @@ jobs:
           name: Build all targets
           command: cargo build --all --all-targets
       - run:
-          name: Test build doc
+          name: Build doc
           command: cargo doc
+      - persist_to_workspace:
+          root: target/
+          paths: doc/
       - save_cache:
           paths:
             - /usr/local/cargo/registry
@@ -37,9 +40,30 @@ jobs:
       - run:
           name: Run all tests
           command: cargo test --all
-
+  docs-deploy:
+    docker:
+      - image: node:8.10.0
+    steps:
+      - checkout
+      - attach_workspace:
+          at: target
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.name "Qingping Hou"
+            git config user.email "dave2008713@gmail.com"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: gh-pages --dist target/doc/
 workflows:
   version: 2
   workflow:
     jobs:
       - test
+      - docs-deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
