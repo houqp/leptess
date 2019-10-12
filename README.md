@@ -3,7 +3,7 @@ Leptess
 
 [![CircleCI](https://circleci.com/gh/houqp/leptess.svg?style=svg)](https://circleci.com/gh/houqp/leptess)
 [![Crates.io](https://img.shields.io/crates/v/leptess.svg)](https://crates.io/crates/leptess)
-[![Docs](https://img.shields.io/badge/rust-docs-blue.svg)](https://docs.rs/leptess)
+[![Docs](https://img.shields.io/badge/rust-docs-blue.svg)](https://houqp.github.io/leptess/leptess/index.html)
 
 Productive and safe Rust bindings/wrappers for Tesseract and Leptonica.
 
@@ -35,7 +35,7 @@ lt.set_image("path/to/page.bmp");
 println!("{}", lt.get_utf8_text().unwrap());
 ```
 
-For more examples, see [docs](https://docs.rs/leptess) and `examples` directory.
+For more examples, see [docs](https://houqp.github.io/leptess/leptess/index.html) and `examples` directory.
 
 
 Development
