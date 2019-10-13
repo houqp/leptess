@@ -24,11 +24,7 @@
 //! println!("{}", text.unwrap());
 //! ```
 //!
-//! Raw unsafe C API [bindings](capi/index.html) are auto-generated using bindgen. To update the
-//! binding, run:
-//!
-//! ```bash
-//! make gen
+//! Raw unsafe C API [bindings](capi/index.html) are auto-generated using bindgen at compile time.
 //! ```
 //!
 //! Build dependencies
@@ -39,7 +35,7 @@
 //! For Ubuntu user:
 //!
 //! ```bash
-//! sudo apt-get install libleptonica-dev libtesseract-dev
+//! sudo apt-get install libleptonica-dev libtesseract-dev clang
 //! ```
 //!
 //! You will also need to install tesseract language data based on your OCR needs:
