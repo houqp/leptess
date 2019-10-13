@@ -76,6 +76,10 @@ impl TessApi {
         unsafe { capi::TessBaseAPISetImage2(self.raw, img.raw as *mut capi::Pix) }
     }
 
+    pub fn get_source_y_resolution(&mut self) -> i32 {
+        unsafe { capi::TessBaseAPIGetSourceYResolution(self.raw) }
+    }
+
     /// Override image resolution.
     /// Can be used to suppress "Warning: Invalid resolution 0 dpi." output.
     pub fn set_source_resolution(&mut self, res: i32) {

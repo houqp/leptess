@@ -5,6 +5,13 @@ use std::env;
 use std::path::Path;
 
 #[test]
+fn test_source_resolution() {
+    let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
+    assert_eq!(lt.set_image("./tests/di.png"), true);
+    assert_eq!(lt.get_source_y_resolution(), 0);
+}
+
+#[test]
 fn test_get_text() {
     let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
     assert_eq!(lt.set_image("./tests/di.png"), true);

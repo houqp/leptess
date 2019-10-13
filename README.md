@@ -37,6 +37,11 @@ println!("{}", lt.get_utf8_text().unwrap());
 
 For more examples, see [docs](https://houqp.github.io/leptess/leptess/index.html) and `examples` directory.
 
+To run demos in `examples` directory, try:
+
+```bash
+cargo run --example low_level_ocr_full_page
+```
 
 Development
 -----------

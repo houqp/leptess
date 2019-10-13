@@ -9,6 +9,7 @@ fn main() {
     let pix = leptonica::pix_read(Path::new("./tests/di.png")).unwrap();
     api.set_image(&pix);
 
-    let text = api.get_utf8_text();
-    println!("{}", text.unwrap());
+    if api.get_source_y_resolution() <= 0 {
+        api.set_source_resolution(70)
+    }
 }
