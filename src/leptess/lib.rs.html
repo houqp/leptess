@@ -189,11 +189,6 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
-<span id="194">194</span>
-<span id="195">195</span>
-<span id="196">196</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Productive and safe Rust bindings/wrappers for Leptonica and Tesseract.</span>
 <span class="doccomment">//!</span>
@@ -221,12 +216,7 @@
 <span class="doccomment">//! println!(&quot;{}&quot;, text.unwrap());</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Raw unsafe C API [bindings](capi/index.html) are auto-generated using bindgen. To update the</span>
-<span class="doccomment">//! binding, run:</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```bash</span>
-<span class="doccomment">//! make gen</span>
-<span class="doccomment">//! ```</span>
+<span class="doccomment">//! Raw unsafe C API [bindings](capi/index.html) are auto-generated using bindgen at compile time.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Build dependencies</span>
 <span class="doccomment">//! ------------------</span>
@@ -236,7 +226,7 @@
 <span class="doccomment">//! For Ubuntu user:</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ```bash</span>
-<span class="doccomment">//! sudo apt-get install libleptonica-dev libtesseract-dev</span>
+<span class="doccomment">//! sudo apt-get install libleptonica-dev libtesseract-dev clang</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! You will also need to install tesseract language data based on your OCR needs:</span>
