@@ -60,7 +60,7 @@ jobs:
       - run:
           name: Deploy docs to gh-pages branch
           # prevent circleci from building gh-pages branch
-          command: gh-pages -m ‘auto commit from build [ci skip]’ --dist target/doc/
+          command: "gh-pages -m 'auto commit from build [ci skip]' --dist target/doc/"
 workflows:
   version: 2
   workflow:
