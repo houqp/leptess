@@ -25,7 +25,6 @@
 //! ```
 //!
 //! Raw unsafe C API [bindings](capi/index.html) are auto-generated using bindgen at compile time.
-//! ```
 //!
 //! Build dependencies
 //! ------------------
