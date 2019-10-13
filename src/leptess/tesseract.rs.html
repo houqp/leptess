@@ -152,6 +152,10 @@
 <span id="152">152</span>
 <span id="153">153</span>
 <span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Low level wrapper for Tesseract C API</span>
 
@@ -229,6 +233,10 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_image</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">img</span>: <span class="kw-2">&amp;</span><span class="ident">leptonica</span>::<span class="ident">Pix</span>) {
         <span class="kw">unsafe</span> { <span class="ident">capi</span>::<span class="ident">TessBaseAPISetImage2</span>(<span class="self">self</span>.<span class="ident">raw</span>, <span class="ident">img</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">capi</span>::<span class="ident">Pix</span>) }
+    }
+
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_source_y_resolution</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+        <span class="kw">unsafe</span> { <span class="ident">capi</span>::<span class="ident">TessBaseAPIGetSourceYResolution</span>(<span class="self">self</span>.<span class="ident">raw</span>) }
     }
 
     <span class="doccomment">/// Override image resolution.</span>

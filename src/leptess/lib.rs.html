@@ -183,6 +183,17 @@
 <span id="183">183</span>
 <span id="184">184</span>
 <span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Productive and safe Rust bindings/wrappers for Leptonica and Tesseract.</span>
 <span class="doccomment">//!</span>
@@ -304,10 +315,21 @@
         }
     }
 
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_source_y_resolution</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
+        <span class="self">self</span>.<span class="ident">tess_api</span>.<span class="ident">get_source_y_resolution</span>()
+    }
+
     <span class="doccomment">/// Override image resolution.</span>
     <span class="doccomment">/// Can be used to suppress &quot;Warning: Invalid resolution 0 dpi.&quot; output.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_source_resolution</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">res</span>: <span class="ident">i32</span>) {
         <span class="self">self</span>.<span class="ident">tess_api</span>.<span class="ident">set_source_resolution</span>(<span class="ident">res</span>)
+    }
+
+    <span class="doccomment">/// Override image resolution if not detected</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_fallback_source_resolution</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">res</span>: <span class="ident">i32</span>) {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">get_source_y_resolution</span>() <span class="op">&lt;=</span> <span class="number">0</span> {
+            <span class="self">self</span>.<span class="ident">tess_api</span>.<span class="ident">set_source_resolution</span>(<span class="ident">res</span>)
+        }
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">recognize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
