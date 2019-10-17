@@ -94,7 +94,7 @@ pub struct LepTess {
 impl LepTess {
     pub fn new(data_path: Option<&str>, lang: &str) -> Result<LepTess, tesseract::TessInitError> {
         Ok(LepTess {
-            tess_api: tesseract::TessApi::new(data_path, lang)?
+            tess_api: tesseract::TessApi::new(data_path, lang)?,
         })
     }
 
@@ -125,7 +125,10 @@ impl LepTess {
 
     /// Override image resolution if not detected
     pub fn set_fallback_source_resolution(&mut self, res: i32) {
-        if self.get_source_y_resolution() <= 0 {
+        let resolution = self.get_source_y_resolution();
+        if resolution < tesseract::MIN_CREDIBLE_RESOLUTION
+            || resolution > tesseract::MAX_CREDIBLE_RESOLUTION
+        {
             self.tess_api.set_source_resolution(res)
         }
     }

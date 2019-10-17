@@ -7,6 +7,9 @@ use std::ffi::{CStr, CString};
 use std::os::raw::c_char;
 use std::ptr;
 
+pub use capi::kMaxCredibleResolution as MAX_CREDIBLE_RESOLUTION;
+pub use capi::kMinCredibleResolution as MIN_CREDIBLE_RESOLUTION;
+
 #[derive(Debug, PartialEq)]
 pub struct TessInitError {
     pub code: i32,
