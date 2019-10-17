@@ -1,12 +1,12 @@
 [package]
 name = "leptess"
-version = "0.7.4"
+version = "0.8.0"
 authors = ["QP Hou <dave2008713@gmail.com>"]
-description = "Rust binding for Tesseract and Leptonica."
+description = "Productive Rust binding for Tesseract and Leptonica."
 homepage = "https://github.com/houqp/leptess"
 repository = "https://github.com/houqp/leptess"
 readme = "README.md"
-keywords = ["leptonica", "tesseract", "ocr"]
+keywords = ["leptonica", "tesseract", "ocr", "image"]
 license = "MIT"
 documentation = "https://houqp.github.io/leptess/leptess/index.html"
 
