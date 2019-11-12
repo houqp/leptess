@@ -25,6 +25,12 @@ You will also need to install tesseract language data based on your OCR needs:
 sudo apt-get install tesseract-ocr-eng
 ```
 
+For mac user:
+
+```bash
+brew install tesseract leptonica
+```
+
 
 Usage
 -----
