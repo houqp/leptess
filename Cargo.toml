@@ -12,4 +12,4 @@ documentation = "https://houqp.github.io/leptess/leptess/index.html"
 
 [dependencies]
 leptonica-sys = "0.2.0"
-tesseract-sys = { git = "https://github.com/houqp/tesseract-rs", commit = "e068ccb" }
+tesseract-sys = "0.4.1"
