@@ -11,5 +11,5 @@ license = "MIT"
 documentation = "https://houqp.github.io/leptess/leptess/index.html"
 
 [dependencies]
-leptonica-sys = "0.2.0"
-tesseract-sys = "0.4.1"
+leptonica-sys = "0.3.0"
+tesseract-sys = "0.5.0"
