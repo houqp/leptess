@@ -1,5 +1,4 @@
-Leptess
-=======
+# Leptess
 
 [![CircleCI](https://circleci.com/gh/houqp/leptess.svg?style=svg)](https://circleci.com/gh/houqp/leptess)
 [![Crates.io](https://img.shields.io/crates/v/leptess.svg)](https://crates.io/crates/leptess)
@@ -7,9 +6,7 @@ Leptess
 
 Productive and safe Rust bindings/wrappers for Tesseract and Leptonica.
 
-
-Build dependencies
-------------------
+## Build dependencies
 
 Make sure you have clang, Leptonica and Tesseract installed.
 
@@ -31,9 +28,7 @@ For mac user:
 brew install tesseract leptonica
 ```
 
-
-Usage
------
+## Usage
 
 ```rust
 let mut lt = leptess::LepTess::new(None, "eng").unwrap();
@@ -49,8 +44,7 @@ To run demos in `examples` directory, try:
 cargo run --example low_level_ocr_full_page
 ```
 
-Development
------------
+## Development
 
 To run tests, you will need at Tesseract 4.x to match what we have in
 `tests/tessdata/eng.traineddata`. See CircleCI config to see how to replicate
