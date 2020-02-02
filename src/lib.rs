@@ -75,7 +75,7 @@ use std::path::Path;
 /// ## Iterate bounding boxes for each recognized word
 ///
 /// ```
-/// # let mut lt = leptess::LepTess::new(None, "eng").unwrap();
+/// # let mut lt = leptess::LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
 /// # lt.set_image("./tests/di.png");
 /// let boxes = lt.get_component_boxes(
 ///     leptess::capi::TessPageIteratorLevel_RIL_WORD,

@@ -103,9 +103,10 @@ impl Boxa {
         unsafe { (*self.raw).n as usize }
     }
 
-    pub fn get_box(&self, i: usize, flag: u32) -> Option<Box> {
+    pub fn get_box(&self, i: usize, flag: i32) -> Option<Box>
+    {
         unsafe {
-            let b = capi::boxaGetBox(self.raw, i as i32, flag as i32);
+            let b = capi::boxaGetBox(self.raw, i as i32, flag);
             if b.is_null() {
                 return None;
             }
@@ -148,7 +149,7 @@ impl Iterator for BoxaIterator {
             return None;
         }
 
-        let re = self.boxa.get_box(self.index, capi::L_CLONE);
+        let re = self.boxa.get_box(self.index, capi::L_CLONE as i32);
         self.index += 1;
 
         re
@@ -183,7 +184,7 @@ impl<'a> Iterator for BoxaRefIterator<'a> {
             return None;
         }
 
-        let re = self.boxa.get_box(self.index, capi::L_CLONE);
+        let re = self.boxa.get_box(self.index, capi::L_CLONE as i32);
         self.index += 1;
 
         re
