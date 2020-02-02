@@ -10,7 +10,7 @@ Productive and safe Rust bindings/wrappers for Tesseract and Leptonica.
 
 Make sure you have clang, Leptonica and Tesseract installed.
 
-For Ubuntu user:
+### Ubuntu
 
 ```bash
 sudo apt-get install libleptonica-dev libtesseract-dev clang
@@ -22,10 +22,35 @@ You will also need to install tesseract language data based on your OCR needs:
 sudo apt-get install tesseract-ocr-eng
 ```
 
-For mac user:
+### Mac
 
 ```bash
 brew install tesseract leptonica
+```
+
+### Windows
+
+On Windows, this library uses Microsoft's [vcpkg](https://github.com/microsoft/vcpkg) to provide tesseract.
+
+Please install [vcpkg](https://github.com/microsoft/vcpkg) and **set up user wide integration** or [vcpkg crate](https://crates.io/crates/vcpkg) won't be able to find the library.
+
+To install tesseract:
+
+```cmd
+REM from the vcpkg directory
+
+REM 32 bit
+.\vcpkg install tesseract:x86-windows
+
+REM 64 bit
+.\vcpkg install tesseract:x64-windows
+```
+
+To run the tests configure vcpkg-crate to find the tesseract library:
+
+```cmd
+SET VCPKGRS_DYNAMIC=true
+cargo test
 ```
 
 ## Usage
