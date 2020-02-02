@@ -1,7 +1,6 @@
 extern crate leptess;
 
 use leptess::{leptonica, tesseract, LepTess};
-use std::env;
 use std::path::Path;
 
 #[test]
@@ -133,8 +132,9 @@ fn test_low_lvl_invalid_data_path() {
     assert_eq!(Err(tesseract::TessInitError { code: -1 }), re);
 }
 
+#[cfg(not(windows))]
 #[test]
 fn test_low_lvl_read_data_path_from_env() {
-    env::set_var("TESSDATA_PREFIX", "./tests/tessdata");
+    std::env::set_var("TESSDATA_PREFIX", "./tests/tessdata");
     tesseract::TessApi::new(None, "eng").unwrap();
 }
