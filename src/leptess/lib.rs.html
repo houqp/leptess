@@ -270,7 +270,7 @@
 <span class="doccomment">/// ## Iterate bounding boxes for each recognized word</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// ```</span>
-<span class="doccomment">/// # let mut lt = leptess::LepTess::new(None, &quot;eng&quot;).unwrap();</span>
+<span class="doccomment">/// # let mut lt = leptess::LepTess::new(Some(&quot;./tests/tessdata&quot;), &quot;eng&quot;).unwrap();</span>
 <span class="doccomment">/// # lt.set_image(&quot;./tests/di.png&quot;);</span>
 <span class="doccomment">/// let boxes = lt.get_component_boxes(</span>
 <span class="doccomment">///     leptess::capi::TessPageIteratorLevel_RIL_WORD,</span>
