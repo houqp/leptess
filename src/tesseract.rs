@@ -75,8 +75,26 @@ impl TessApi {
         }
     }
 
+    /// Provide an image for Tesseract to recognize.
+    /// 
+    /// set_image clears all recognition results, and sets the rectangle to the full image, so it
+    /// may be followed immediately by a `[Self::get_utf8_text]`, and it will automatically perform
+    /// recognition. 
     pub fn set_image(&mut self, img: &leptonica::Pix) {
+        // "Tesseract takes its own copy of the image, so it need not persist until after Recognize"
         unsafe { capi::TessBaseAPISetImage2(self.raw, img.raw as *mut capi::Pix) }
+    }
+
+    // I have no idea if this is correct:
+    // - is TessBaseAPIGetInputImage the correct function to call? it's not documented at all
+    // - are .w and .h the correct attributes to check?
+    pub fn get_image_dimensions(&self) -> Option<(u32, u32)> {
+        unsafe {
+            let pix = capi::TessBaseAPIGetInputImage(self.raw);
+            if pix.is_null() { return None }
+
+            Some(((*pix).w as u32, (*pix).h as u32))
+        }
     }
 
     pub fn get_source_y_resolution(&mut self) -> i32 {
