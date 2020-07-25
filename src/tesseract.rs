@@ -15,6 +15,8 @@ pub struct TessInitError {
     pub code: i32,
 }
 
+impl std::error::Error for TessInitError {}
+
 impl std::fmt::Display for TessInitError {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         write!(f, "TessInitError{{{}}}", self.code)
