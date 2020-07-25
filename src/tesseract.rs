@@ -47,6 +47,7 @@ impl TessApi {
     pub fn new<'a>(data_path: Option<&'a str>, lang: &'a str) -> Result<TessApi, TessInitError> {
         let data_path_cptr;
         let data_path_cstr;
+        let lang = CString::new(lang).unwrap();
         match data_path {
             Some(dstr) => {
                 data_path_cstr = CString::new(dstr).unwrap();
@@ -59,20 +60,16 @@ impl TessApi {
 
         let api = TessApi {
             raw: unsafe { capi::TessBaseAPICreate() },
-            data_path_cptr: data_path_cptr,
+            data_path_cptr,
         };
 
         unsafe {
-            let re = capi::TessBaseAPIInit3(
-                api.raw,
-                api.data_path_cptr,
-                CString::new(lang).unwrap().as_ptr(),
-            );
+            let re = capi::TessBaseAPIInit3(api.raw, api.data_path_cptr, lang.as_ptr());
 
             if re == 0 {
-                return Ok(api);
+                Ok(api)
             } else {
-                return Err(TessInitError { code: re });
+                Err(TessInitError { code: re })
             }
         }
     }
@@ -115,7 +112,7 @@ impl TessApi {
                 }
             }
             capi::TessDeleteText(sptr);
-            return re;
+            re
         }
     }
 
@@ -127,9 +124,10 @@ impl TessApi {
         unsafe {
             let boxes = capi::TessBaseAPIGetRegions(self.raw, ptr::null_mut());
             if boxes.is_null() {
-                return None;
+                None
+            } else {
+                Some(leptonica::Boxa { raw: boxes })
             }
-            return Some(leptonica::Boxa { raw: boxes });
         }
     }
 
@@ -155,9 +153,10 @@ impl TessApi {
             );
 
             if boxes.is_null() {
-                return None;
+                None
+            } else {
+                Some(leptonica::Boxa { raw: boxes })
             }
-            return Some(leptonica::Boxa { raw: boxes });
         }
     }
 }

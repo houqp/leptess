@@ -28,14 +28,14 @@ impl Drop for Pix {
 
 pub fn pix_read(path: &Path) -> Option<Pix> {
     let s = path.to_str().unwrap();
-
+    let cs = CString::new(s).unwrap();
     unsafe {
-        let pix = capi::pixRead(CString::new(s).unwrap().as_ptr());
+        let pix = capi::pixRead(cs.as_ptr());
         if pix.is_null() {
-            return None;
+            None
+        } else {
+            Some(Pix { raw: pix })
         }
-
-        return Some(Pix { raw: pix });
     }
 }
 
@@ -58,9 +58,9 @@ impl Drop for Box {
 }
 
 impl Box {
-    pub fn new(x: i32, y: i32, w: i32, h: i32) -> Option<Box> {
+    pub fn new(x: i32, y: i32, width: i32, height: i32) -> Option<Box> {
         unsafe {
-            let p = capi::boxCreateValid(x, y, w, h);
+            let p = capi::boxCreateValid(x, y, width, height);
             if p.is_null() {
                 None
             } else {
@@ -129,7 +129,7 @@ impl IntoIterator for Boxa {
         BoxaIterator {
             boxa: self,
             index: 0,
-            count: count,
+            count,
         }
     }
 }
@@ -164,7 +164,7 @@ impl<'a> IntoIterator for &'a Boxa {
         BoxaRefIterator {
             boxa: self,
             index: 0,
-            count: count,
+            count,
         }
     }
 }

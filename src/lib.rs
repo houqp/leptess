@@ -138,7 +138,7 @@ impl LepTess {
     }
 
     /// Restrict OCR to a specific region of the image.
-    pub fn set_rectangle<'a, 'b>(&'a mut self, b: &'b leptonica::Box) {
+    pub fn set_rectangle(&mut self, b: &leptonica::Box) {
         self.tess_api.set_rectangle(b)
     }
 
