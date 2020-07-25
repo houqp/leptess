@@ -103,8 +103,7 @@ impl Boxa {
         unsafe { (*self.raw).n as usize }
     }
 
-    pub fn get_box(&self, i: usize, flag: i32) -> Option<Box>
-    {
+    pub fn get_box(&self, i: usize, flag: i32) -> Option<Box> {
         unsafe {
             let b = capi::boxaGetBox(self.raw, i as i32, flag);
             if b.is_null() {

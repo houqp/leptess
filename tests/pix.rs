@@ -1,7 +1,7 @@
 extern crate leptess;
 
-use std::path::Path;
 use leptess::leptonica;
+use std::path::Path;
 
 #[test]
 fn test_read_pix() {

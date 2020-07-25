@@ -1,7 +1,7 @@
 extern crate leptess;
 
-use std::path::Path;
 use leptess::{leptonica, tesseract};
+use std::path::Path;
 
 fn main() {
     let mut api = tesseract::TessApi::new(None, "eng").unwrap();
