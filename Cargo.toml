@@ -1,6 +1,6 @@
 [package]
 name = "leptess"
-version = "0.8.2"
+version = "0.8.3"
 authors = ["QP Hou <dave2008713@gmail.com>"]
 description = "Productive Rust binding for Tesseract and Leptonica."
 homepage = "https://github.com/houqp/leptess"
