@@ -22,6 +22,11 @@ jobs:
           keys:
             - v4-cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
       - run:
+          name: lint code
+          command: |
+              rustup component add clippy
+              cargo clippy
+      - run:
           name: Build all targets
           command: cargo build --all --all-targets
       - run:

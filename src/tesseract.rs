@@ -138,11 +138,7 @@ impl TessApi {
         level: capi::TessPageIteratorLevel,
         text_only: bool,
     ) -> Option<leptonica::Boxa> {
-        let mut text_only_val: i32 = 0;
-        if text_only {
-            text_only_val = 1;
-        }
-
+        let text_only_val: i32 = if text_only { 1 } else { 0 };
         unsafe {
             let boxes = capi::TessBaseAPIGetComponentImages(
                 self.raw,
