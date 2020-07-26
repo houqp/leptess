@@ -156,10 +156,6 @@
 <span id="156">156</span>
 <span id="157">157</span>
 <span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
-<span id="161">161</span>
-<span id="162">162</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Low level wrapper for Tesseract C API</span>
 
@@ -301,11 +297,7 @@
         <span class="ident">level</span>: <span class="ident">capi</span>::<span class="ident">TessPageIteratorLevel</span>,
         <span class="ident">text_only</span>: <span class="ident">bool</span>,
     ) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">leptonica</span>::<span class="ident">Boxa</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">text_only_val</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-        <span class="kw">if</span> <span class="ident">text_only</span> {
-            <span class="ident">text_only_val</span> <span class="op">=</span> <span class="number">1</span>;
-        }
-
+        <span class="kw">let</span> <span class="ident">text_only_val</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">text_only</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">boxes</span> <span class="op">=</span> <span class="ident">capi</span>::<span class="ident">TessBaseAPIGetComponentImages</span>(
                 <span class="self">self</span>.<span class="ident">raw</span>,
