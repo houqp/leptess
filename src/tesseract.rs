@@ -84,10 +84,10 @@ impl TessApi {
         unsafe { capi::TessBaseAPISetImage2(self.raw, img.raw as *mut capi::Pix) }
     }
 
-    // I have no idea if this is correct:
-    // - is TessBaseAPIGetInputImage the correct function to call? it's not documented at all
-    // - are .w and .h the correct attributes to check?
     pub fn get_image_dimensions(&self) -> Option<(u32, u32)> {
+        // - is TessBaseAPIGetInputImage the correct function to call? it's not documented at all
+        // - are .w and .h the correct attributes to check?
+        // (probably)
         unsafe {
             let pix = capi::TessBaseAPIGetInputImage(self.raw);
             if pix.is_null() { return None }
