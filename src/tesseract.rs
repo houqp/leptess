@@ -84,6 +84,18 @@ impl TessApi {
         unsafe { capi::TessBaseAPISetImage2(self.raw, img.raw as *mut capi::Pix) }
     }
 
+    /// Get the dimensions of the currently loaded image, or None if no image is loaded.
+    /// 
+    /// # Example
+    /// ```rust
+    /// let path = std::path::Path::new("tests/di.png");
+    /// let img = leptess::leptonica::pix_read(&path).unwrap();
+    /// 
+    /// let mut tes = leptess::tesseract::TessApi::new(Some("tests/tessdata"), "eng").unwrap();
+    /// tes.set_image(&img);
+    /// 
+    /// assert_eq!(tes.get_image_dimensions(), Some((442, 852)));
+    /// ```
     pub fn get_image_dimensions(&self) -> Option<(u32, u32)> {
         // - is TessBaseAPIGetInputImage the correct function to call? it's not documented at all
         // - are .w and .h the correct attributes to check?
