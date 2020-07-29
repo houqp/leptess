@@ -97,9 +97,6 @@ impl TessApi {
     /// assert_eq!(tes.get_image_dimensions(), Some((442, 852)));
     /// ```
     pub fn get_image_dimensions(&self) -> Option<(u32, u32)> {
-        // - is TessBaseAPIGetInputImage the correct function to call? it's not documented at all
-        // - are .w and .h the correct attributes to check?
-        // (probably)
         unsafe {
             let pix = capi::TessBaseAPIGetInputImage(self.raw);
             if pix.is_null() { return None }
