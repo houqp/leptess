@@ -117,6 +117,10 @@ impl LepTess {
         self.tess_api.get_source_y_resolution()
     }
 
+    pub fn get_image_dimensions(&self) -> Option<(u32, u32)> {
+        self.tess_api.get_image_dimensions()
+    }
+
     /// Override image resolution.
     /// Can be used to suppress "Warning: Invalid resolution 0 dpi." output.
     pub fn set_source_resolution(&mut self, res: i32) {
