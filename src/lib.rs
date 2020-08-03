@@ -99,10 +99,9 @@ impl LepTess {
     }
 
     /// Set image to use for OCR.
-    pub fn set_image(&mut self, img_uri: &str) -> bool {
+    pub fn set_image(&mut self, img_uri: impl AsRef<Path>) -> bool {
         // TODO: support more uri scheme, default to file://
-        let path = Path::new(img_uri);
-        let re = leptonica::pix_read(path);
+        let re = leptonica::pix_read(img_uri.as_ref());
 
         match re {
             Some(pix) => {
@@ -111,6 +110,16 @@ impl LepTess {
             }
             None => false,
         }
+    }
+
+    pub fn set_image_from_mem(&mut self, img: &[u8]) -> bool {
+        let result = leptonica::pix_read_mem(img);
+
+        if let Some(pix) = &result {
+            self.tess_api.set_image(&pix);
+        }
+
+        result.is_some()
     }
 
     pub fn get_source_y_resolution(&mut self) -> i32 {
