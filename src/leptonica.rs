@@ -26,6 +26,9 @@ impl Drop for Pix {
     }
 }
 
+/// Read an image from a local file.
+/// 
+/// The provided path must be valid UTF-8.
 pub fn pix_read(path: &Path) -> Option<Pix> {
     let s = path.to_str().unwrap();
     let cs = CString::new(s).unwrap();
@@ -36,6 +39,17 @@ pub fn pix_read(path: &Path) -> Option<Pix> {
         } else {
             Some(Pix { raw: pix })
         }
+    }
+}
+
+pub fn pix_read_mem(img: &[u8]) -> Option<Pix> {
+    unsafe {
+        let pix = capi::pixReadMem(img.as_ptr(), img.len());
+        if pix.is_null() {
+            return None;
+        }
+
+        Some(Pix { raw: pix })
     }
 }
 
