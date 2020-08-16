@@ -189,13 +189,54 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! Low level wrapper for Leptonica C API</span>
 
 <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">capi</span>;
 
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">convert</span>::<span class="ident">TryInto</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">CString</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">path</span>::<span class="ident">Path</span>;
+
+<span class="kw">use</span> <span class="ident">thiserror</span>;
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Pix</span> {
     <span class="kw">pub</span> <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">capi</span>::<span class="ident">Pix</span>,
@@ -218,16 +259,51 @@
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pix_read</span>(<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Pix</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">to_str</span>().<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">cs</span> <span class="op">=</span> <span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">s</span>).<span class="ident">unwrap</span>();
-    <span class="kw">unsafe</span> {
-        <span class="kw">let</span> <span class="ident">pix</span> <span class="op">=</span> <span class="ident">capi</span>::<span class="ident">pixRead</span>(<span class="ident">cs</span>.<span class="ident">as_ptr</span>());
-        <span class="kw">if</span> <span class="ident">pix</span>.<span class="ident">is_null</span>() {
-            <span class="prelude-val">None</span>
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Some</span>(<span class="ident">Pix</span> { <span class="ident">raw</span>: <span class="ident">pix</span> })
-        }
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">thiserror</span>::<span class="ident">Error</span>, <span class="ident">Debug</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">PixError</span> {
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Failed to read image from {}&quot;</span>, .<span class="number">0</span>)]</span>
+    <span class="ident">ReadFrom</span>(<span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span>),
+
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Path is not a valid utf8 string&quot;</span>)]</span>
+    <span class="ident">InvalidUtf8Path</span>,
+
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Path contains invalid nul byte: {}&quot;</span>, .<span class="ident">source</span>)]</span>
+    <span class="ident">InvalidPathNulByte</span> {
+        <span class="attribute">#[<span class="ident">from</span>]</span>
+        <span class="ident">source</span>: <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">NulError</span>,
+    },
+
+    <span class="comment">// this happens when usize has bit size 128 but leptonica only takes u64 address pointer</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="ident">transparent</span>)]</span>
+    <span class="ident">MemoryTooLarge</span> {
+        <span class="attribute">#[<span class="ident">from</span>]</span>
+        <span class="ident">source</span>: <span class="ident">std</span>::<span class="ident">num</span>::<span class="ident">TryFromIntError</span>,
+    },
+}
+
+<span class="doccomment">/// Read an image from a local file.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// The provided path must be valid UTF-8.</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pix_read</span>(<span class="ident">path</span>: <span class="kw-2">&amp;</span><span class="ident">Path</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Pix</span>, <span class="ident">PixError</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="ident">path</span>.<span class="ident">to_str</span>().<span class="ident">ok_or</span>(<span class="ident">PixError</span>::<span class="ident">InvalidUtf8Path</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">cs</span> <span class="op">=</span> <span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">s</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="ident">pix</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">capi</span>::<span class="ident">pixRead</span>(<span class="ident">cs</span>.<span class="ident">as_ptr</span>()) };
+    <span class="comment">// on read errors, leptonica sets pointer to null and prints error message to stderr, so there</span>
+    <span class="comment">// is no easy to capture and return the actual message programatically</span>
+    <span class="kw">if</span> <span class="ident">pix</span>.<span class="ident">is_null</span>() {
+        <span class="prelude-val">Err</span>(<span class="ident">PixError</span>::<span class="ident">ReadFrom</span>(<span class="string">&quot;file&quot;</span>))
+    } <span class="kw">else</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">Pix</span> { <span class="ident">raw</span>: <span class="ident">pix</span> })
+    }
+}
+
+<span class="doccomment">/// Like pix_read, but redas the image from memory instead of disk</span>
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">pix_read_mem</span>(<span class="ident">img</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Pix</span>, <span class="ident">PixError</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">pix</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">capi</span>::<span class="ident">pixReadMem</span>(<span class="ident">img</span>.<span class="ident">as_ptr</span>(), <span class="ident">img</span>.<span class="ident">len</span>().<span class="ident">try_into</span>()<span class="question-mark">?</span>) };
+    <span class="kw">if</span> <span class="ident">pix</span>.<span class="ident">is_null</span>() {
+        <span class="prelude-val">Err</span>(<span class="ident">PixError</span>::<span class="ident">ReadFrom</span>(<span class="string">&quot;memory&quot;</span>))
+    } <span class="kw">else</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">Pix</span> { <span class="ident">raw</span>: <span class="ident">pix</span> })
     }
 }
 

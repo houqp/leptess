@@ -1,4 +1,10 @@
 var ALIASES = {};
 ALIASES["leptess"] = {};
 ALIASES["leptonica_sys"] = {};
+ALIASES["proc_macro2"] = {};
+ALIASES["quote"] = {};
+ALIASES["syn"] = {};
 ALIASES["tesseract_sys"] = {};
+ALIASES["thiserror"] = {};
+ALIASES["thiserror_impl"] = {};
+ALIASES["unicode_xid"] = {};
