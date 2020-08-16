@@ -43,6 +43,8 @@
 //! sudo apt-get install tesseract-ocr-eng
 //! ```
 
+extern crate thiserror;
+
 pub mod capi;
 pub mod leptonica;
 pub mod tesseract;
@@ -99,27 +101,17 @@ impl LepTess {
     }
 
     /// Set image to use for OCR.
-    pub fn set_image(&mut self, img_uri: impl AsRef<Path>) -> bool {
+    pub fn set_image(&mut self, img_uri: impl AsRef<Path>) -> Result<(), leptonica::PixError> {
         // TODO: support more uri scheme, default to file://
-        let re = leptonica::pix_read(img_uri.as_ref());
-
-        match re {
-            Some(pix) => {
-                self.tess_api.set_image(&pix);
-                true
-            }
-            None => false,
-        }
+        let pix = leptonica::pix_read(img_uri.as_ref())?;
+        self.tess_api.set_image(&pix);
+        Ok(())
     }
 
-    pub fn set_image_from_mem(&mut self, img: &[u8]) -> bool {
-        let result = leptonica::pix_read_mem(img);
-
-        if let Some(pix) = &result {
-            self.tess_api.set_image(&pix);
-        }
-
-        result.is_some()
+    pub fn set_image_from_mem(&mut self, img: &[u8]) -> Result<(), leptonica::PixError> {
+        let pix = leptonica::pix_read_mem(img)?;
+        self.tess_api.set_image(&pix);
+        Ok(())
     }
 
     pub fn get_source_y_resolution(&mut self) -> i32 {

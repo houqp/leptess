@@ -1,3 +1,7 @@
+check:
+	cargo clippy
+	make test
+
 test:
 	cargo test
 
