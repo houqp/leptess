@@ -6,14 +6,14 @@ use std::path::Path;
 #[test]
 fn test_source_resolution() {
     let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
-    assert_eq!(lt.set_image("./tests/di.png"), true);
+    lt.set_image("./tests/di.png").unwrap();
     assert_eq!(lt.get_source_y_resolution(), 0);
 }
 
 #[test]
 fn test_get_text() {
     let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
-    assert_eq!(lt.set_image("./tests/di.png"), true);
+    lt.set_image("./tests/di.png").unwrap();
 
     let text = lt.get_utf8_text().unwrap();
 
@@ -31,7 +31,7 @@ fn test_get_text() {
 #[test]
 fn test_ocr_iterate_word() {
     let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
-    assert_eq!(lt.set_image("./tests/di.png"), true);
+    lt.set_image("./tests/di.png").unwrap();
 
     let boxes = lt
         .get_component_boxes(leptess::capi::TessPageIteratorLevel_RIL_WORD, true)

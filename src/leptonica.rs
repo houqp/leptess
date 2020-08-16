@@ -2,8 +2,11 @@
 
 use super::capi;
 
+use std::convert::TryInto;
 use std::ffi::CString;
 use std::path::Path;
+
+use thiserror;
 
 pub struct Pix {
     pub raw: *mut capi::Pix,
@@ -26,30 +29,51 @@ impl Drop for Pix {
     }
 }
 
+#[derive(thiserror::Error, Debug)]
+pub enum PixError {
+    #[error("Failed to read image from {}", .0)]
+    ReadFrom(&'static str),
+
+    #[error("Path is not a valid utf8 string")]
+    InvalidUtf8Path,
+
+    #[error("Path contains invalid nul byte: {}", .source)]
+    InvalidPathNulByte {
+        #[from]
+        source: std::ffi::NulError,
+    },
+
+    // this happens when usize has bit size 128 but leptonica only takes u64 address pointer
+    #[error(transparent)]
+    MemoryTooLarge {
+        #[from]
+        source: std::num::TryFromIntError,
+    },
+}
+
 /// Read an image from a local file.
-/// 
+///
 /// The provided path must be valid UTF-8.
-pub fn pix_read(path: &Path) -> Option<Pix> {
-    let s = path.to_str().unwrap();
-    let cs = CString::new(s).unwrap();
-    unsafe {
-        let pix = capi::pixRead(cs.as_ptr());
-        if pix.is_null() {
-            None
-        } else {
-            Some(Pix { raw: pix })
-        }
+pub fn pix_read(path: &Path) -> Result<Pix, PixError> {
+    let s = path.to_str().ok_or(PixError::InvalidUtf8Path)?;
+    let cs = CString::new(s)?;
+    let pix = unsafe { capi::pixRead(cs.as_ptr()) };
+    // on read errors, leptonica sets pointer to null and prints error message to stderr, so there
+    // is no easy to capture and return the actual message programatically
+    if pix.is_null() {
+        Err(PixError::ReadFrom("file"))
+    } else {
+        Ok(Pix { raw: pix })
     }
 }
 
-pub fn pix_read_mem(img: &[u8]) -> Option<Pix> {
-    unsafe {
-        let pix = capi::pixReadMem(img.as_ptr(), img.len());
-        if pix.is_null() {
-            return None;
-        }
-
-        Some(Pix { raw: pix })
+/// Like pix_read, but redas the image from memory instead of disk
+pub fn pix_read_mem(img: &[u8]) -> Result<Pix, PixError> {
+    let pix = unsafe { capi::pixReadMem(img.as_ptr(), img.len().try_into()?) };
+    if pix.is_null() {
+        Err(PixError::ReadFrom("memory"))
+    } else {
+        Ok(Pix { raw: pix })
     }
 }
 
