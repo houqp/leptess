@@ -10,6 +10,8 @@ Productive and safe Rust bindings/wrappers for Tesseract and Leptonica.
 
 Make sure you have clang, Leptonica and Tesseract installed.
 
+Tesseract should be version 4.0.0 or above.
+
 ### Ubuntu
 
 ```bash
