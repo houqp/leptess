@@ -3,7 +3,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: rust:1.35-slim-stretch
+      - image: rust:1.49-slim-buster
     steps:
       - checkout
       - run:
