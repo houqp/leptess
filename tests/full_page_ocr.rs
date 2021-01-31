@@ -29,6 +29,17 @@ fn test_get_text() {
 }
 
 #[test]
+fn test_get_hocr_text() {
+    let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
+    lt.set_image("./tests/di.png").unwrap();
+
+    let text = lt.get_hocr_text(0).unwrap();
+
+    assert!(text.contains("<div class='ocr_page'"));
+    assert!(text.contains("self-evident,"));
+}
+
+#[test]
 fn test_ocr_iterate_word() {
     let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
     lt.set_image("./tests/di.png").unwrap();
