@@ -2,6 +2,7 @@
 
 use super::capi;
 use super::leptonica;
+use std::os::raw::c_int;
 
 use std::ffi::{CStr, CString};
 use std::os::raw::c_char;
@@ -75,31 +76,33 @@ impl TessApi {
     }
 
     /// Provide an image for Tesseract to recognize.
-    /// 
+    ///
     /// set_image clears all recognition results, and sets the rectangle to the full image, so it
     /// may be followed immediately by a `[Self::get_utf8_text]`, and it will automatically perform
-    /// recognition. 
+    /// recognition.
     pub fn set_image(&mut self, img: &leptonica::Pix) {
         // "Tesseract takes its own copy of the image, so it need not persist until after Recognize"
         unsafe { capi::TessBaseAPISetImage2(self.raw, img.raw as *mut capi::Pix) }
     }
 
     /// Get the dimensions of the currently loaded image, or None if no image is loaded.
-    /// 
+    ///
     /// # Example
     /// ```rust
     /// let path = std::path::Path::new("tests/di.png");
     /// let img = leptess::leptonica::pix_read(&path).unwrap();
-    /// 
+    ///
     /// let mut tes = leptess::tesseract::TessApi::new(Some("tests/tessdata"), "eng").unwrap();
     /// tes.set_image(&img);
-    /// 
+    ///
     /// assert_eq!(tes.get_image_dimensions(), Some((442, 852)));
     /// ```
     pub fn get_image_dimensions(&self) -> Option<(u32, u32)> {
         unsafe {
             let pix = capi::TessBaseAPIGetInputImage(self.raw);
-            if pix.is_null() { return None }
+            if pix.is_null() {
+                return None;
+            }
 
             Some(((*pix).w as u32, (*pix).h as u32))
         }
@@ -138,6 +141,18 @@ impl TessApi {
                     re = Err(e);
                 }
             }
+            capi::TessDeleteText(sptr);
+            re
+        }
+    }
+
+    pub fn get_hocr_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        unsafe {
+            let sptr = capi::TessBaseAPIGetHOCRText(self.raw, page);
+            let re = match CStr::from_ptr(sptr).to_str() {
+                Ok(s) => Ok(s.to_string()),
+                Err(e) => Err(e),
+            };
             capi::TessDeleteText(sptr);
             re
         }

@@ -49,6 +49,7 @@ pub mod capi;
 pub mod leptonica;
 pub mod tesseract;
 
+use std::os::raw::c_int;
 use std::path::Path;
 
 /// High level wrapper for Tesseract and Leptonica
@@ -160,6 +161,11 @@ impl LepTess {
     /// ```
     pub fn get_utf8_text(&self) -> Result<String, std::str::Utf8Error> {
         self.tess_api.get_utf8_text()
+    }
+
+    /// Extract text from image as HTML with bounding box attributes.
+    pub fn get_hocr_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        self.tess_api.get_hocr_text(page)
     }
 
     pub fn mean_text_conf(&self) -> i32 {
