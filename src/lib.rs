@@ -168,6 +168,27 @@ impl LepTess {
         self.tess_api.get_hocr_text(page)
     }
 
+    /// Extract text from image as XML-formatted string with Alto markup.
+    pub fn get_alto_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        self.tess_api.get_alto_text(page)
+    }
+
+    /// Extract text from image as TSV-formatted string.
+    pub fn get_tsv_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        self.tess_api.get_tsv_text(page)
+    }
+
+    /// Returns a box file for LSTM training from the internal data structures.
+    /// Constructs coordinates in the original image - not just the rectangle.
+    pub fn get_lstm_box_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        self.tess_api.get_lstm_box_text(page)
+    }
+
+    /// Extract text from image as a string formatted in the same way as a Tesseract WordStr box file used in training.
+    pub fn get_word_str_box_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        self.tess_api.get_word_str_box_text(page)
+    }
+
     pub fn mean_text_conf(&self) -> i32 {
         self.tess_api.mean_text_conf()
     }

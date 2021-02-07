@@ -158,6 +158,54 @@ impl TessApi {
         }
     }
 
+    pub fn get_alto_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        unsafe {
+            let sptr = capi::TessBaseAPIGetAltoText(self.raw, page);
+            let re = match CStr::from_ptr(sptr).to_str() {
+                Ok(s) => Ok(s.to_string()),
+                Err(e) => Err(e),
+            };
+            capi::TessDeleteText(sptr);
+            re
+        }
+    }
+
+    pub fn get_tsv_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        unsafe {
+            let sptr = capi::TessBaseAPIGetTsvText(self.raw, page);
+            let re = match CStr::from_ptr(sptr).to_str() {
+                Ok(s) => Ok(s.to_string()),
+                Err(e) => Err(e),
+            };
+            capi::TessDeleteText(sptr);
+            re
+        }
+    }
+
+    pub fn get_lstm_box_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        unsafe {
+            let sptr = capi::TessBaseAPIGetLSTMBoxText(self.raw, page);
+            let re = match CStr::from_ptr(sptr).to_str() {
+                Ok(s) => Ok(s.to_string()),
+                Err(e) => Err(e),
+            };
+            capi::TessDeleteText(sptr);
+            re
+        }
+    }
+
+    pub fn get_word_str_box_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+        unsafe {
+            let sptr = capi::TessBaseAPIGetWordStrBoxText(self.raw, page);
+            let re = match CStr::from_ptr(sptr).to_str() {
+                Ok(s) => Ok(s.to_string()),
+                Err(e) => Err(e),
+            };
+            capi::TessDeleteText(sptr);
+            re
+        }
+    }
+
     pub fn mean_text_conf(&self) -> i32 {
         unsafe { capi::TessBaseAPIMeanTextConf(self.raw) }
     }
