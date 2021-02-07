@@ -14,3 +14,6 @@ documentation = "https://houqp.github.io/leptess/leptess/index.html"
 leptonica-sys = "0.3.2"
 tesseract-sys = "0.5.2"
 thiserror = "1"
+
+[dev-dependencies]
+regex = "1.4.3"

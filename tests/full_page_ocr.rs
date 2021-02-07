@@ -1,7 +1,9 @@
 extern crate leptess;
+extern crate regex;
 
 use leptess::{leptonica, tesseract, LepTess};
 use std::path::Path;
+use regex::Regex;
 
 #[test]
 fn test_source_resolution() {
@@ -32,11 +34,53 @@ fn test_get_text() {
 fn test_get_hocr_text() {
     let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
     lt.set_image("./tests/di.png").unwrap();
-
     let text = lt.get_hocr_text(0).unwrap();
 
     assert!(text.contains("<div class='ocr_page'"));
     assert!(text.contains("self-evident,"));
+}
+
+#[test]
+fn test_get_alto_text() {
+    let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
+    lt.set_image("./tests/di.png").unwrap();
+    let text = lt.get_alto_text(0).unwrap();
+    
+    let re = Regex::new(r#"<Page WIDTH="([0-9])+" HEIGHT="([0-9])+" PHYSICAL_IMG_NR="([0-9])+" ID="page_([0-9])+">"#).unwrap();
+    assert!(re.is_match(&text));
+    assert!(text.contains("CONTENT=\"Declaration\"/>"));
+}
+
+#[test]
+fn test_get_tsv_text() {
+    let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
+    lt.set_image("./tests/di.png").unwrap();
+    let text = lt.get_tsv_text(0).unwrap();
+
+    let re = Regex::new(r"([-0-9]+\t){11}.*").unwrap();
+    assert!(re.is_match(&text));
+    assert!(text.contains("Declaration"));
+}
+
+#[test]
+fn test_get_lstm_box_text() {
+    let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
+    lt.set_image("./tests/di.png").unwrap();
+    let text = lt.get_lstm_box_text(0).unwrap();
+
+    let re = Regex::new(r".?( [0-9]+){5}").unwrap();
+    assert!(re.is_match(&text));
+}
+
+#[test]
+fn test_get_word_str_box_text() {
+    let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
+    lt.set_image("./tests/di.png").unwrap();
+    let text = lt.get_word_str_box_text(0).unwrap();
+
+    assert!(text.contains("WordStr"));
+    assert!(text.contains("becomes necessary for one people to"));
+    assert!(text.contains("to throw off such Government, and to provide new"));
 }
 
 #[test]
