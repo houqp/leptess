@@ -3,16 +3,16 @@ version: 2
 jobs:
   test:
     docker:
-      - image: rust:1.49-alpine
+      - image: fedora:33
     steps:
       - checkout
       - run:
-          name: install leptonica & tesseract
+          name: install leptonica, tesseract and rust
           command: |
-              apk add --no-cache leptonica-dev tesseract-ocr-dev clang clang-libs libc-dev
+              dnf install -y rust clippy clang leptonica-devel tesseract-devel
       - run:
           name: Version information
-          command: rustc --version; cargo --version; rustup --version
+          command: rustc --version; cargo --version
       - run:
           name: Calculate dependencies
           command: cargo generate-lockfile
@@ -22,7 +22,6 @@ jobs:
       - run:
           name: lint code
           command: |
-              rustup component add clippy
               cargo clippy
       - run:
           name: Build all targets
