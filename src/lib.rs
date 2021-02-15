@@ -132,8 +132,8 @@ impl LepTess {
     /// Override image resolution if not detected
     pub fn set_fallback_source_resolution(&mut self, res: i32) {
         let resolution = self.get_source_y_resolution();
-        if resolution < tesseract::MIN_CREDIBLE_RESOLUTION
-            || resolution > tesseract::MAX_CREDIBLE_RESOLUTION
+        if !(tesseract::MIN_CREDIBLE_RESOLUTION..=tesseract::MAX_CREDIBLE_RESOLUTION)
+            .contains(&resolution)
         {
             self.tess_api.set_source_resolution(res)
         }
