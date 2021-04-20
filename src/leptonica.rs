@@ -1,31 +1,25 @@
 //! Low level wrapper for Leptonica C API
+extern crate tesseract_plumbing;
 
-use super::capi;
-
-use std::convert::TryInto;
 use std::ffi::CString;
 use std::path::Path;
 
+use self::tesseract_plumbing::leptonica_plumbing;
 use thiserror;
 
 pub struct Pix {
-    pub raw: *mut capi::Pix,
+    pub raw: leptonica_plumbing::Pix,
 }
 
 impl Pix {
     pub fn get_w(&self) -> u32 {
-        unsafe { (*self.raw).w }
+        let lpix: &leptonica_plumbing::leptonica_sys::Pix = self.raw.as_ref();
+        lpix.w
     }
-    pub fn get_h(&self) -> u32 {
-        unsafe { (*self.raw).h }
-    }
-}
 
-impl Drop for Pix {
-    fn drop(&mut self) {
-        unsafe {
-            capi::pixDestroy(&mut self.raw);
-        }
+    pub fn get_h(&self) -> u32 {
+        let lpix: &leptonica_plumbing::leptonica_sys::Pix = self.raw.as_ref();
+        lpix.h
     }
 }
 
@@ -57,23 +51,20 @@ pub enum PixError {
 pub fn pix_read(path: &Path) -> Result<Pix, PixError> {
     let s = path.to_str().ok_or(PixError::InvalidUtf8Path)?;
     let cs = CString::new(s)?;
-    let pix = unsafe { capi::pixRead(cs.as_ptr()) };
-    // on read errors, leptonica sets pointer to null and prints error message to stderr, so there
-    // is no easy to capture and return the actual message programatically
-    if pix.is_null() {
-        Err(PixError::ReadFrom("file"))
-    } else {
-        Ok(Pix { raw: pix })
+    match leptonica_plumbing::Pix::read(&cs) {
+        Err(leptonica_plumbing::PixReadError()) => Err(PixError::ReadFrom("file")),
+        Ok(raw) => Ok(Pix { raw }),
     }
 }
 
-/// Like pix_read, but redas the image from memory instead of disk
+/// Like pix_read, but reads the image from memory instead of disk
 pub fn pix_read_mem(img: &[u8]) -> Result<Pix, PixError> {
-    let pix = unsafe { capi::pixReadMem(img.as_ptr(), img.len().try_into()?) };
-    if pix.is_null() {
-        Err(PixError::ReadFrom("memory"))
-    } else {
-        Ok(Pix { raw: pix })
+    match leptonica_plumbing::Pix::read_mem(img) {
+        Err(leptonica_plumbing::PixReadMemError::ImageSizeConversion(source)) => {
+            Err(PixError::MemoryTooLarge { source })
+        }
+        Err(leptonica_plumbing::PixReadMemError::NullPtr) => Err(PixError::ReadFrom("memory")),
+        Ok(raw) => Ok(Pix { raw }),
     }
 }
 
@@ -86,110 +77,45 @@ pub struct BoxVal {
 }
 
 pub struct Box {
-    pub raw: *mut capi::Box,
-}
-
-impl Drop for Box {
-    fn drop(&mut self) {
-        self.destroy();
-    }
+    pub raw: leptonica_plumbing::Box,
 }
 
 impl Box {
     pub fn new(x: i32, y: i32, width: i32, height: i32) -> Option<Box> {
-        unsafe {
-            let p = capi::boxCreateValid(x, y, width, height);
-            if p.is_null() {
-                None
-            } else {
-                Some(Box { raw: p })
-            }
+        match leptonica_plumbing::Box::create_valid(x, y, width, height) {
+            Err(leptonica_plumbing::BoxCreateValidError()) => None,
+            Ok(raw) => Some(Box { raw }),
         }
     }
 
     pub fn get_val(&self) -> BoxVal {
-        unsafe {
-            let v = *self.raw;
-            BoxVal {
-                x: v.x,
-                y: v.y,
-                w: v.w,
-                h: v.h,
-            }
-        }
-    }
-
-    pub fn destroy(&mut self) {
-        unsafe {
-            capi::boxDestroy(&mut self.raw);
+        let lbox: &leptonica_plumbing::leptonica_sys::Box = self.raw.as_ref();
+        BoxVal {
+            x: lbox.x,
+            y: lbox.y,
+            w: lbox.w,
+            h: lbox.h,
         }
     }
 }
 
 pub struct Boxa {
-    pub raw: *mut capi::Boxa,
-}
-
-impl Drop for Boxa {
-    fn drop(&mut self) {
-        self.destroy();
-    }
+    pub raw: leptonica_plumbing::Boxa,
 }
 
 impl Boxa {
     pub fn get_n(&self) -> usize {
-        unsafe { (*self.raw).n as usize }
+        let lboxa: &leptonica_plumbing::leptonica_sys::Boxa = self.raw.as_ref();
+        lboxa.n as usize
     }
 
-    pub fn get_box(&self, i: usize, flag: i32) -> Option<Box> {
-        unsafe {
-            let b = capi::boxaGetBox(self.raw, i as i32, flag);
-            if b.is_null() {
-                return None;
-            }
-            Some(Box { raw: b })
-        }
-    }
-
-    pub fn destroy(&mut self) {
-        unsafe {
-            capi::boxaDestroy(&mut self.raw);
-        }
-    }
-}
-
-impl IntoIterator for Boxa {
-    type Item = Box;
-    type IntoIter = BoxaIterator;
-
-    fn into_iter(self) -> Self::IntoIter {
-        let count = self.get_n();
-        BoxaIterator {
-            boxa: self,
-            index: 0,
-            count,
-        }
-    }
-}
-
-pub struct BoxaIterator {
-    boxa: Boxa,
-    index: usize,
-    count: usize,
-}
-
-impl Iterator for BoxaIterator {
-    type Item = Box;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        if self.index >= self.count {
-            return None;
-        }
-
-        let re = self.boxa.get_box(self.index, capi::L_CLONE as i32);
-        self.index += 1;
-
-        re
+    pub fn get_box(&self, i: usize) -> Option<Box> {
+        let raw = self.raw.get(std::convert::TryInto::try_into(i).ok()?)?;
+        let lbox_ref: &leptonica_plumbing::leptonica_sys::Box = raw.as_ref();
+        let lbox =
+            leptonica_plumbing::Box::create_valid(lbox_ref.x, lbox_ref.y, lbox_ref.w, lbox_ref.h)
+                .ok()?;
+        Some(Box { raw: lbox })
     }
 }
 
@@ -221,7 +147,7 @@ impl<'a> Iterator for BoxaRefIterator<'a> {
             return None;
         }
 
-        let re = self.boxa.get_box(self.index, capi::L_CLONE as i32);
+        let re = self.boxa.get_box(self.index);
         self.index += 1;
 
         re

@@ -2,8 +2,8 @@ extern crate leptess;
 extern crate regex;
 
 use leptess::{leptonica, tesseract, LepTess};
-use std::path::Path;
 use regex::Regex;
+use std::path::Path;
 
 #[test]
 fn test_source_resolution() {
@@ -45,7 +45,7 @@ fn test_get_alto_text() {
     let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
     lt.set_image("./tests/di.png").unwrap();
     let text = lt.get_alto_text(0).unwrap();
-    
+
     let re = Regex::new(r#"<Page WIDTH="([0-9])+" HEIGHT="([0-9])+" PHYSICAL_IMG_NR="([0-9])+" ID="page_([0-9])+">"#).unwrap();
     assert!(re.is_match(&text));
     assert!(text.contains("CONTENT=\"Declaration\"/>"));
@@ -184,7 +184,7 @@ fn test_low_lvl_ocr_iterate_word() {
 #[test]
 fn test_low_lvl_invalid_data_path() {
     let re = tesseract::TessApi::new(Some("tests_foo"), "eng");
-    assert_eq!(Err(tesseract::TessInitError { code: -1 }), re);
+    assert_eq!(Some(tesseract::TessInitError { code: -1 }), re.err());
 }
 
 #[cfg(not(windows))]

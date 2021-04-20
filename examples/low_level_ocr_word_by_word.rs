@@ -17,7 +17,7 @@ fn main() {
     println!("Found {} textline image components.", boxes.get_n());
 
     // run OCR on each word bounding box
-    for b in boxes {
+    for b in &boxes {
         api.set_rectangle(&b);
         let text = api.get_utf8_text().unwrap();
         let confi = api.mean_text_conf();
