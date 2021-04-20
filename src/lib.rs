@@ -139,7 +139,7 @@ impl LepTess {
         }
     }
 
-    pub fn recognize(&self) -> i32 {
+    pub fn recognize(&mut self) -> i32 {
         self.tess_api.recognize()
     }
 
@@ -159,33 +159,33 @@ impl LepTess {
     /// lt.set_image("./tests/di.png");
     /// println!("{}", lt.get_utf8_text().unwrap());
     /// ```
-    pub fn get_utf8_text(&self) -> Result<String, std::str::Utf8Error> {
+    pub fn get_utf8_text(&mut self) -> Result<String, std::str::Utf8Error> {
         self.tess_api.get_utf8_text()
     }
 
     /// Extract text from image as HTML with bounding box attributes.
-    pub fn get_hocr_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+    pub fn get_hocr_text(&mut self, page: c_int) -> Result<String, std::str::Utf8Error> {
         self.tess_api.get_hocr_text(page)
     }
 
     /// Extract text from image as XML-formatted string with Alto markup.
-    pub fn get_alto_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+    pub fn get_alto_text(&mut self, page: c_int) -> Result<String, std::str::Utf8Error> {
         self.tess_api.get_alto_text(page)
     }
 
     /// Extract text from image as TSV-formatted string.
-    pub fn get_tsv_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+    pub fn get_tsv_text(&mut self, page: c_int) -> Result<String, std::str::Utf8Error> {
         self.tess_api.get_tsv_text(page)
     }
 
     /// Returns a box file for LSTM training from the internal data structures.
     /// Constructs coordinates in the original image - not just the rectangle.
-    pub fn get_lstm_box_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+    pub fn get_lstm_box_text(&mut self, page: c_int) -> Result<String, std::str::Utf8Error> {
         self.tess_api.get_lstm_box_text(page)
     }
 
     /// Extract text from image as a string formatted in the same way as a Tesseract WordStr box file used in training.
-    pub fn get_word_str_box_text(&self, page: c_int) -> Result<String, std::str::Utf8Error> {
+    pub fn get_word_str_box_text(&mut self, page: c_int) -> Result<String, std::str::Utf8Error> {
         self.tess_api.get_word_str_box_text(page)
     }
 
@@ -198,7 +198,7 @@ impl LepTess {
     }
 
     /// Get the given level kind of components (block, textline, word etc.) as a leptonica-style
-    /// Boxa, in reading order.If text_only is true, then only text components are returned.
+    /// Boxa, in reading order. If text_only is true, then only text components are returned.
     ///
     /// # Example
     ///

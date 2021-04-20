@@ -1,5 +1,4 @@
-extern crate leptonica_sys;
-extern crate tesseract_sys;
+extern crate tesseract_plumbing;
 
-pub use self::leptonica_sys::*;
-pub use self::tesseract_sys::*;
+pub use self::tesseract_plumbing::leptonica_sys::*;
+pub use self::tesseract_plumbing::tesseract_sys::*;
