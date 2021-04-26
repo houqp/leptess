@@ -68,14 +68,6 @@ pub fn pix_read_mem(img: &[u8]) -> Result<Pix, PixError> {
     }
 }
 
-#[derive(Debug, PartialEq)]
-pub struct BoxVal {
-    pub x: i32,
-    pub y: i32,
-    pub w: i32,
-    pub h: i32,
-}
-
 pub struct Box<R: AsRef<leptonica_plumbing::leptonica_sys::Box>> {
     pub raw: R,
 }
@@ -85,18 +77,6 @@ impl Box<leptonica_plumbing::Box> {
         match leptonica_plumbing::Box::create_valid(x, y, width, height) {
             Err(leptonica_plumbing::BoxCreateValidError()) => None,
             Ok(raw) => Some(Box { raw }),
-        }
-    }
-}
-
-impl<R: AsRef<leptonica_plumbing::leptonica_sys::Box>> Box<R> {
-    pub fn get_val(&self) -> BoxVal {
-        let lbox: &leptonica_plumbing::leptonica_sys::Box = self.raw.as_ref();
-        BoxVal {
-            x: lbox.x,
-            y: lbox.y,
-            w: lbox.w,
-            h: lbox.h,
         }
     }
 }
