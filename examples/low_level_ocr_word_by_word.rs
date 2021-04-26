@@ -21,6 +21,6 @@ fn main() {
         api.set_rectangle(&b);
         let text = api.get_utf8_text().unwrap();
         let confi = api.mean_text_conf();
-        println!("{:?}, confidence: {}, text: {}", b.get_val(), confi, text);
+        println!("{:?}, confidence: {}, text: {}", b, confi, text);
     }
 }
