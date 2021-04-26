@@ -97,13 +97,8 @@ fn test_ocr_iterate_word() {
         let text = lt.get_utf8_text().unwrap();
 
         assert_eq!(
-            leptonica::BoxVal {
-                x: 118,
-                y: 5,
-                w: 17,
-                h: 11,
-            },
-            b.get_val()
+            (118, 5, 17, 11),
+            (b.as_ref().x, b.as_ref().y, b.as_ref().w, b.as_ref().h)
         );
         assert_eq!("IN\n", text);
 
@@ -158,13 +153,8 @@ fn test_low_lvl_ocr_iterate_word() {
         let text = api.get_utf8_text().unwrap();
 
         assert_eq!(
-            leptonica::BoxVal {
-                x: 118,
-                y: 5,
-                w: 17,
-                h: 11,
-            },
-            b.get_val()
+            (118, 5, 17, 11),
+            (b.as_ref().x, b.as_ref().y, b.as_ref().w, b.as_ref().h)
         );
         assert_eq!("IN\n", text);
 
