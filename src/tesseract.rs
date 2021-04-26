@@ -83,9 +83,9 @@ impl TessApi {
         }
     }
 
-    pub fn set_rectangle(&mut self, b: &leptonica::Box) {
-        let v = b.get_val();
-        self.raw.set_rectangle(v.x, v.y, v.w, v.h);
+    pub fn set_rectangle(&mut self, b: impl AsRef<crate::capi::Box>) {
+        let r = b.as_ref();
+        self.raw.set_rectangle(r.x, r.y, r.w, r.h);
     }
 
     pub fn get_utf8_text(&mut self) -> Result<String, std::str::Utf8Error> {
