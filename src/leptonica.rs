@@ -76,18 +76,20 @@ pub struct BoxVal {
     pub h: i32,
 }
 
-pub struct Box {
-    pub raw: leptonica_plumbing::Box,
+pub struct Box<R: AsRef<leptonica_plumbing::leptonica_sys::Box>> {
+    pub raw: R,
 }
 
-impl Box {
-    pub fn new(x: i32, y: i32, width: i32, height: i32) -> Option<Box> {
+impl Box<leptonica_plumbing::Box> {
+    pub fn new(x: i32, y: i32, width: i32, height: i32) -> Option<Self> {
         match leptonica_plumbing::Box::create_valid(x, y, width, height) {
             Err(leptonica_plumbing::BoxCreateValidError()) => None,
             Ok(raw) => Some(Box { raw }),
         }
     }
+}
 
+impl<R: AsRef<leptonica_plumbing::leptonica_sys::Box>> Box<R> {
     pub fn get_val(&self) -> BoxVal {
         let lbox: &leptonica_plumbing::leptonica_sys::Box = self.raw.as_ref();
         BoxVal {
@@ -96,6 +98,14 @@ impl Box {
             w: lbox.w,
             h: lbox.h,
         }
+    }
+}
+
+impl<R: AsRef<leptonica_plumbing::leptonica_sys::Box>> AsRef<leptonica_plumbing::leptonica_sys::Box>
+    for Box<R>
+{
+    fn as_ref(&self) -> &leptonica_plumbing::leptonica_sys::Box {
+        self.raw.as_ref()
     }
 }
 
@@ -109,18 +119,14 @@ impl Boxa {
         lboxa.n as usize
     }
 
-    pub fn get_box(&self, i: usize) -> Option<Box> {
+    pub fn get_box(&self, i: usize) -> Option<Box<leptonica_plumbing::BorrowedBox>> {
         let raw = self.raw.get(std::convert::TryInto::try_into(i).ok()?)?;
-        let lbox_ref: &leptonica_plumbing::leptonica_sys::Box = raw.as_ref();
-        let lbox =
-            leptonica_plumbing::Box::create_valid(lbox_ref.x, lbox_ref.y, lbox_ref.w, lbox_ref.h)
-                .ok()?;
-        Some(Box { raw: lbox })
+        Some(Box { raw })
     }
 }
 
 impl<'a> IntoIterator for &'a Boxa {
-    type Item = Box;
+    type Item = Box<leptonica_plumbing::BorrowedBox<'a>>;
     type IntoIter = BoxaRefIterator<'a>;
 
     fn into_iter(self) -> Self::IntoIter {
@@ -140,7 +146,7 @@ pub struct BoxaRefIterator<'a> {
 }
 
 impl<'a> Iterator for BoxaRefIterator<'a> {
-    type Item = Box;
+    type Item = Box<leptonica_plumbing::BorrowedBox<'a>>;
 
     fn next(&mut self) -> Option<Self::Item> {
         if self.index >= self.count {
