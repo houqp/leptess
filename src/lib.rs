@@ -86,7 +86,7 @@ use std::path::Path;
 /// ).unwrap();
 ///
 /// for b in &boxes {
-///     println!("{:?}", b.get_val());
+///     println!("{:?}", b);
 /// }
 /// ```
 
@@ -213,7 +213,7 @@ impl LepTess {
     /// ).unwrap();
     ///
     /// for b in &boxes {
-    ///     println!("{:?}", b.get_val());
+    ///     println!("{:?}", b);
     /// }
     /// ```
     pub fn get_component_boxes(

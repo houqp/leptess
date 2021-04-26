@@ -109,6 +109,12 @@ impl<R: AsRef<leptonica_plumbing::leptonica_sys::Box>> AsRef<leptonica_plumbing:
     }
 }
 
+impl<R: AsRef<leptonica_plumbing::leptonica_sys::Box>> std::fmt::Debug for Box<R> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        std::fmt::Debug::fmt(self.as_ref(), f)
+    }
+}
+
 pub struct Boxa {
     pub raw: leptonica_plumbing::Boxa,
 }
