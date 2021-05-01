@@ -11,7 +11,7 @@ license = "MIT"
 documentation = "https://houqp.github.io/leptess/leptess/index.html"
 
 [dependencies]
-tesseract-plumbing = "0.4.0"
+tesseract-plumbing = "0.5.1"
 thiserror = "1"
 
 [dev-dependencies]
