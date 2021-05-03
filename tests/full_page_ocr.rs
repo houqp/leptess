@@ -1,7 +1,7 @@
 extern crate leptess;
 extern crate regex;
 
-use leptess::{leptonica, tesseract, LepTess};
+use leptess::{leptonica, tesseract, LepTess, Variable};
 use regex::Regex;
 use std::path::Path;
 
@@ -182,4 +182,19 @@ fn test_low_lvl_invalid_data_path() {
 fn test_low_lvl_read_data_path_from_env() {
     std::env::set_var("TESSDATA_PREFIX", "./tests/tessdata");
     tesseract::TessApi::new(None, "eng").unwrap();
+}
+
+#[test]
+fn test_set_variable() {
+    let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
+    lt.set_image("./tests/di.png").unwrap();
+    lt.set_variable(Variable::TesseditCharBlacklist, "aeiou");
+
+    let text = lt.get_utf8_text().unwrap();
+
+    let mut lines = text.lines();
+    assert_eq!(
+        "W hld ths trths t b slf-vdnt, tht ll mn",
+        lines.nth(14).unwrap()
+    );
 }

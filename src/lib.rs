@@ -49,6 +49,7 @@ pub mod capi;
 pub mod leptonica;
 pub mod tesseract;
 
+use std::ffi::CString;
 use std::os::raw::c_int;
 use std::path::Path;
 
@@ -223,4 +224,21 @@ impl LepTess {
     ) -> Option<leptonica::Boxa> {
         self.tess_api.get_component_images(level, text_only)
     }
+
+    /// Set the value of an internal Tesseract parameter.
+    ///
+    /// # Example
+    ///
+    /// ```no_run
+    /// let mut lt = leptess::LepTess::new(None, "eng").unwrap();
+    /// lt.set_variable(leptess::Variable::TesseditCharBlacklist, "xyz");
+    /// ```
+    pub fn set_variable(&mut self, name: Variable, value: &str) {
+        self.tess_api
+            .raw
+            .set_variable(name.as_cstr(), &CString::new(value).unwrap())
+            .unwrap();
+    }
 }
+
+include!(concat!(env!("OUT_DIR"), "/variable.rs"));
