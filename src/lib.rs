@@ -48,10 +48,12 @@ extern crate thiserror;
 pub mod capi;
 pub mod leptonica;
 pub mod tesseract;
+mod variable;
 
 use std::ffi::CString;
 use std::os::raw::c_int;
 use std::path::Path;
+pub use variable::Variable;
 
 /// High level wrapper for Tesseract and Leptonica
 ///
@@ -240,5 +242,3 @@ impl LepTess {
             .unwrap();
     }
 }
-
-include!(concat!(env!("OUT_DIR"), "/variable.rs"));
