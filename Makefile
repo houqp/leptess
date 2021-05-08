@@ -8,5 +8,8 @@ test:
 gen:
 	GEN_BINDING=1 cargo build
 
-set_variables_list.txt:
+variables_list.txt:
 	tesseract --print-parameters > $@
+
+src/variable.rs: variables_list.txt build_variables.py
+	python build_variables.py < variables_list.txt > $@
