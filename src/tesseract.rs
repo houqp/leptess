@@ -16,6 +16,10 @@ pub struct TessInitError {
     pub code: i32,
 }
 
+#[derive(thiserror::Error, Debug, PartialEq)]
+#[error("Tess set_variable returned false")]
+pub struct TessSetVariableError();
+
 #[derive(Debug)]
 pub struct TessApi {
     pub raw: tesseract_plumbing::TessBaseApi,
