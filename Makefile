@@ -13,3 +13,5 @@ variables_list.txt:
 
 src/variable.rs: variables_list.txt build_variables.py
 	python build_variables.py < variables_list.txt > $@
+	cargo fmt -- -- src/variable.rs
+ 
