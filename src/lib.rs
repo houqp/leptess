@@ -53,6 +53,7 @@ mod variable;
 use std::ffi::CString;
 use std::os::raw::c_int;
 use std::path::Path;
+use tesseract::TessSetVariableError;
 pub use variable::Variable;
 
 /// High level wrapper for Tesseract and Leptonica
@@ -235,10 +236,14 @@ impl LepTess {
     /// let mut lt = leptess::LepTess::new(None, "eng").unwrap();
     /// lt.set_variable(leptess::Variable::TesseditCharBlacklist, "xyz");
     /// ```
-    pub fn set_variable(&mut self, name: Variable, value: &str) {
+    pub fn set_variable(
+        &mut self,
+        name: Variable,
+        value: &str,
+    ) -> Result<(), TessSetVariableError> {
         self.tess_api
             .raw
             .set_variable(name.as_cstr(), &CString::new(value).unwrap())
-            .unwrap();
+            .map_err(|_| TessSetVariableError())
     }
 }
