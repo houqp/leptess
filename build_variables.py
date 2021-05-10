@@ -97,11 +97,11 @@ print()
 print("impl Variable {")
 print("    /// Get the variable's name as used by Tesseract")
 print("    pub fn as_cstr(&self) -> &'static CStr {")
-print("        match self {")
+print("        CStr::from_bytes_with_nul(match self {")
 
 for variable in variables:
-    print(f"            Variable::{variable.name_as_enum()} => CStr::from_bytes_with_nul({variable.name_as_c_str_byte_literal()}).unwrap(),")
+    print(f"            Variable::{variable.name_as_enum()} => {variable.name_as_c_str_byte_literal()},")
 
-print("        }")
+print("        }).unwrap()")
 print("    }")
 print("}")
