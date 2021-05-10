@@ -234,7 +234,7 @@ impl LepTess {
     ///
     /// ```no_run
     /// let mut lt = leptess::LepTess::new(None, "eng").unwrap();
-    /// lt.set_variable(leptess::Variable::TesseditCharBlacklist, "xyz");
+    /// lt.set_variable(leptess::Variable::TesseditCharBlacklist, "xyz").unwrap();
     /// ```
     pub fn set_variable(
         &mut self,

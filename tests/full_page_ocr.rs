@@ -188,7 +188,8 @@ fn test_low_lvl_read_data_path_from_env() {
 fn test_set_variable() {
     let mut lt = LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
     lt.set_image("./tests/di.png").unwrap();
-    lt.set_variable(Variable::TesseditCharBlacklist, "aeiou");
+    lt.set_variable(Variable::TesseditCharBlacklist, "aeiou")
+        .unwrap();
 
     let text = lt.get_utf8_text().unwrap();
 
