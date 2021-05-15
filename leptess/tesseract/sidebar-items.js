@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["MAX_CREDIBLE_RESOLUTION",""],["MIN_CREDIBLE_RESOLUTION",""]],"struct":[["TessApi",""],["TessInitError",""]]});
+initSidebarItems({"constant":[["MAX_CREDIBLE_RESOLUTION",""],["MIN_CREDIBLE_RESOLUTION",""]],"struct":[["TessApi",""],["TessInitError",""],["TessSetVariableError",""]]});
