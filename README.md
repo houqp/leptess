@@ -1,6 +1,6 @@
 # Leptess
 
-[![CircleCI](https://circleci.com/gh/houqp/leptess.svg?style=svg)](https://circleci.com/gh/houqp/leptess)
+[![Test](https://github.com/houqp/leptess/actions/workflows/test.yml/badge.svg)](https://github.com/houqp/leptess/actions/workflows/test.yml)
 [![Crates.io](https://img.shields.io/crates/v/leptess.svg)](https://crates.io/crates/leptess)
 [![Docs](https://img.shields.io/badge/rust-docs-blue.svg)](https://houqp.github.io/leptess/leptess/index.html)
 
