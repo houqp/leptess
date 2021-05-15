@@ -1,0 +1,27 @@
+name: Test
+
+on:
+  push
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  default:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Version information
+      run: rustc --version; cargo --version
+    - name: Install tesseract
+      run: sudo apt-get install libleptonica-dev libtesseract-dev clang tesseract-ocr-eng
+    - uses: actions/checkout@v2
+    - name: Build
+      run: cargo build --verbose
+    - name: Lint code
+      run: cargo clippy
+    - name: Run tests
+      run: cargo test --verbose
+    - name: Check formatting
+      run: cargo fmt -- --check
