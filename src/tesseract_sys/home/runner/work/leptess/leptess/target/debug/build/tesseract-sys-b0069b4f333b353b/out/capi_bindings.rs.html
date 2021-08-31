@@ -1,7 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/work/leptess/leptess/target/debug/build/tesseract-sys-0fc05f1a774ebbb4/out/capi_bindings.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>capi_bindings.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../../../../../../../../../../storage.js"></script><script src="../../../../../../../../../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../../../../../../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../../../../../../../../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/work/leptess/leptess/target/debug/build/tesseract-sys-b0069b4f333b353b/out/capi_bindings.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>capi_bindings.rs - source</title><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../../../../../../../../../ayu.css" disabled ><script id="default-settings"></script><script src="../../../../../../../../../../../../storage.js"></script><script src="../../../../../../../../../../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../../../../../../../../../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../../../../../../../../../../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../../../../../../../../../../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../../../../../../../../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../../../../../../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../../../../../../../../../tesseract_sys/index.html'><div class='logo-container rust-logo'><img src='../../../../../../../../../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../../../../../../../../../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../../../../../../../../../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../../../../../../../../../../../../settings.html"><img src="../../../../../../../../../../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<link rel="alternate icon" type="image/png" href="../../../../../../../../../../../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../../../../../../../../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../../../../../../../../../../tesseract_sys/index.html'><div class='logo-container rust-logo'><img src='../../../../../../../../../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img src="../../../../../../../../../../../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../../../../../../../../../../settings.html" title="settings"><img src="../../../../../../../../../../../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -829,14 +828,14 @@
 <span id="826">826</span>
 <span id="827">827</span>
 <span id="828">828</span>
-</pre><div class="example-wrap"><pre class="rust ">
+</pre><pre class="rust">
 <span class="comment">/* automatically generated by rust-bindgen 0.56.0 */</span>
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">size_t</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_ulong</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">__off_t</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_long</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">__off64_t</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_long</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">size_t</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_ulong</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">__off_t</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_long</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">__off64_t</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_long</span>;
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FILE</span> <span class="op">=</span> <span class="ident">_IO_FILE</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">_IO_lock_t</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_void</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">_IO_lock_t</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_void</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TessResultRenderer</span> {
@@ -871,7 +870,7 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessOcrEngineMode_OEM_LSTM_ONLY</span>: <span class="ident">TessOcrEngineMode</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessOcrEngineMode_OEM_TESSERACT_LSTM_COMBINED</span>: <span class="ident">TessOcrEngineMode</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessOcrEngineMode_OEM_DEFAULT</span>: <span class="ident">TessOcrEngineMode</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessOcrEngineMode</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessOcrEngineMode</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_uint</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageSegMode_PSM_OSD_ONLY</span>: <span class="ident">TessPageSegMode</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageSegMode_PSM_AUTO_OSD</span>: <span class="ident">TessPageSegMode</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageSegMode_PSM_AUTO_ONLY</span>: <span class="ident">TessPageSegMode</span> <span class="op">=</span> <span class="number">2</span>;
@@ -887,13 +886,13 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageSegMode_PSM_SPARSE_TEXT_OSD</span>: <span class="ident">TessPageSegMode</span> <span class="op">=</span> <span class="number">12</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageSegMode_PSM_RAW_LINE</span>: <span class="ident">TessPageSegMode</span> <span class="op">=</span> <span class="number">13</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageSegMode_PSM_COUNT</span>: <span class="ident">TessPageSegMode</span> <span class="op">=</span> <span class="number">14</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessPageSegMode</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessPageSegMode</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_uint</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageIteratorLevel_RIL_BLOCK</span>: <span class="ident">TessPageIteratorLevel</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageIteratorLevel_RIL_PARA</span>: <span class="ident">TessPageIteratorLevel</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageIteratorLevel_RIL_TEXTLINE</span>: <span class="ident">TessPageIteratorLevel</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageIteratorLevel_RIL_WORD</span>: <span class="ident">TessPageIteratorLevel</span> <span class="op">=</span> <span class="number">3</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPageIteratorLevel_RIL_SYMBOL</span>: <span class="ident">TessPageIteratorLevel</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessPageIteratorLevel</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessPageIteratorLevel</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_uint</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPolyBlockType_PT_UNKNOWN</span>: <span class="ident">TessPolyBlockType</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPolyBlockType_PT_FLOWING_TEXT</span>: <span class="ident">TessPolyBlockType</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPolyBlockType_PT_HEADING_TEXT</span>: <span class="ident">TessPolyBlockType</span> <span class="op">=</span> <span class="number">2</span>;
@@ -910,108 +909,108 @@
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPolyBlockType_PT_VERT_LINE</span>: <span class="ident">TessPolyBlockType</span> <span class="op">=</span> <span class="number">13</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPolyBlockType_PT_NOISE</span>: <span class="ident">TessPolyBlockType</span> <span class="op">=</span> <span class="number">14</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessPolyBlockType_PT_COUNT</span>: <span class="ident">TessPolyBlockType</span> <span class="op">=</span> <span class="number">15</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessPolyBlockType</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessPolyBlockType</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_uint</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessOrientation_ORIENTATION_PAGE_UP</span>: <span class="ident">TessOrientation</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessOrientation_ORIENTATION_PAGE_RIGHT</span>: <span class="ident">TessOrientation</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessOrientation_ORIENTATION_PAGE_DOWN</span>: <span class="ident">TessOrientation</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessOrientation_ORIENTATION_PAGE_LEFT</span>: <span class="ident">TessOrientation</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessOrientation</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessOrientation</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_uint</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessParagraphJustification_JUSTIFICATION_UNKNOWN</span>: <span class="ident">TessParagraphJustification</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessParagraphJustification_JUSTIFICATION_LEFT</span>: <span class="ident">TessParagraphJustification</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessParagraphJustification_JUSTIFICATION_CENTER</span>: <span class="ident">TessParagraphJustification</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessParagraphJustification_JUSTIFICATION_RIGHT</span>: <span class="ident">TessParagraphJustification</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessParagraphJustification</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessParagraphJustification</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_uint</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessWritingDirection_WRITING_DIRECTION_LEFT_TO_RIGHT</span>: <span class="ident">TessWritingDirection</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessWritingDirection_WRITING_DIRECTION_RIGHT_TO_LEFT</span>: <span class="ident">TessWritingDirection</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessWritingDirection_WRITING_DIRECTION_TOP_TO_BOTTOM</span>: <span class="ident">TessWritingDirection</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessWritingDirection</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessWritingDirection</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_uint</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessTextlineOrder_TEXTLINE_ORDER_LEFT_TO_RIGHT</span>: <span class="ident">TessTextlineOrder</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessTextlineOrder_TEXTLINE_ORDER_RIGHT_TO_LEFT</span>: <span class="ident">TessTextlineOrder</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">TessTextlineOrder_TEXTLINE_ORDER_TOP_TO_BOTTOM</span>: <span class="ident">TessTextlineOrder</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessTextlineOrder</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessTextlineOrder</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_uint</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ETEXT_DESC</span> {
     <span class="ident">_unused</span>: [<span class="ident">u8</span>; <span class="number">0</span>],
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessCancelFunc</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">option</span>::<span class="prelude-ty">Option</span><span class="op">&lt;</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessCancelFunc</span> <span class="op">=</span> <span class="ident">::std::option::Option</span><span class="op">&lt;</span>
     <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(
-        <span class="ident">cancel_this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_void</span>,
-        <span class="ident">words</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">cancel_this</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_void</span>,
+        <span class="ident">words</span>: <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
 <span class="op">&gt;</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessProgressFunc</span> <span class="op">=</span> ::<span class="ident">std</span>::<span class="ident">option</span>::<span class="prelude-ty">Option</span><span class="op">&lt;</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TessProgressFunc</span> <span class="op">=</span> <span class="ident">::std::option::Option</span><span class="op">&lt;</span>
     <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(
         <span class="ident">ths</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>,
-        <span class="ident">left</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">right</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">top</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">bottom</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">left</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">right</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">top</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">bottom</span>: <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
 <span class="op">&gt;</span>;
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessVersion</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessVersion</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessDeleteText</span>(<span class="ident">text</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessDeleteText</span>(<span class="ident">text</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>);
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessDeleteTextArray</span>(<span class="ident">arr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessDeleteTextArray</span>(<span class="ident">arr</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>);
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessDeleteIntArray</span>(<span class="ident">arr</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessDeleteIntArray</span>(<span class="ident">arr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_int</span>);
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessTextRendererCreate</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessHOcrRendererCreate</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessHOcrRendererCreate2</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">font_info</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">font_info</span>: <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessAltoRendererCreate</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessTsvRendererCreate</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPDFRendererCreate</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">datadir</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">textonly</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">datadir</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">textonly</span>: <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessUnlvRendererCreate</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBoxTextRendererCreate</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessLSTMBoxRendererCreate</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessWordStrBoxRendererCreate</span>(
-        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">outputbase</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
@@ -1029,32 +1028,32 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultRendererBeginDocument</span>(
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>,
-        <span class="ident">title</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">title</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultRendererAddImage</span>(
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>,
         <span class="ident">api</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultRendererEndDocument</span>(
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultRendererExtention</span>(
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultRendererTitle</span>(
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultRendererImageNum</span>(<span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultRendererImageNum</span>(<span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPICreate</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>;
@@ -1065,14 +1064,14 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetOpenCLDevice</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">device</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_void</span>,
+        <span class="ident">device</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_void</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">size_t</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetInputName</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>, <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetInputName</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>, <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>);
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetInputName</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetInputName</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetInputImage</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>, <span class="ident">pix</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pix</span>);
@@ -1081,54 +1080,54 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetInputImage</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pix</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetSourceYResolution</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetSourceYResolution</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetDatapath</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetDatapath</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetOutputName</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>, <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetOutputName</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>, <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>);
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetVariable</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetDebugVariable</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetIntVariable</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetBoolVariable</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetDoubleVariable</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
         <span class="ident">value</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">f64</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetStringVariable</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIPrintVariables</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>, <span class="ident">fp</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">FILE</span>);
@@ -1136,69 +1135,69 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIPrintVariablesToFile</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIInit1</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
         <span class="ident">oem</span>: <span class="ident">TessOcrEngineMode</span>,
-        <span class="ident">configs</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">configs_size</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">configs</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">configs_size</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIInit2</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
         <span class="ident">oem</span>: <span class="ident">TessOcrEngineMode</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIInit3</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIInit4</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
         <span class="ident">mode</span>: <span class="ident">TessOcrEngineMode</span>,
-        <span class="ident">configs</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">configs_size</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">vars_vec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">vars_values</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">configs</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">configs_size</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">vars_vec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">vars_values</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>,
         <span class="ident">vars_vec_size</span>: <span class="ident">size_t</span>,
-        <span class="ident">set_only_non_debug_params</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">set_only_non_debug_params</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetInitLanguagesAsString</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetLoadedLanguagesAsVector</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetAvailableLanguagesAsVector</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIInitLangMod</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">datapath</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">language</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIInitForAnalysePage</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>);
@@ -1206,13 +1205,13 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIReadConfigFile</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     );
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIReadDebugConfigFile</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
+        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
     );
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
@@ -1224,14 +1223,14 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIRect</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">imagedata</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uchar</span>,
-        <span class="ident">bytes_per_pixel</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">bytes_per_line</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">left</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">top</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">width</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">height</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">imagedata</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_uchar</span>,
+        <span class="ident">bytes_per_pixel</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">bytes_per_line</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">left</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">top</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">width</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">height</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIClearAdaptiveClassifier</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>);
@@ -1239,26 +1238,26 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetImage</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">imagedata</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_uchar</span>,
-        <span class="ident">width</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">height</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">bytes_per_pixel</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">bytes_per_line</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">imagedata</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_uchar</span>,
+        <span class="ident">width</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">height</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">bytes_per_pixel</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">bytes_per_line</span>: <span class="ident">::std::os::raw::c_int</span>,
     );
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetImage2</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>, <span class="ident">pix</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pix</span>);
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetSourceResolution</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>, <span class="ident">ppi</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetSourceResolution</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>, <span class="ident">ppi</span>: <span class="ident">::std::os::raw::c_int</span>);
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetRectangle</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">left</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">top</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">width</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">height</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">left</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">top</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">width</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">height</span>: <span class="ident">::std::os::raw::c_int</span>,
     );
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
@@ -1271,24 +1270,24 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetTextlines</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
         <span class="ident">pixa</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pixa</span>,
-        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Boxa</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetTextlines1</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">raw_image</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">raw_padding</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">raw_image</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">raw_padding</span>: <span class="ident">::std::os::raw::c_int</span>,
         <span class="ident">pixa</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pixa</span>,
-        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">paraids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">paraids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Boxa</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetStrips</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
         <span class="ident">pixa</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pixa</span>,
-        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Boxa</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
@@ -1304,27 +1303,27 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetComponentImages</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
-        <span class="ident">text_only</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">text_only</span>: <span class="ident">::std::os::raw::c_int</span>,
         <span class="ident">pixa</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pixa</span>,
-        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Boxa</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetComponentImages1</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
-        <span class="ident">text_only</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">raw_image</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">raw_padding</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">text_only</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">raw_image</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">raw_padding</span>: <span class="ident">::std::os::raw::c_int</span>,
         <span class="ident">pixa</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pixa</span>,
-        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">paraids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">blockids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">paraids</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Boxa</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetThresholdedImageScaleFactor</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessBaseAPI</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIAnalyseLayout</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessPageIterator</span>;
@@ -1333,33 +1332,33 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIRecognize</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
         <span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIRecognizeForChopTest</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
         <span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIProcessPages</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">retry_config</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">timeout_millisec</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">retry_config</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">timeout_millisec</span>: <span class="ident">::std::os::raw::c_int</span>,
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIProcessPage</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
         <span class="ident">pix</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pix</span>,
-        <span class="ident">page_index</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">retry_config</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-        <span class="ident">timeout_millisec</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">page_index</span>: <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">filename</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">retry_config</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+        <span class="ident">timeout_millisec</span>: <span class="ident">::std::os::raw::c_int</span>,
         <span class="ident">renderer</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultRenderer</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetIterator</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultIterator</span>;
@@ -1368,59 +1367,59 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetMutableIterator</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessMutableIterator</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetUTF8Text</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetUTF8Text</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetHOCRText</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">page_number</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">page_number</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetAltoText</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">page_number</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">page_number</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetTsvText</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">page_number</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">page_number</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetBoxText</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">page_number</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">page_number</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetLSTMBoxText</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">page_number</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">page_number</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetWordStrBoxText</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">page_number</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">page_number</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetUNLVText</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetUNLVText</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIMeanTextConf</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIMeanTextConf</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIAllWordConfidences</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIAllWordConfidences</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIAdaptToWordStr</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
         <span class="ident">mode</span>: <span class="ident">TessPageSegMode</span>,
-        <span class="ident">wordstr</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">wordstr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIClear</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>);
@@ -1431,21 +1430,21 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIIsValidWord</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">word</span>: <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">word</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetTextDirection</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">out_offset</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">out_offset</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
         <span class="ident">out_slope</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">f32</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPIGetUnichar</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>,
-        <span class="ident">unichar_id</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">unichar_id</span>: <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessBaseAPISetMinOrientationMargin</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessBaseAPI</span>, <span class="ident">margin</span>: <span class="ident">f64</span>);
@@ -1463,30 +1462,30 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPageIteratorNext</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessPageIterator</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPageIteratorIsAtBeginningOf</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessPageIterator</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPageIteratorIsAtFinalElement</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessPageIterator</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
         <span class="ident">element</span>: <span class="ident">TessPageIteratorLevel</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPageIteratorBoundingBox</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessPageIterator</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
-        <span class="ident">left</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">top</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">right</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">bottom</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">left</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">top</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">right</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">bottom</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPageIteratorBlockType</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessPageIterator</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">TessPolyBlockType</span>;
@@ -1501,21 +1500,21 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPageIteratorGetImage</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessPageIterator</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
-        <span class="ident">padding</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">padding</span>: <span class="ident">::std::os::raw::c_int</span>,
         <span class="ident">original_image</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pix</span>,
-        <span class="ident">left</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">top</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">left</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">top</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">Pix</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPageIteratorBaseline</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessPageIterator</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
-        <span class="ident">x1</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">y1</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">x2</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">y2</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+        <span class="ident">x1</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">y1</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">x2</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">y2</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPageIteratorOrientation</span>(
@@ -1530,9 +1529,9 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessPageIteratorParagraphInfo</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessPageIterator</span>,
         <span class="ident">justification</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessParagraphJustification</span>,
-        <span class="ident">is_list_item</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">is_crown</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">first_line_indent</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
+        <span class="ident">is_list_item</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">is_crown</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">first_line_indent</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
     );
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
@@ -1560,13 +1559,13 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorNext</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessResultIterator</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorGetUTF8Text</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessResultIterator</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorConfidence</span>(
@@ -1577,56 +1576,56 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorWordRecognitionLanguage</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessResultIterator</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorWordFontAttributes</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessResultIterator</span>,
-        <span class="ident">is_bold</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">is_italic</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">is_underlined</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">is_monospace</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">is_serif</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">is_smallcaps</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">pointsize</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-        <span class="ident">font_id</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+        <span class="ident">is_bold</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">is_italic</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">is_underlined</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">is_monospace</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">is_serif</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">is_smallcaps</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">pointsize</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+        <span class="ident">font_id</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_int</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorWordIsFromDictionary</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessResultIterator</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorWordIsNumeric</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessResultIterator</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorSymbolIsSuperscript</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessResultIterator</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorSymbolIsSubscript</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessResultIterator</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessResultIteratorSymbolIsDropcap</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessResultIterator</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessChoiceIteratorDelete</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessChoiceIterator</span>);
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessChoiceIteratorNext</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessChoiceIterator</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessChoiceIteratorNext</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">TessChoiceIterator</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessChoiceIteratorGetUTF8Text</span>(
         <span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessChoiceIterator</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_char</span>;
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">::std::os::raw::c_char</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessChoiceIteratorConfidence</span>(<span class="ident">handle</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">TessChoiceIterator</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">f32</span>;
@@ -1643,21 +1642,20 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessMonitorSetCancelThis</span>(
         <span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>,
-        <span class="ident">cancelThis</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_void</span>,
+        <span class="ident">cancelThis</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_void</span>,
     );
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessMonitorGetCancelThis</span>(<span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_void</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessMonitorGetCancelThis</span>(<span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">::std::os::raw::c_void</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessMonitorSetProgressFunc</span>(<span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>, <span class="ident">progressFunc</span>: <span class="ident">TessProgressFunc</span>);
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessMonitorGetProgress</span>(<span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>) <span class="op">-</span><span class="op">&gt;</span> ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessMonitorGetProgress</span>(<span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">::std::os::raw::c_int</span>;
 }
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessMonitorSetDeadlineMSecs</span>(<span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>, <span class="ident">deadline</span>: ::<span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">TessMonitorSetDeadlineMSecs</span>(<span class="ident">monitor</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ETEXT_DESC</span>, <span class="ident">deadline</span>: <span class="ident">::std::os::raw::c_int</span>);
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../../../../../../../../../../../" data-current-crate="tesseract_sys" data-search-js="../../../../../../../../../../../../search-index.js"></div>
-    <script src="../../../../../../../../../../../../main.js"></script><script src="../../../../../../../../../../../../source-script.js"></script><script src="../../../../../../../../../../../../source-files.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../../../../../../../../../" data-current-crate="tesseract_sys" data-search-index-js="../../../../../../../../../../../../search-index.js" data-search-js="../../../../../../../../../../../../search.js"></div><script src="../../../../../../../../../../../../main.js"></script><script src="../../../../../../../../../../../../source-script.js"></script><script src="../../../../../../../../../../../../source-files.js"></script></body></html>

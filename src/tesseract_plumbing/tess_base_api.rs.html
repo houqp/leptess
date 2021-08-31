@@ -1,7 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tesseract-plumbing-0.5.1/src/tess_base_api.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>tess_base_api.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tesseract-plumbing-0.5.2/src/tess_base_api.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>tess_base_api.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
 <link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../tesseract_plumbing/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" class="help-button">?</button>
-                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../tesseract_plumbing/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -407,11 +406,11 @@
 <span id="404">404</span>
 <span id="405">405</span>
 <span id="406">406</span>
-</pre><div class="example-wrap"><pre class="rust ">
+</pre><pre class="rust">
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">tesseract_sys</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">thiserror</span>;
 
-<span class="kw">use</span> <span class="self">self</span>::<span class="ident">tesseract_sys</span>::{
+<span class="kw">use</span> <span class="self">self</span><span class="ident">::tesseract_sys</span>::{
     <span class="ident">TessBaseAPICreate</span>, <span class="ident">TessBaseAPIDelete</span>, <span class="ident">TessBaseAPIGetAltoText</span>, <span class="ident">TessBaseAPIGetComponentImages</span>,
     <span class="ident">TessBaseAPIGetHOCRText</span>, <span class="ident">TessBaseAPIGetInputImage</span>, <span class="ident">TessBaseAPIGetLSTMBoxText</span>,
     <span class="ident">TessBaseAPIGetSourceYResolution</span>, <span class="ident">TessBaseAPIGetTsvText</span>, <span class="ident">TessBaseAPIGetUTF8Text</span>,
@@ -420,17 +419,17 @@
     <span class="ident">TessBaseAPISetSourceResolution</span>, <span class="ident">TessBaseAPISetVariable</span>, <span class="ident">TessOcrEngineMode</span>,
     <span class="ident">TessPageIteratorLevel</span>,
 };
-<span class="kw">use</span> <span class="self">self</span>::<span class="ident">thiserror</span>::<span class="ident">Error</span>;
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">Text</span>;
-<span class="kw">use</span> <span class="ident">leptonica_plumbing</span>::<span class="ident">Pix</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">convert</span>::<span class="ident">TryInto</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">CStr</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">os</span>::<span class="ident">raw</span>::<span class="ident">c_int</span>;
-<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ptr</span>;
+<span class="kw">use</span> <span class="self">self</span><span class="ident">::thiserror::Error</span>;
+<span class="kw">use</span> <span class="kw">crate</span><span class="ident">::Text</span>;
+<span class="kw">use</span> <span class="ident">leptonica_plumbing::Pix</span>;
+<span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
+<span class="kw">use</span> <span class="ident">std::ffi::CStr</span>;
+<span class="kw">use</span> <span class="ident">std::os::raw::c_int</span>;
+<span class="kw">use</span> <span class="ident">std::ptr</span>;
 
 <span class="doccomment">/// Wrapper around [`tesseract::TessBaseAPI`](https://tesseract-ocr.github.io/tessapi/5.x/a02438.html)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TessBaseApi</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tesseract_sys</span>::<span class="ident">TessBaseAPI</span>);
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TessBaseApi</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tesseract_sys::TessBaseAPI</span>);
 
 <span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">TessBaseApi</span> {}
 
@@ -442,7 +441,7 @@
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">TessBaseApi</span> {
     <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span>::<span class="ident">create</span>()
+        <span class="self">Self</span><span class="ident">::create</span>()
     }
 }
 
@@ -512,8 +511,8 @@
         <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> {
             <span class="ident">TessBaseAPIInit3</span>(
                 <span class="self">self</span>.<span class="number">0</span>,
-                <span class="ident">datapath</span>.<span class="ident">map</span>(<span class="ident">CStr</span>::<span class="ident">as_ptr</span>).<span class="ident">unwrap_or_else</span>(<span class="ident">ptr</span>::<span class="ident">null</span>),
-                <span class="ident">language</span>.<span class="ident">map</span>(<span class="ident">CStr</span>::<span class="ident">as_ptr</span>).<span class="ident">unwrap_or_else</span>(<span class="ident">ptr</span>::<span class="ident">null</span>),
+                <span class="ident">datapath</span>.<span class="ident">map</span>(<span class="ident">CStr::as_ptr</span>).<span class="ident">unwrap_or_else</span>(<span class="ident">ptr::null</span>),
+                <span class="ident">language</span>.<span class="ident">map</span>(<span class="ident">CStr::as_ptr</span>).<span class="ident">unwrap_or_else</span>(<span class="ident">ptr::null</span>),
             )
         };
         <span class="kw">if</span> <span class="ident">ret</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> {
@@ -533,8 +532,8 @@
         <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> {
             <span class="ident">TessBaseAPIInit2</span>(
                 <span class="self">self</span>.<span class="number">0</span>,
-                <span class="ident">datapath</span>.<span class="ident">map</span>(<span class="ident">CStr</span>::<span class="ident">as_ptr</span>).<span class="ident">unwrap_or_else</span>(<span class="ident">ptr</span>::<span class="ident">null</span>),
-                <span class="ident">language</span>.<span class="ident">map</span>(<span class="ident">CStr</span>::<span class="ident">as_ptr</span>).<span class="ident">unwrap_or_else</span>(<span class="ident">ptr</span>::<span class="ident">null</span>),
+                <span class="ident">datapath</span>.<span class="ident">map</span>(<span class="ident">CStr::as_ptr</span>).<span class="ident">unwrap_or_else</span>(<span class="ident">ptr::null</span>),
+                <span class="ident">language</span>.<span class="ident">map</span>(<span class="ident">CStr::as_ptr</span>).<span class="ident">unwrap_or_else</span>(<span class="ident">ptr::null</span>),
                 <span class="ident">oem</span>,
             )
         };
@@ -563,19 +562,19 @@
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">TessBaseApiSetImageSafetyError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">claimed_image_size</span>: <span class="ident">usize</span> <span class="op">=</span> (<span class="ident">height</span> <span class="op">*</span> <span class="ident">bytes_per_line</span>)
             .<span class="ident">try_into</span>()
-            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">TessBaseApiSetImageSafetyError</span>::<span class="ident">DimensionsExceedMemory</span>())<span class="question-mark">?</span>;
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="ident">TessBaseApiSetImageSafetyError::DimensionsExceedMemory</span>())<span class="question-mark">?</span>;
         <span class="kw">if</span> <span class="ident">claimed_image_size</span> <span class="op">&gt;</span> <span class="ident">image_data</span>.<span class="ident">len</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError</span>::<span class="ident">DimensionsExceedImageSize</span>());
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError::DimensionsExceedImageSize</span>());
         }
         <span class="kw">match</span> <span class="ident">bytes_per_pixel</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="kw">if</span> <span class="ident">width</span> <span class="op">&gt;</span> <span class="ident">bytes_per_line</span> <span class="op">*</span> <span class="number">8</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError</span>::<span class="ident">ImageWidthExceedsBytesPerLine</span>());
+                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError::ImageWidthExceedsBytesPerLine</span>());
                 }
             }
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="kw">if</span> <span class="ident">width</span> <span class="op">*</span> <span class="ident">bytes_per_pixel</span> <span class="op">&gt;</span> <span class="ident">bytes_per_line</span> {
-                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError</span>::<span class="ident">ImageWidthExceedsBytesPerLine</span>());
+                    <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError::ImageWidthExceedsBytesPerLine</span>());
                 }
             }
         }
@@ -621,7 +620,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// It could take a progress argument (`monitor`). If there is appetite for this, let me know and I could try and implement it.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">recognize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">TessBaseApiRecogniseError</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">TessBaseAPIRecognize</span>(<span class="self">self</span>.<span class="number">0</span>, <span class="ident">ptr</span>::<span class="ident">null_mut</span>()) };
+        <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">TessBaseAPIRecognize</span>(<span class="self">self</span>.<span class="number">0</span>, <span class="ident">ptr::null_mut</span>()) };
         <span class="kw">match</span> <span class="ident">ret</span> {
             <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Ok</span>(()),
             <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiRecogniseError</span> {}),
@@ -639,7 +638,7 @@
         <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiGetUtf8TextError</span> {})
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text</span>::<span class="ident">new</span>(<span class="ident">ptr</span>) })
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text::new</span>(<span class="ident">ptr</span>) })
         }
     }
 
@@ -655,17 +654,17 @@
         <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiGetHocrTextError</span> {})
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text</span>::<span class="ident">new</span>(<span class="ident">ptr</span>) })
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text::new</span>(<span class="ident">ptr</span>) })
         }
     }
 
     <span class="doccomment">/// Wrapper for [`TessBaseAPIGetInputImage`](https://tesseract-ocr.github.io/tessapi/5.x/a00008.html#ad2c023e46bf634305b3ae8cd0c091a65)</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_input_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">leptonica_plumbing</span>::<span class="ident">BorrowedPix</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_input_image</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">leptonica_plumbing::BorrowedPix</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">TessBaseAPIGetInputImage</span>(<span class="self">self</span>.<span class="number">0</span>) };
         <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">None</span>
         } <span class="kw">else</span> {
-            <span class="prelude-val">Some</span>(<span class="kw">unsafe</span> { <span class="ident">leptonica_plumbing</span>::<span class="ident">BorrowedPix</span>::<span class="ident">new</span>(<span class="ident">ptr</span>) })
+            <span class="prelude-val">Some</span>(<span class="kw">unsafe</span> { <span class="ident">leptonica_plumbing::BorrowedPix::new</span>(<span class="ident">ptr</span>) })
         }
     }
 
@@ -692,7 +691,7 @@
         <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiGetAltoTextError</span> {})
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text</span>::<span class="ident">new</span>(<span class="ident">ptr</span>) })
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text::new</span>(<span class="ident">ptr</span>) })
         }
     }
 
@@ -704,7 +703,7 @@
         <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiGetTsvTextError</span> {})
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text</span>::<span class="ident">new</span>(<span class="ident">ptr</span>) })
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text::new</span>(<span class="ident">ptr</span>) })
         }
     }
 
@@ -719,7 +718,7 @@
         <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiGetLstmBoxTextError</span> {})
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text</span>::<span class="ident">new</span>(<span class="ident">ptr</span>) })
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text::new</span>(<span class="ident">ptr</span>) })
         }
     }
 
@@ -736,7 +735,7 @@
         <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiGetWordStrBoxTextError</span> {})
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text</span>::<span class="ident">new</span>(<span class="ident">ptr</span>) })
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">Text::new</span>(<span class="ident">ptr</span>) })
         }
     }
 
@@ -756,31 +755,31 @@
         <span class="kw-2">&amp;</span><span class="self">self</span>,
         <span class="ident">level</span>: <span class="ident">TessPageIteratorLevel</span>,
         <span class="ident">text_only</span>: <span class="ident">c_int</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">leptonica_plumbing</span>::<span class="ident">Boxa</span>, <span class="ident">TessBaseApiGetComponentImagesError</span><span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">leptonica_plumbing::Boxa</span>, <span class="ident">TessBaseApiGetComponentImagesError</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="kw">unsafe</span> {
             <span class="ident">TessBaseAPIGetComponentImages</span>(
                 <span class="self">self</span>.<span class="number">0</span>,
                 <span class="ident">level</span>,
                 <span class="ident">text_only</span>,
-                <span class="ident">ptr</span>::<span class="ident">null_mut</span>(),
-                <span class="ident">ptr</span>::<span class="ident">null_mut</span>(),
+                <span class="ident">ptr::null_mut</span>(),
+                <span class="ident">ptr::null_mut</span>(),
             )
         };
         <span class="kw">if</span> <span class="ident">ptr</span>.<span class="ident">is_null</span>() {
             <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiGetComponentImagesError</span> {})
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">leptonica_plumbing</span>::<span class="ident">Boxa</span>::<span class="ident">new_from_pointer</span>(<span class="ident">ptr</span>) })
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">leptonica_plumbing::Boxa::new_from_pointer</span>(<span class="ident">ptr</span>) })
         }
     }
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
 <span class="kw">fn</span> <span class="ident">set_image_1_safety_test</span>() {
-    <span class="kw">use</span> <span class="ident">image</span>::<span class="ident">GenericImageView</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tess</span> <span class="op">=</span> <span class="ident">TessBaseApi</span>::<span class="ident">create</span>();
+    <span class="kw">use</span> <span class="ident">image::GenericImageView</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tess</span> <span class="op">=</span> <span class="ident">TessBaseApi::create</span>();
     <span class="ident">tess</span>.<span class="ident">init_2</span>(<span class="prelude-val">None</span>, <span class="prelude-val">None</span>).<span class="ident">unwrap</span>();
-    <span class="kw">let</span> <span class="ident">img</span> <span class="op">=</span> <span class="ident">image</span>::<span class="ident">open</span>(<span class="string">&quot;image.png&quot;</span>).<span class="ident">unwrap</span>();
-    <span class="macro">assert_eq</span><span class="macro">!</span>(
+    <span class="kw">let</span> <span class="ident">img</span> <span class="op">=</span> <span class="ident">image::open</span>(<span class="string">&quot;image.png&quot;</span>).<span class="ident">unwrap</span>();
+    <span class="macro">assert_eq!</span>(
         <span class="ident">tess</span>.<span class="ident">set_image</span>(
             <span class="ident">img</span>.<span class="ident">as_rgba8</span>().<span class="ident">unwrap</span>(),
             <span class="ident">img</span>.<span class="ident">width</span>().<span class="ident">try_into</span>().<span class="ident">unwrap</span>(),
@@ -790,30 +789,29 @@
         ),
         <span class="prelude-val">Ok</span>(())
     );
-    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">tess</span>.<span class="ident">set_image</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>), <span class="prelude-val">Ok</span>(()));
-    <span class="macro">assert_eq</span><span class="macro">!</span>(
+    <span class="macro">assert_eq!</span>(<span class="ident">tess</span>.<span class="ident">set_image</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>), <span class="prelude-val">Ok</span>(()));
+    <span class="macro">assert_eq!</span>(
         <span class="ident">tess</span>.<span class="ident">set_image</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>),
-        <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError</span>::<span class="ident">DimensionsExceedImageSize</span>())
+        <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError::DimensionsExceedImageSize</span>())
     );
-    <span class="macro">assert_eq</span><span class="macro">!</span>(
+    <span class="macro">assert_eq!</span>(
         <span class="ident">tess</span>.<span class="ident">set_image</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span>),
-        <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError</span>::<span class="ident">ImageWidthExceedsBytesPerLine</span>())
+        <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError::ImageWidthExceedsBytesPerLine</span>())
     );
-    <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">tess</span>.<span class="ident">set_image</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], <span class="number">16</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">2</span>), <span class="prelude-val">Ok</span>(()));
-    <span class="macro">assert_eq</span><span class="macro">!</span>(
+    <span class="macro">assert_eq!</span>(<span class="ident">tess</span>.<span class="ident">set_image</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], <span class="number">16</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">2</span>), <span class="prelude-val">Ok</span>(()));
+    <span class="macro">assert_eq!</span>(
         <span class="ident">tess</span>.<span class="ident">set_image</span>(<span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], <span class="number">17</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">2</span>),
-        <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError</span>::<span class="ident">ImageWidthExceedsBytesPerLine</span>())
+        <span class="prelude-val">Err</span>(<span class="ident">TessBaseApiSetImageSafetyError::ImageWidthExceedsBytesPerLine</span>())
     );
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">set_variable_error_test</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std</span>::<span class="ident">error</span>::<span class="ident">Error</span><span class="op">&gt;</span><span class="op">&gt;</span> {
-    <span class="kw">let</span> <span class="ident">fail</span> <span class="op">=</span> <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">CString</span>::<span class="ident">new</span>(<span class="string">&quot;fail&quot;</span>)<span class="question-mark">?</span>;
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tess</span> <span class="op">=</span> <span class="ident">TessBaseApi</span>::<span class="ident">create</span>();
+<span class="kw">fn</span> <span class="ident">set_variable_error_test</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::error::Error</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">let</span> <span class="ident">fail</span> <span class="op">=</span> <span class="ident">std::ffi::CString::new</span>(<span class="string">&quot;fail&quot;</span>)<span class="question-mark">?</span>;
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">tess</span> <span class="op">=</span> <span class="ident">TessBaseApi::create</span>();
     <span class="ident">tess</span>.<span class="ident">init_2</span>(<span class="prelude-val">None</span>, <span class="prelude-val">None</span>)<span class="question-mark">?</span>;
-    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">tess</span>.<span class="ident">set_variable</span>(<span class="kw-2">&amp;</span><span class="ident">fail</span>, <span class="kw-2">&amp;</span><span class="ident">fail</span>).<span class="ident">is_err</span>());
+    <span class="macro">assert!</span>(<span class="ident">tess</span>.<span class="ident">set_variable</span>(<span class="kw-2">&amp;</span><span class="ident">fail</span>, <span class="kw-2">&amp;</span><span class="ident">fail</span>).<span class="ident">is_err</span>());
     <span class="prelude-val">Ok</span>(())
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="tesseract_plumbing" data-search-js="../../search-index.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="tesseract_plumbing" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
