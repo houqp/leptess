@@ -8,6 +8,6 @@ sourcesIndex["syn"] = {"name":"","dirs":[{"name":"gen","files":["clone.rs","gen_
 sourcesIndex["tesseract_plumbing"] = {"name":"","files":["lib.rs","tess_base_api.rs","text.rs"]};
 sourcesIndex["tesseract_sys"] = {"name":"","files":["lib.rs"]};
 sourcesIndex["thiserror"] = {"name":"","files":["aserror.rs","display.rs","lib.rs"]};
-sourcesIndex["thiserror_impl"] = {"name":"","files":["ast.rs","attr.rs","expand.rs","fmt.rs","lib.rs","prop.rs","valid.rs"]};
+sourcesIndex["thiserror_impl"] = {"name":"","files":["ast.rs","attr.rs","expand.rs","fmt.rs","generics.rs","lib.rs","prop.rs","valid.rs"]};
 sourcesIndex["unicode_xid"] = {"name":"","files":["lib.rs","tables.rs"]};
 createSourceSidebar();
