@@ -113,6 +113,9 @@ impl LepTess {
         Ok(())
     }
 
+    /// Set the source image from an in-memory file
+    ///
+    /// Only tiff files are supported from windows. More file formats are supported from other operating systems
     pub fn set_image_from_mem(&mut self, img: &[u8]) -> Result<(), leptonica::PixError> {
         let pix = leptonica::pix_read_mem(img)?;
         self.tess_api.set_image(&pix);
