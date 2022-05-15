@@ -73,6 +73,6 @@ cargo run --example low_level_ocr_full_page
 
 ## Development
 
-To run tests, you will need at Tesseract 4.x to match what we have in
-`tests/tessdata/eng.traineddata`. See CircleCI config to see how to replicate
+To run tests, you will need at Tesseract 4.x or 5.x to match what we have in
+`tests/tessdata/eng.traineddata`. See GitHub config actions to see how to replicate
 the setup.
