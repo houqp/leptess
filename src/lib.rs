@@ -4,7 +4,7 @@
 //! --------
 //!
 //! It comes with a high level wrapper [LepTess](struct.LepTess.html) focusing on productivity and
-//! memory safty:
+//! memory safety:
 //!
 //! ```rust,no_run
 //! let mut lt = leptess::LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
