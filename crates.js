@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["leptess","leptonica_plumbing","leptonica_sys","proc_macro2","quote","syn","tesseract_plumbing","tesseract_sys","thiserror","thiserror_impl","unicode_ident"];
+window.ALL_CRATES = ["leptess","leptonica_plumbing","leptonica_sys","libc","proc_macro2","quote","syn","tesseract_plumbing","tesseract_sys","thiserror","thiserror_impl","unicode_ident"];
