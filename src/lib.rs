@@ -73,9 +73,7 @@ pub use variable::Variable;
 /// ```
 /// # let mut lt = leptess::LepTess::new(Some("./tests/tessdata"), "eng").unwrap();
 /// # lt.set_image("./tests/di.png");
-/// lt.set_rectangle(&leptess::leptonica::Box::new(
-///     10, 10, 200, 60,
-/// ).unwrap());
+/// lt.set_rectangle(10, 10, 200, 60);
 /// println!("{}", lt.get_utf8_text().unwrap());
 /// ```
 ///
@@ -151,8 +149,13 @@ impl LepTess {
     }
 
     /// Restrict OCR to a specific region of the image.
-    pub fn set_rectangle(&mut self, b: impl AsRef<capi::Box>) {
-        self.tess_api.set_rectangle(b)
+    pub fn set_rectangle(&mut self, left: i32, top: i32, width: i32, height: i32) {
+        self.tess_api.set_rectangle(left, top, width, height)
+    }
+
+    /// Restrict OCR to a specific region of the image using a leptonica Box struct.
+    pub fn set_rectangle_from_box(&mut self, b: &leptonica::Box) {
+        self.tess_api.set_rectangle_from_box(b)
     }
 
     /// Extract text from current selected region of the image. By default, it is the full page.

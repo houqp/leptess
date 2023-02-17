@@ -1,27 +1,25 @@
 //! Low level wrapper for Leptonica C API
 extern crate tesseract_plumbing;
 
+use std::convert::TryInto;
 use std::ffi::CString;
+use std::fmt::Debug;
 use std::path::Path;
 
 use self::tesseract_plumbing::leptonica_plumbing;
 use thiserror;
 
 pub struct Pix {
-    pub raw: leptonica_plumbing::Pix,
+    pub raw: leptonica_plumbing::memory::RefCounted<leptonica_plumbing::Pix>,
 }
-
-pub use self::leptonica_plumbing::Box;
 
 impl Pix {
     pub fn get_w(&self) -> u32 {
-        let lpix: &leptonica_plumbing::leptonica_sys::Pix = self.raw.as_ref();
-        lpix.w
+        self.raw.get_width().try_into().unwrap()
     }
 
     pub fn get_h(&self) -> u32 {
-        let lpix: &leptonica_plumbing::leptonica_sys::Pix = self.raw.as_ref();
-        lpix.h
+        self.raw.get_height().try_into().unwrap()
     }
 }
 
@@ -55,7 +53,9 @@ pub fn pix_read(path: &Path) -> Result<Pix, PixError> {
     let cs = CString::new(s)?;
     match leptonica_plumbing::Pix::read(&cs) {
         Err(leptonica_plumbing::PixReadError()) => Err(PixError::ReadFrom("file")),
-        Ok(raw) => Ok(Pix { raw }),
+        Ok(raw) => Ok(Pix {
+            raw: raw.to_ref_counted(),
+        }),
     }
 }
 
@@ -66,27 +66,31 @@ pub fn pix_read_mem(img: &[u8]) -> Result<Pix, PixError> {
             Err(PixError::MemoryTooLarge { source })
         }
         Err(leptonica_plumbing::PixReadMemError::NullPtr) => Err(PixError::ReadFrom("memory")),
-        Ok(raw) => Ok(Pix { raw }),
+        Ok(raw) => Ok(Pix {
+            raw: raw.to_ref_counted(),
+        }),
     }
 }
 
 pub struct Boxa {
-    pub raw: leptonica_plumbing::Boxa,
+    pub raw: leptonica_plumbing::memory::RefCountedExclusive<leptonica_plumbing::Boxa>,
 }
 
 impl Boxa {
     pub fn get_n(&self) -> usize {
-        let lboxa: &leptonica_plumbing::leptonica_sys::Boxa = self.raw.as_ref();
-        lboxa.n as usize
+        self.raw.get_count().try_into().unwrap()
     }
 
-    pub fn get_box(&self, i: usize) -> Option<leptonica_plumbing::BorrowedBox> {
-        self.raw.get(std::convert::TryInto::try_into(i).ok()?)
+    pub fn get_box(
+        &self,
+        i: usize,
+    ) -> Option<leptonica_plumbing::memory::RefCounted<leptonica_plumbing::Box>> {
+        self.raw.get_box_cloned(i.try_into().ok()?)
     }
 }
 
 impl<'a> IntoIterator for &'a Boxa {
-    type Item = leptonica_plumbing::BorrowedBox<'a>;
+    type Item = Box;
     type IntoIter = BoxaRefIterator<'a>;
 
     fn into_iter(self) -> Self::IntoIter {
@@ -99,6 +103,44 @@ impl<'a> IntoIterator for &'a Boxa {
     }
 }
 
+pub struct Box {
+    pub raw: leptonica_plumbing::memory::RefCounted<leptonica_plumbing::Box>,
+}
+
+#[derive(Debug, PartialEq)]
+pub struct BoxGeometry {
+    pub x: i32,
+    pub y: i32,
+    pub w: i32,
+    pub h: i32,
+}
+
+impl Box {
+    pub fn get_geometry(&self) -> BoxGeometry {
+        let mut bg = BoxGeometry {
+            x: -1,
+            y: -1,
+            w: -1,
+            h: -1,
+        };
+        self.raw.get_geometry(
+            Some(&mut bg.x),
+            Some(&mut bg.y),
+            Some(&mut bg.w),
+            Some(&mut bg.h),
+        );
+        bg
+    }
+}
+
+impl Debug for Box {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Box")
+            .field("geometry", &self.get_geometry())
+            .finish()
+    }
+}
+
 pub struct BoxaRefIterator<'a> {
     boxa: &'a Boxa,
     index: usize,
@@ -106,14 +148,14 @@ pub struct BoxaRefIterator<'a> {
 }
 
 impl<'a> Iterator for BoxaRefIterator<'a> {
-    type Item = leptonica_plumbing::BorrowedBox<'a>;
+    type Item = Box;
 
     fn next(&mut self) -> Option<Self::Item> {
         if self.index >= self.count {
             return None;
         }
 
-        let re = self.boxa.get_box(self.index);
+        let re = self.boxa.get_box(self.index).map(|b| Box { raw: b });
         self.index += 1;
 
         re
