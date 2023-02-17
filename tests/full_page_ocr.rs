@@ -1,7 +1,10 @@
 extern crate leptess;
 extern crate regex;
 
-use leptess::{leptonica, tesseract, LepTess, Variable};
+use leptess::{
+    leptonica::{self, BoxGeometry},
+    tesseract, LepTess, Variable,
+};
 use regex::Regex;
 use std::path::Path;
 
@@ -93,12 +96,17 @@ fn test_ocr_iterate_word() {
         .unwrap();
 
     for b in &boxes {
-        lt.set_rectangle(&b);
+        lt.set_rectangle_from_box(&b);
         let text = lt.get_utf8_text().unwrap();
 
         assert_eq!(
-            (118, 5, 17, 11),
-            (b.as_ref().x, b.as_ref().y, b.as_ref().w, b.as_ref().h)
+            BoxGeometry {
+                x: 118,
+                y: 5,
+                w: 17,
+                h: 11
+            },
+            b.get_geometry()
         );
         assert_eq!("IN\n", text);
 
@@ -107,11 +115,11 @@ fn test_ocr_iterate_word() {
 
     let mut iter = boxes.into_iter();
     let b = iter.nth(5).unwrap();
-    lt.set_rectangle(&b);
+    lt.set_rectangle_from_box(&b);
     assert_eq!("The unanimous Declaration\n", lt.get_utf8_text().unwrap());
 
     let b = iter.nth(14).unwrap();
-    lt.set_rectangle(&b);
+    lt.set_rectangle_from_box(&b);
     assert_eq!("people\n", lt.get_utf8_text().unwrap());
 }
 
@@ -149,12 +157,17 @@ fn test_low_lvl_ocr_iterate_word() {
         .unwrap();
 
     for b in &boxes {
-        api.set_rectangle(&b);
+        api.set_rectangle_from_box(&b);
         let text = api.get_utf8_text().unwrap();
 
         assert_eq!(
-            (118, 5, 17, 11),
-            (b.as_ref().x, b.as_ref().y, b.as_ref().w, b.as_ref().h)
+            BoxGeometry {
+                x: 118,
+                y: 5,
+                w: 17,
+                h: 11
+            },
+            b.get_geometry()
         );
         assert_eq!("IN\n", text);
 
@@ -163,11 +176,11 @@ fn test_low_lvl_ocr_iterate_word() {
 
     let mut iter = boxes.into_iter();
     let b = iter.nth(5).unwrap();
-    api.set_rectangle(&b);
+    api.set_rectangle_from_box(&b);
     assert_eq!("The unanimous Declaration\n", api.get_utf8_text().unwrap());
 
     let b = iter.nth(14).unwrap();
-    api.set_rectangle(&b);
+    api.set_rectangle_from_box(&b);
     assert_eq!("people\n", api.get_utf8_text().unwrap());
 }
 

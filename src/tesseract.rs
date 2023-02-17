@@ -1,5 +1,7 @@
 //! Low level wrapper for Tesseract C API
 
+use crate::leptonica::BoxGeometry;
+
 use super::leptonica;
 use std::os::raw::c_int;
 use thiserror;
@@ -66,8 +68,7 @@ impl TessApi {
     /// ```
     pub fn get_image_dimensions(&self) -> Option<(u32, u32)> {
         let pix = self.raw.get_input_image()?;
-        let lpix: &tesseract_plumbing::leptonica_sys::Pix = pix.as_ref();
-        Some((lpix.w as u32, lpix.h as u32))
+        Some((pix.get_width() as u32, pix.get_height() as u32))
     }
 
     pub fn get_source_y_resolution(&self) -> i32 {
@@ -87,9 +88,13 @@ impl TessApi {
         }
     }
 
-    pub fn set_rectangle(&mut self, b: impl AsRef<crate::capi::Box>) {
-        let r = b.as_ref();
-        self.raw.set_rectangle(r.x, r.y, r.w, r.h);
+    pub fn set_rectangle(&mut self, left: i32, top: i32, width: i32, height: i32) {
+        self.raw.set_rectangle(left, top, width, height);
+    }
+
+    pub fn set_rectangle_from_box(&mut self, b: &leptonica::Box) {
+        let BoxGeometry { x, y, w, h } = b.get_geometry();
+        self.set_rectangle(x, y, w, h);
     }
 
     pub fn get_utf8_text(&mut self) -> Result<String, std::str::Utf8Error> {
