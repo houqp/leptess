@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["PixError",""]],"fn":[["pix_read","Read an image from a local file."],["pix_read_mem","Like pix_read, but reads the image from memory instead of disk"]],"struct":[["Box","Wrapper around Leptonica’s `Box` structure"],["Boxa",""],["BoxaRefIterator",""],["Pix",""]]};
+window.SIDEBAR_ITEMS = {"enum":[["PixError",""]],"fn":[["pix_read","Read an image from a local file."],["pix_read_mem","Like pix_read, but reads the image from memory instead of disk"]],"struct":[["Box",""],["BoxGeometry",""],["Boxa",""],["BoxaRefIterator",""],["Pix",""]]};
