@@ -27,7 +27,7 @@ sudo apt-get install tesseract-ocr-eng
 ### Mac
 
 ```bash
-brew install tesseract leptonica
+brew install tesseract leptonica pkg-config
 ```
 
 ### Windows
