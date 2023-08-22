@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":[["MAX_CREDIBLE_RESOLUTION",""],["MIN_CREDIBLE_RESOLUTION",""]],"struct":[["TessApi",""],["TessInitError",""],["TessSetVariableError",""]]};
+window.SIDEBAR_ITEMS = {"constant":["MAX_CREDIBLE_RESOLUTION","MIN_CREDIBLE_RESOLUTION"],"struct":["TessApi","TessInitError","TessSetVariableError"]};

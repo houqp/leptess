@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/syn-1.0.107/src/lit.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lit.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../syn/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/syn-2.0.29/src/lit.rs`."><title>lit.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-f3501f0f5ae15dfb.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.71.1 (eb26296b5 2023-08-03)" data-search-js="search-4926e5fc22a5646a.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../../static.files/source-script-11255107d0a65077.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-f0540c1d82cde29b.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../syn/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1598,7 +1598,52 @@
 <a href="#1598" id="1598">1598</a>
 <a href="#1599" id="1599">1599</a>
 <a href="#1600" id="1600">1600</a>
-</pre><pre class="rust"><code><span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
+<a href="#1601" id="1601">1601</a>
+<a href="#1602" id="1602">1602</a>
+<a href="#1603" id="1603">1603</a>
+<a href="#1604" id="1604">1604</a>
+<a href="#1605" id="1605">1605</a>
+<a href="#1606" id="1606">1606</a>
+<a href="#1607" id="1607">1607</a>
+<a href="#1608" id="1608">1608</a>
+<a href="#1609" id="1609">1609</a>
+<a href="#1610" id="1610">1610</a>
+<a href="#1611" id="1611">1611</a>
+<a href="#1612" id="1612">1612</a>
+<a href="#1613" id="1613">1613</a>
+<a href="#1614" id="1614">1614</a>
+<a href="#1615" id="1615">1615</a>
+<a href="#1616" id="1616">1616</a>
+<a href="#1617" id="1617">1617</a>
+<a href="#1618" id="1618">1618</a>
+<a href="#1619" id="1619">1619</a>
+<a href="#1620" id="1620">1620</a>
+<a href="#1621" id="1621">1621</a>
+<a href="#1622" id="1622">1622</a>
+<a href="#1623" id="1623">1623</a>
+<a href="#1624" id="1624">1624</a>
+<a href="#1625" id="1625">1625</a>
+<a href="#1626" id="1626">1626</a>
+<a href="#1627" id="1627">1627</a>
+<a href="#1628" id="1628">1628</a>
+<a href="#1629" id="1629">1629</a>
+<a href="#1630" id="1630">1630</a>
+<a href="#1631" id="1631">1631</a>
+<a href="#1632" id="1632">1632</a>
+<a href="#1633" id="1633">1633</a>
+<a href="#1634" id="1634">1634</a>
+<a href="#1635" id="1635">1635</a>
+<a href="#1636" id="1636">1636</a>
+<a href="#1637" id="1637">1637</a>
+<a href="#1638" id="1638">1638</a>
+<a href="#1639" id="1639">1639</a>
+<a href="#1640" id="1640">1640</a>
+<a href="#1641" id="1641">1641</a>
+<a href="#1642" id="1642">1642</a>
+<a href="#1643" id="1643">1643</a>
+<a href="#1644" id="1644">1644</a>
+<a href="#1645" id="1645">1645</a>
+</pre></div><pre class="rust"><code><span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::lookahead;
 <span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::parse::{Parse, Parser};
@@ -1619,6 +1664,7 @@
     /// This type is a [syntax tree enum].
     ///
     /// [syntax tree enum]: crate::Expr#syntax-tree-enums
+    </span><span class="attr">#[non_exhaustive]
     </span><span class="kw">pub enum </span>Lit {
         <span class="doccomment">/// A UTF-8 string literal: `&quot;foo&quot;`.
         </span>Str(LitStr),
@@ -1742,8 +1788,7 @@
     /// # Example
     ///
     /// ```
-    /// use proc_macro2::Span;
-    /// use syn::{Attribute, Error, Ident, Lit, Meta, MetaNameValue, Path, Result};
+    /// use syn::{Attribute, Error, Expr, Lit, Meta, Path, Result};
     ///
     /// // Parses the path from an attribute that looks like:
     /// //
@@ -1751,19 +1796,20 @@
     /// //
     /// // or returns `None` if the input is some other attribute.
     /// fn get_path(attr: &amp;Attribute) -&gt; Result&lt;Option&lt;Path&gt;&gt; {
-    ///     if !attr.path.is_ident(&quot;path&quot;) {
+    ///     if !attr.path().is_ident(&quot;path&quot;) {
     ///         return Ok(None);
     ///     }
     ///
-    ///     match attr.parse_meta()? {
-    ///         Meta::NameValue(MetaNameValue { lit: Lit::Str(lit_str), .. }) =&gt; {
-    ///             lit_str.parse().map(Some)
-    ///         }
-    ///         _ =&gt; {
-    ///             let message = &quot;expected #[path = \&quot;...\&quot;]&quot;;
-    ///             Err(Error::new_spanned(attr, message))
+    ///     if let Meta::NameValue(meta) = &amp;attr.meta {
+    ///         if let Expr::Lit(expr) = &amp;meta.value {
+    ///             if let Lit::Str(lit_str) = &amp;expr.lit {
+    ///                 return lit_str.parse().map(Some);
+    ///             }
     ///         }
     ///     }
+    ///
+    ///     let message = &quot;expected #[path = \&quot;...\&quot;]&quot;;
+    ///     Err(Error::new_spanned(attr, message))
     /// }
     /// ```
     </span><span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
@@ -1827,7 +1873,17 @@
         </span><span class="kw">let </span><span class="kw-2">mut </span>tokens = TokenStream::from_str(<span class="kw-2">&amp;</span><span class="self">self</span>.value())<span class="question-mark">?</span>;
         tokens = respan_token_stream(tokens, <span class="self">self</span>.span());
 
-        parser.parse2(tokens)
+        <span class="kw">let </span>result = parser.parse2(tokens)<span class="question-mark">?</span>;
+
+        <span class="kw">let </span>suffix = <span class="self">self</span>.suffix();
+        <span class="kw">if </span>!suffix.is_empty() {
+            <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new(
+                <span class="self">self</span>.span(),
+                <span class="macro">format!</span>(<span class="string">&quot;unexpected suffix `{}` on string literal&quot;</span>, suffix),
+            ));
+        }
+
+        <span class="prelude-val">Ok</span>(result)
     }
 
     <span class="kw">pub fn </span>span(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Span {
@@ -1959,11 +2015,7 @@
             <span class="prelude-val">None </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Not an integer literal: `{}`&quot;</span>, repr),
         };
 
-        <span class="kw">let </span><span class="kw-2">mut </span>token = <span class="kw">match </span>value::to_literal(repr, <span class="kw-2">&amp;</span>digits, <span class="kw-2">&amp;</span>suffix) {
-            <span class="prelude-val">Some</span>(token) =&gt; token,
-            <span class="prelude-val">None </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Unsupported integer literal: `{}`&quot;</span>, repr),
-        };
-
+        <span class="kw">let </span><span class="kw-2">mut </span>token: Literal = repr.parse().unwrap();
         token.set_span(span);
         LitInt {
             repr: Box::new(LitIntRepr {
@@ -2057,11 +2109,7 @@
             <span class="prelude-val">None </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Not a float literal: `{}`&quot;</span>, repr),
         };
 
-        <span class="kw">let </span><span class="kw-2">mut </span>token = <span class="kw">match </span>value::to_literal(repr, <span class="kw-2">&amp;</span>digits, <span class="kw-2">&amp;</span>suffix) {
-            <span class="prelude-val">Some</span>(token) =&gt; token,
-            <span class="prelude-val">None </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;Unsupported float literal: `{}`&quot;</span>, repr),
-        };
-
+        <span class="kw">let </span><span class="kw-2">mut </span>token: Literal = repr.parse().unwrap();
         token.set_span(span);
         LitFloat {
             repr: Box::new(LitFloatRepr {
@@ -2157,70 +2205,133 @@
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;extra-traits&quot;</span>)))]
     </span><span class="kw">impl </span>Debug <span class="kw">for </span>LitStr {
         <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-            formatter
-                .debug_struct(<span class="string">&quot;LitStr&quot;</span>)
-                .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
-                .finish()
+            <span class="kw">impl </span>LitStr {
+                <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>debug(
+                    <span class="kw-2">&amp;</span><span class="self">self</span>,
+                    formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter,
+                    name: <span class="kw-2">&amp;</span>str,
+                ) -&gt; fmt::Result {
+                    formatter
+                        .debug_struct(name)
+                        .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
+                        .finish()
+                }
+            }
+            <span class="self">self</span>.debug(formatter, <span class="string">&quot;LitStr&quot;</span>)
         }
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;extra-traits&quot;</span>)))]
     </span><span class="kw">impl </span>Debug <span class="kw">for </span>LitByteStr {
         <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-            formatter
-                .debug_struct(<span class="string">&quot;LitByteStr&quot;</span>)
-                .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
-                .finish()
+            <span class="kw">impl </span>LitByteStr {
+                <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>debug(
+                    <span class="kw-2">&amp;</span><span class="self">self</span>,
+                    formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter,
+                    name: <span class="kw-2">&amp;</span>str,
+                ) -&gt; fmt::Result {
+                    formatter
+                        .debug_struct(name)
+                        .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
+                        .finish()
+                }
+            }
+            <span class="self">self</span>.debug(formatter, <span class="string">&quot;LitByteStr&quot;</span>)
         }
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;extra-traits&quot;</span>)))]
     </span><span class="kw">impl </span>Debug <span class="kw">for </span>LitByte {
         <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-            formatter
-                .debug_struct(<span class="string">&quot;LitByte&quot;</span>)
-                .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
-                .finish()
+            <span class="kw">impl </span>LitByte {
+                <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>debug(
+                    <span class="kw-2">&amp;</span><span class="self">self</span>,
+                    formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter,
+                    name: <span class="kw-2">&amp;</span>str,
+                ) -&gt; fmt::Result {
+                    formatter
+                        .debug_struct(name)
+                        .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
+                        .finish()
+                }
+            }
+            <span class="self">self</span>.debug(formatter, <span class="string">&quot;LitByte&quot;</span>)
         }
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;extra-traits&quot;</span>)))]
     </span><span class="kw">impl </span>Debug <span class="kw">for </span>LitChar {
         <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-            formatter
-                .debug_struct(<span class="string">&quot;LitChar&quot;</span>)
-                .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
-                .finish()
+            <span class="kw">impl </span>LitChar {
+                <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>debug(
+                    <span class="kw-2">&amp;</span><span class="self">self</span>,
+                    formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter,
+                    name: <span class="kw-2">&amp;</span>str,
+                ) -&gt; fmt::Result {
+                    formatter
+                        .debug_struct(name)
+                        .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
+                        .finish()
+                }
+            }
+            <span class="self">self</span>.debug(formatter, <span class="string">&quot;LitChar&quot;</span>)
         }
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;extra-traits&quot;</span>)))]
     </span><span class="kw">impl </span>Debug <span class="kw">for </span>LitInt {
         <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-            formatter
-                .debug_struct(<span class="string">&quot;LitInt&quot;</span>)
-                .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
-                .finish()
+            <span class="kw">impl </span>LitInt {
+                <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>debug(
+                    <span class="kw-2">&amp;</span><span class="self">self</span>,
+                    formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter,
+                    name: <span class="kw-2">&amp;</span>str,
+                ) -&gt; fmt::Result {
+                    formatter
+                        .debug_struct(name)
+                        .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
+                        .finish()
+                }
+            }
+            <span class="self">self</span>.debug(formatter, <span class="string">&quot;LitInt&quot;</span>)
         }
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;extra-traits&quot;</span>)))]
     </span><span class="kw">impl </span>Debug <span class="kw">for </span>LitFloat {
         <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-            formatter
-                .debug_struct(<span class="string">&quot;LitFloat&quot;</span>)
-                .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
-                .finish()
+            <span class="kw">impl </span>LitFloat {
+                <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>debug(
+                    <span class="kw-2">&amp;</span><span class="self">self</span>,
+                    formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter,
+                    name: <span class="kw-2">&amp;</span>str,
+                ) -&gt; fmt::Result {
+                    formatter
+                        .debug_struct(name)
+                        .field(<span class="string">&quot;token&quot;</span>, <span class="kw-2">&amp;</span><span class="macro">format_args!</span>(<span class="string">&quot;{}&quot;</span>, <span class="self">self</span>.repr.token))
+                        .finish()
+                }
+            }
+            <span class="self">self</span>.debug(formatter, <span class="string">&quot;LitFloat&quot;</span>)
         }
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;extra-traits&quot;</span>)))]
     </span><span class="kw">impl </span>Debug <span class="kw">for </span>LitBool {
         <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
-            formatter
-                .debug_struct(<span class="string">&quot;LitBool&quot;</span>)
-                .field(<span class="string">&quot;value&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.value)
-                .finish()
+            <span class="kw">impl </span>LitBool {
+                <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>debug(
+                    <span class="kw-2">&amp;</span><span class="self">self</span>,
+                    formatter: <span class="kw-2">&amp;mut </span>fmt::Formatter,
+                    name: <span class="kw-2">&amp;</span>str,
+                ) -&gt; fmt::Result {
+                    formatter
+                        .debug_struct(name)
+                        .field(<span class="string">&quot;value&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.value)
+                        .finish()
+                }
+            }
+            <span class="self">self</span>.debug(formatter, <span class="string">&quot;LitBool&quot;</span>)
         }
     }
 }
@@ -2335,7 +2446,7 @@
 }
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
-</span><span class="kw">pub mod </span>parsing {
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>parsing {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
     <span class="kw">use </span><span class="kw">crate</span>::buffer::Cursor;
     <span class="kw">use </span><span class="kw">crate</span>::parse::{Parse, ParseStream, <span class="prelude-ty">Result</span>};
@@ -2383,23 +2494,22 @@
         repr.insert(<span class="number">0</span>, <span class="string">&#39;-&#39;</span>);
 
         <span class="kw">if let </span><span class="prelude-val">Some</span>((digits, suffix)) = value::parse_lit_int(<span class="kw-2">&amp;</span>repr) {
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(<span class="kw-2">mut </span>token) = value::to_literal(<span class="kw-2">&amp;</span>repr, <span class="kw-2">&amp;</span>digits, <span class="kw-2">&amp;</span>suffix) {
-                token.set_span(span);
-                <span class="kw">return </span><span class="prelude-val">Some</span>((
-                    Lit::Int(LitInt {
-                        repr: Box::new(LitIntRepr {
-                            token,
-                            digits,
-                            suffix,
-                        }),
+            <span class="kw">let </span><span class="kw-2">mut </span>token: Literal = repr.parse().unwrap();
+            token.set_span(span);
+            <span class="kw">return </span><span class="prelude-val">Some</span>((
+                Lit::Int(LitInt {
+                    repr: Box::new(LitIntRepr {
+                        token,
+                        digits,
+                        suffix,
                     }),
-                    rest,
-                ));
-            }
+                }),
+                rest,
+            ));
         }
 
         <span class="kw">let </span>(digits, suffix) = value::parse_lit_float(<span class="kw-2">&amp;</span>repr)<span class="question-mark">?</span>;
-        <span class="kw">let </span><span class="kw-2">mut </span>token = value::to_literal(<span class="kw-2">&amp;</span>repr, <span class="kw-2">&amp;</span>digits, <span class="kw-2">&amp;</span>suffix)<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>token: Literal = repr.parse().unwrap();
         token.set_span(span);
         <span class="prelude-val">Some</span>((
             Lit::Float(LitFloat {
@@ -2559,20 +2669,23 @@
             <span class="kw">let </span>repr = token.to_string();
 
             <span class="kw">match </span>byte(<span class="kw-2">&amp;</span>repr, <span class="number">0</span>) {
-                <span class="string">b&#39;&quot;&#39; </span>| <span class="string">b&#39;r&#39; </span>=&gt; {
+                <span class="comment">// &quot;...&quot;, r&quot;...&quot;, r#&quot;...&quot;#
+                </span><span class="string">b&#39;&quot;&#39; </span>| <span class="string">b&#39;r&#39; </span>=&gt; {
                     <span class="kw">let </span>(<span class="kw">_</span>, suffix) = parse_lit_str(<span class="kw-2">&amp;</span>repr);
                     <span class="kw">return </span>Lit::Str(LitStr {
                         repr: Box::new(LitRepr { token, suffix }),
                     });
                 }
                 <span class="string">b&#39;b&#39; </span>=&gt; <span class="kw">match </span>byte(<span class="kw-2">&amp;</span>repr, <span class="number">1</span>) {
-                    <span class="string">b&#39;&quot;&#39; </span>| <span class="string">b&#39;r&#39; </span>=&gt; {
+                    <span class="comment">// b&quot;...&quot;, br&quot;...&quot;, br#&quot;...#&quot;
+                    </span><span class="string">b&#39;&quot;&#39; </span>| <span class="string">b&#39;r&#39; </span>=&gt; {
                         <span class="kw">let </span>(<span class="kw">_</span>, suffix) = parse_lit_byte_str(<span class="kw-2">&amp;</span>repr);
                         <span class="kw">return </span>Lit::ByteStr(LitByteStr {
                             repr: Box::new(LitRepr { token, suffix }),
                         });
                     }
-                    <span class="string">b&#39;\&#39;&#39; </span>=&gt; {
+                    <span class="comment">// b&#39;...&#39;
+                    </span><span class="string">b&#39;\&#39;&#39; </span>=&gt; {
                         <span class="kw">let </span>(<span class="kw">_</span>, suffix) = parse_lit_byte(<span class="kw-2">&amp;</span>repr);
                         <span class="kw">return </span>Lit::Byte(LitByte {
                             repr: Box::new(LitRepr { token, suffix }),
@@ -2580,14 +2693,16 @@
                     }
                     <span class="kw">_ </span>=&gt; {}
                 },
-                <span class="string">b&#39;\&#39;&#39; </span>=&gt; {
+                <span class="comment">// &#39;...&#39;
+                </span><span class="string">b&#39;\&#39;&#39; </span>=&gt; {
                     <span class="kw">let </span>(<span class="kw">_</span>, suffix) = parse_lit_char(<span class="kw-2">&amp;</span>repr);
                     <span class="kw">return </span>Lit::Char(LitChar {
                         repr: Box::new(LitRepr { token, suffix }),
                     });
                 }
                 <span class="string">b&#39;0&#39;</span>..=<span class="string">b&#39;9&#39; </span>| <span class="string">b&#39;-&#39; </span>=&gt; {
-                    <span class="kw">if let </span><span class="prelude-val">Some</span>((digits, suffix)) = parse_lit_int(<span class="kw-2">&amp;</span>repr) {
+                    <span class="comment">// 0, 123, 0xFF, 0o77, 0b11
+                    </span><span class="kw">if let </span><span class="prelude-val">Some</span>((digits, suffix)) = parse_lit_int(<span class="kw-2">&amp;</span>repr) {
                         <span class="kw">return </span>Lit::Int(LitInt {
                             repr: Box::new(LitIntRepr {
                                 token,
@@ -2596,7 +2711,8 @@
                             }),
                         });
                     }
-                    <span class="kw">if let </span><span class="prelude-val">Some</span>((digits, suffix)) = parse_lit_float(<span class="kw-2">&amp;</span>repr) {
+                    <span class="comment">// 1.0, 1e-1, 1e+1
+                    </span><span class="kw">if let </span><span class="prelude-val">Some</span>((digits, suffix)) = parse_lit_float(<span class="kw-2">&amp;</span>repr) {
                         <span class="kw">return </span>Lit::Float(LitFloat {
                             repr: Box::new(LitFloatRepr {
                                 token,
@@ -2606,7 +2722,8 @@
                         });
                     }
                 }
-                <span class="string">b&#39;t&#39; </span>| <span class="string">b&#39;f&#39; </span>=&gt; {
+                <span class="comment">// true, false
+                </span><span class="string">b&#39;t&#39; </span>| <span class="string">b&#39;f&#39; </span>=&gt; {
                     <span class="kw">if </span>repr == <span class="string">&quot;true&quot; </span>|| repr == <span class="string">&quot;false&quot; </span>{
                         <span class="kw">return </span>Lit::Bool(LitBool {
                             value: repr == <span class="string">&quot;true&quot;</span>,
@@ -2614,6 +2731,9 @@
                         });
                     }
                 }
+                <span class="comment">// c&quot;...&quot;, cr&quot;...&quot;, cr#&quot;...&quot;#
+                // TODO: add a Lit::CStr variant?
+                </span><span class="string">b&#39;c&#39; </span>=&gt; <span class="kw">return </span>Lit::Verbatim(token),
                 <span class="kw">_ </span>=&gt; {}
             }
 
@@ -2661,7 +2781,7 @@
 
     <span class="doccomment">/// Get the byte at offset idx, or a default of `b&#39;\0&#39;` if we&#39;re looking
     /// past the end of the input buffer.
-    </span><span class="kw">pub fn </span>byte&lt;S: AsRef&lt;[u8]&gt; + <span class="question-mark">?</span>Sized&gt;(s: <span class="kw-2">&amp;</span>S, idx: usize) -&gt; u8 {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>byte&lt;S: AsRef&lt;[u8]&gt; + <span class="question-mark">?</span>Sized&gt;(s: <span class="kw-2">&amp;</span>S, idx: usize) -&gt; u8 {
         <span class="kw">let </span>s = s.as_ref();
         <span class="kw">if </span>idx &lt; s.len() {
             s[idx]
@@ -2675,7 +2795,7 @@
     }
 
     <span class="comment">// Returns (content, suffix).
-    </span><span class="kw">pub fn </span>parse_lit_str(s: <span class="kw-2">&amp;</span>str) -&gt; (Box&lt;str&gt;, Box&lt;str&gt;) {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_lit_str(s: <span class="kw-2">&amp;</span>str) -&gt; (Box&lt;str&gt;, Box&lt;str&gt;) {
         <span class="kw">match </span>byte(s, <span class="number">0</span>) {
             <span class="string">b&#39;&quot;&#39; </span>=&gt; parse_lit_str_cooked(s),
             <span class="string">b&#39;r&#39; </span>=&gt; parse_lit_str_raw(s),
@@ -2701,7 +2821,7 @@
                         <span class="string">b&#39;x&#39; </span>=&gt; {
                             <span class="kw">let </span>(byte, rest) = backslash_x(s);
                             s = rest;
-                            <span class="macro">assert!</span>(byte &lt;= <span class="number">0x80</span>, <span class="string">&quot;Invalid \\x byte in string literal&quot;</span>);
+                            <span class="macro">assert!</span>(byte &lt;= <span class="number">0x7F</span>, <span class="string">&quot;Invalid \\x byte in string literal&quot;</span>);
                             char::from_u32(u32::from(byte)).unwrap()
                         }
                         <span class="string">b&#39;u&#39; </span>=&gt; {
@@ -2717,11 +2837,10 @@
                         <span class="string">b&#39;\&#39;&#39; </span>=&gt; <span class="string">&#39;\&#39;&#39;</span>,
                         <span class="string">b&#39;&quot;&#39; </span>=&gt; <span class="string">&#39;&quot;&#39;</span>,
                         <span class="string">b&#39;\r&#39; </span>| <span class="string">b&#39;\n&#39; </span>=&gt; <span class="kw">loop </span>{
-                            <span class="kw">let </span>ch = next_chr(s);
-                            <span class="kw">if </span>ch.is_whitespace() {
-                                s = <span class="kw-2">&amp;</span>s[ch.len_utf8()..];
-                            } <span class="kw">else </span>{
-                                <span class="kw">continue </span><span class="lifetime">&#39;outer</span>;
+                            <span class="kw">let </span>b = byte(s, <span class="number">0</span>);
+                            <span class="kw">match </span>b {
+                                <span class="string">b&#39; &#39; </span>| <span class="string">b&#39;\t&#39; </span>| <span class="string">b&#39;\n&#39; </span>| <span class="string">b&#39;\r&#39; </span>=&gt; s = <span class="kw-2">&amp;</span>s[<span class="number">1</span>..],
+                                <span class="kw">_ </span>=&gt; <span class="kw">continue </span><span class="lifetime">&#39;outer</span>,
                             }
                         },
                         b =&gt; <span class="macro">panic!</span>(<span class="string">&quot;unexpected byte {:?} after \\ character in byte literal&quot;</span>, b),
@@ -2767,7 +2886,7 @@
     }
 
     <span class="comment">// Returns (content, suffix).
-    </span><span class="kw">pub fn </span>parse_lit_byte_str(s: <span class="kw-2">&amp;</span>str) -&gt; (Vec&lt;u8&gt;, Box&lt;str&gt;) {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_lit_byte_str(s: <span class="kw-2">&amp;</span>str) -&gt; (Vec&lt;u8&gt;, Box&lt;str&gt;) {
         <span class="macro">assert_eq!</span>(byte(s, <span class="number">0</span>), <span class="string">b&#39;b&#39;</span>);
         <span class="kw">match </span>byte(s, <span class="number">1</span>) {
             <span class="string">b&#39;&quot;&#39; </span>=&gt; parse_lit_byte_str_cooked(s),
@@ -2809,8 +2928,7 @@
                         <span class="string">b&#39;&quot;&#39; </span>=&gt; <span class="string">b&#39;&quot;&#39;</span>,
                         <span class="string">b&#39;\r&#39; </span>| <span class="string">b&#39;\n&#39; </span>=&gt; <span class="kw">loop </span>{
                             <span class="kw">let </span>byte = byte(v, <span class="number">0</span>);
-                            <span class="kw">let </span>ch = char::from_u32(u32::from(byte)).unwrap();
-                            <span class="kw">if </span>ch.is_whitespace() {
+                            <span class="kw">if </span><span class="macro">matches!</span>(byte, <span class="string">b&#39; &#39; </span>| <span class="string">b&#39;\t&#39; </span>| <span class="string">b&#39;\n&#39; </span>| <span class="string">b&#39;\r&#39;</span>) {
                                 v = <span class="kw-2">&amp;</span>v[<span class="number">1</span>..];
                             } <span class="kw">else </span>{
                                 <span class="kw">continue </span><span class="lifetime">&#39;outer</span>;
@@ -2844,7 +2962,7 @@
     }
 
     <span class="comment">// Returns (value, suffix).
-    </span><span class="kw">pub fn </span>parse_lit_byte(s: <span class="kw-2">&amp;</span>str) -&gt; (u8, Box&lt;str&gt;) {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_lit_byte(s: <span class="kw-2">&amp;</span>str) -&gt; (u8, Box&lt;str&gt;) {
         <span class="macro">assert_eq!</span>(byte(s, <span class="number">0</span>), <span class="string">b&#39;b&#39;</span>);
         <span class="macro">assert_eq!</span>(byte(s, <span class="number">1</span>), <span class="string">b&#39;\&#39;&#39;</span>);
 
@@ -2883,7 +3001,7 @@
     }
 
     <span class="comment">// Returns (value, suffix).
-    </span><span class="kw">pub fn </span>parse_lit_char(<span class="kw-2">mut </span>s: <span class="kw-2">&amp;</span>str) -&gt; (char, Box&lt;str&gt;) {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_lit_char(<span class="kw-2">mut </span>s: <span class="kw-2">&amp;</span>str) -&gt; (char, Box&lt;str&gt;) {
         <span class="macro">assert_eq!</span>(byte(s, <span class="number">0</span>), <span class="string">b&#39;\&#39;&#39;</span>);
         s = <span class="kw-2">&amp;</span>s[<span class="number">1</span>..];
 
@@ -2988,7 +3106,7 @@
     }
 
     <span class="comment">// Returns base 10 digits and suffix.
-    </span><span class="kw">pub fn </span>parse_lit_int(<span class="kw-2">mut </span>s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;(Box&lt;str&gt;, Box&lt;str&gt;)&gt; {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_lit_int(<span class="kw-2">mut </span>s: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;(Box&lt;str&gt;, Box&lt;str&gt;)&gt; {
         <span class="kw">let </span>negative = byte(s, <span class="number">0</span>) == <span class="string">b&#39;-&#39;</span>;
         <span class="kw">if </span>negative {
             s = <span class="kw-2">&amp;</span>s[<span class="number">1</span>..];
@@ -3012,6 +3130,7 @@
         };
 
         <span class="kw">let </span><span class="kw-2">mut </span>value = BigInt::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>has_digit = <span class="bool-val">false</span>;
         <span class="lifetime">&#39;outer</span>: <span class="kw">loop </span>{
             <span class="kw">let </span>b = byte(s, <span class="number">0</span>);
             <span class="kw">let </span>digit = <span class="kw">match </span>b {
@@ -3055,9 +3174,14 @@
                 <span class="kw">return </span><span class="prelude-val">None</span>;
             }
 
+            has_digit = <span class="bool-val">true</span>;
             value <span class="kw-2">*</span>= base;
             value += digit;
             s = <span class="kw-2">&amp;</span>s[<span class="number">1</span>..];
+        }
+
+        <span class="kw">if </span>!has_digit {
+            <span class="kw">return </span><span class="prelude-val">None</span>;
         }
 
         <span class="kw">let </span>suffix = s;
@@ -3073,7 +3197,7 @@
     }
 
     <span class="comment">// Returns base 10 digits and suffix.
-    </span><span class="kw">pub fn </span>parse_lit_float(input: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;(Box&lt;str&gt;, Box&lt;str&gt;)&gt; {
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_lit_float(input: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;(Box&lt;str&gt;, Box&lt;str&gt;)&gt; {
         <span class="comment">// Rust&#39;s floating point literals are very similar to the ones parsed by
         // the standard library, except that rust&#39;s literals can contain
         // ignorable underscores. Let&#39;s remove those underscores.
@@ -3163,40 +3287,5 @@
             <span class="prelude-val">None
         </span>}
     }
-
-    <span class="attr">#[allow(clippy::unnecessary_wraps)]
-    </span><span class="kw">pub fn </span>to_literal(repr: <span class="kw-2">&amp;</span>str, digits: <span class="kw-2">&amp;</span>str, suffix: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Option</span>&lt;Literal&gt; {
-        <span class="attr">#[cfg(syn_no_negative_literal_parse)]
-        </span>{
-            <span class="comment">// Rustc older than https://github.com/rust-lang/rust/pull/87262.
-            </span><span class="kw">if </span>repr.starts_with(<span class="string">&#39;-&#39;</span>) {
-                <span class="kw">let </span>f64_parse_finite = || digits.parse().ok().filter(|x: <span class="kw-2">&amp;</span>f64| x.is_finite());
-                <span class="kw">let </span>f32_parse_finite = || digits.parse().ok().filter(|x: <span class="kw-2">&amp;</span>f32| x.is_finite());
-                <span class="kw">return if </span>suffix == <span class="string">&quot;f64&quot; </span>{
-                    f64_parse_finite().map(Literal::f64_suffixed)
-                } <span class="kw">else if </span>suffix == <span class="string">&quot;f32&quot; </span>{
-                    f32_parse_finite().map(Literal::f32_suffixed)
-                } <span class="kw">else if </span>suffix == <span class="string">&quot;i64&quot; </span>{
-                    digits.parse().ok().map(Literal::i64_suffixed)
-                } <span class="kw">else if </span>suffix == <span class="string">&quot;i32&quot; </span>{
-                    digits.parse().ok().map(Literal::i32_suffixed)
-                } <span class="kw">else if </span>suffix == <span class="string">&quot;i16&quot; </span>{
-                    digits.parse().ok().map(Literal::i16_suffixed)
-                } <span class="kw">else if </span>suffix == <span class="string">&quot;i8&quot; </span>{
-                    digits.parse().ok().map(Literal::i8_suffixed)
-                } <span class="kw">else if </span>!suffix.is_empty() {
-                    <span class="prelude-val">None
-                </span>} <span class="kw">else if </span>digits.contains(<span class="string">&#39;.&#39;</span>) {
-                    f64_parse_finite().map(Literal::f64_unsuffixed)
-                } <span class="kw">else </span>{
-                    digits.parse().ok().map(Literal::i64_unsuffixed)
-                };
-            }
-        }
-        <span class="kw">let _ </span>= digits;
-        <span class="kw">let _ </span>= suffix;
-        <span class="prelude-val">Some</span>(repr.parse::&lt;Literal&gt;().unwrap())
-    }
 }
-</code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</code></pre></div></section></main></body></html>

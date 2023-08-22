@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/syn-1.0.107/src/item.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>item.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../syn/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/syn-2.0.29/src/item.rs`."><title>item.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-f3501f0f5ae15dfb.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.71.1 (eb26296b5 2023-08-03)" data-search-js="search-4926e5fc22a5646a.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../../static.files/source-script-11255107d0a65077.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-f0540c1d82cde29b.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../syn/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -3311,7 +3311,19 @@
 <a href="#3311" id="3311">3311</a>
 <a href="#3312" id="3312">3312</a>
 <a href="#3313" id="3313">3313</a>
-</pre><pre class="rust"><code><span class="kw">use super</span>::<span class="kw-2">*</span>;
+<a href="#3314" id="3314">3314</a>
+<a href="#3315" id="3315">3315</a>
+<a href="#3316" id="3316">3316</a>
+<a href="#3317" id="3317">3317</a>
+<a href="#3318" id="3318">3318</a>
+<a href="#3319" id="3319">3319</a>
+<a href="#3320" id="3320">3320</a>
+<a href="#3321" id="3321">3321</a>
+<a href="#3322" id="3322">3322</a>
+<a href="#3323" id="3323">3323</a>
+<a href="#3324" id="3324">3324</a>
+<a href="#3325" id="3325">3325</a>
+</pre></div><pre class="rust"><code><span class="kw">use super</span>::<span class="kw-2">*</span>;
 <span class="kw">use </span><span class="kw">crate</span>::derive::{Data, DataEnum, DataStruct, DataUnion, DeriveInput};
 <span class="kw">use </span><span class="kw">crate</span>::punctuated::Punctuated;
 <span class="kw">use </span>proc_macro2::TokenStream;
@@ -3322,15 +3334,13 @@
 <span class="macro">ast_enum_of_structs! </span>{
     <span class="doccomment">/// Things that can appear directly inside of a module or scope.
     ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    ///
     /// # Syntax tree enum
     ///
     /// This type is a [syntax tree enum].
     ///
     /// [syntax tree enum]: Expr#syntax-tree-enums
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    #[cfg_attr(not(syn_no_non_exhaustive), non_exhaustive)]
+    #[non_exhaustive]
     </span><span class="kw">pub enum </span>Item {
         <span class="doccomment">/// A constant item: `const MAX: u16 = 65535`.
         </span>Const(ItemConst),
@@ -3354,9 +3364,6 @@
 
         <span class="doccomment">/// A macro invocation, which includes `macro_rules!` definitions.
         </span>Macro(ItemMacro),
-
-        <span class="doccomment">/// A 2.0-style declarative macro introduced by the `macro` keyword.
-        </span>Macro2(ItemMacro2),
 
         <span class="doccomment">/// A module or module declaration: `mod m` or `mod m { ... }`.
         </span>Mod(ItemMod),
@@ -3385,9 +3392,7 @@
         <span class="doccomment">/// Tokens forming an item not interpreted by Syn.
         </span>Verbatim(TokenStream),
 
-        <span class="comment">// Not public API.
-        //
-        // For testing exhaustiveness in downstream code, use the following idiom:
+        <span class="comment">// For testing exhaustiveness in downstream code, use the following idiom:
         //
         //     match item {
         //         Item::Const(item) =&gt; {...}
@@ -3403,22 +3408,18 @@
         // a variant. You will be notified by a test failure when a variant is
         // added, so that you can add code to handle it, but your library will
         // continue to compile and work for downstream users in the interim.
-        </span><span class="attr">#[cfg(syn_no_non_exhaustive)]
-        #[doc(hidden)]
-        </span>__NonExhaustive,
-    }
+    </span>}
 }
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A constant item: `const MAX: u16 = 65535`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemConst {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>vis: Visibility,
         <span class="kw">pub </span>const_token: <span class="macro">Token!</span>[<span class="kw">const</span>],
         <span class="kw">pub </span>ident: Ident,
+        <span class="kw">pub </span>generics: Generics,
         <span class="kw">pub </span>colon_token: <span class="macro">Token!</span>[:],
         <span class="kw">pub </span>ty: Box&lt;Type&gt;,
         <span class="kw">pub </span>eq_token: <span class="macro">Token!</span>[=],
@@ -3429,8 +3430,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An enum definition: `enum Foo&lt;A, B&gt; { A(A), B(B) }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemEnum {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3445,8 +3444,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An `extern crate` item: `extern crate serde`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemExternCrate {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3460,10 +3457,7 @@
 }
 
 <span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// A free-standing function: `fn process(n: usize) -&gt; Result&lt;()&gt; { ...
-    /// }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
+    <span class="doccomment">/// A free-standing function: `fn process(n: usize) -&gt; Result&lt;()&gt; { ... }`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemFn {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3475,11 +3469,10 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A block of foreign items: `extern &quot;C&quot; { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemForeignMod {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
+        <span class="kw">pub </span>unsafety: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">unsafe</span>]&gt;,
         <span class="kw">pub </span>abi: Abi,
         <span class="kw">pub </span>brace_token: token::Brace,
         <span class="kw">pub </span>items: Vec&lt;ForeignItem&gt;,
@@ -3489,8 +3482,6 @@
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An impl block providing trait or associated items: `impl&lt;A&gt; Trait
     /// for Data&lt;A&gt; { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemImpl {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3509,8 +3500,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A macro invocation, which includes `macro_rules!` definitions.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemMacro {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3522,27 +3511,12 @@
 }
 
 <span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// A 2.0-style declarative macro introduced by the `macro` keyword.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub struct </span>ItemMacro2 {
-        <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
-        <span class="kw">pub </span>vis: Visibility,
-        <span class="kw">pub </span>macro_token: <span class="macro">Token!</span>[<span class="kw">macro</span>],
-        <span class="kw">pub </span>ident: Ident,
-        <span class="kw">pub </span>rules: TokenStream,
-    }
-}
-
-<span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A module or module declaration: `mod m` or `mod m { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemMod {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>vis: Visibility,
+        <span class="kw">pub </span>unsafety: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">unsafe</span>]&gt;,
         <span class="kw">pub </span>mod_token: <span class="macro">Token!</span>[<span class="kw">mod</span>],
         <span class="kw">pub </span>ident: Ident,
         <span class="kw">pub </span>content: <span class="prelude-ty">Option</span>&lt;(token::Brace, Vec&lt;Item&gt;)&gt;,
@@ -3552,14 +3526,12 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A static item: `static BIKE: Shed = Shed(42)`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemStatic {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>vis: Visibility,
         <span class="kw">pub </span>static_token: <span class="macro">Token!</span>[<span class="kw">static</span>],
-        <span class="kw">pub </span>mutability: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw-2">mut</span>]&gt;,
+        <span class="kw">pub </span>mutability: StaticMutability,
         <span class="kw">pub </span>ident: Ident,
         <span class="kw">pub </span>colon_token: <span class="macro">Token!</span>[:],
         <span class="kw">pub </span>ty: Box&lt;Type&gt;,
@@ -3571,8 +3543,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A struct definition: `struct Foo&lt;A&gt; { x: A }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemStruct {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3587,14 +3557,13 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A trait definition: `pub trait Iterator { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemTrait {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>vis: Visibility,
         <span class="kw">pub </span>unsafety: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">unsafe</span>]&gt;,
         <span class="kw">pub </span>auto_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[auto]&gt;,
+        <span class="kw">pub </span>restriction: <span class="prelude-ty">Option</span>&lt;ImplRestriction&gt;,
         <span class="kw">pub </span>trait_token: <span class="macro">Token!</span>[<span class="kw">trait</span>],
         <span class="kw">pub </span>ident: Ident,
         <span class="kw">pub </span>generics: Generics,
@@ -3607,8 +3576,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A trait alias: `pub trait SharableIterator = Iterator + Sync`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemTraitAlias {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3624,8 +3591,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A type alias: `type Result&lt;T&gt; = std::result::Result&lt;T, MyError&gt;`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemType {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3641,8 +3606,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A union definition: `union Foo&lt;A, B&gt; { x: A, y: B }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemUnion {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3656,8 +3619,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A use declaration: `use std::collections::HashMap`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ItemUse {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3673,26 +3634,22 @@
     <span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>replace_attrs(<span class="kw-2">&amp;mut </span><span class="self">self</span>, new: Vec&lt;Attribute&gt;) -&gt; Vec&lt;Attribute&gt; {
         <span class="kw">match </span><span class="self">self </span>{
-            Item::ExternCrate(ItemExternCrate { attrs, .. })
-            | Item::Use(ItemUse { attrs, .. })
-            | Item::Static(ItemStatic { attrs, .. })
-            | Item::Const(ItemConst { attrs, .. })
-            | Item::Fn(ItemFn { attrs, .. })
-            | Item::Mod(ItemMod { attrs, .. })
-            | Item::ForeignMod(ItemForeignMod { attrs, .. })
-            | Item::Type(ItemType { attrs, .. })
-            | Item::Struct(ItemStruct { attrs, .. })
+            Item::Const(ItemConst { attrs, .. })
             | Item::Enum(ItemEnum { attrs, .. })
-            | Item::Union(ItemUnion { attrs, .. })
-            | Item::Trait(ItemTrait { attrs, .. })
-            | Item::TraitAlias(ItemTraitAlias { attrs, .. })
+            | Item::ExternCrate(ItemExternCrate { attrs, .. })
+            | Item::Fn(ItemFn { attrs, .. })
+            | Item::ForeignMod(ItemForeignMod { attrs, .. })
             | Item::Impl(ItemImpl { attrs, .. })
             | Item::Macro(ItemMacro { attrs, .. })
-            | Item::Macro2(ItemMacro2 { attrs, .. }) =&gt; mem::replace(attrs, new),
+            | Item::Mod(ItemMod { attrs, .. })
+            | Item::Static(ItemStatic { attrs, .. })
+            | Item::Struct(ItemStruct { attrs, .. })
+            | Item::Trait(ItemTrait { attrs, .. })
+            | Item::TraitAlias(ItemTraitAlias { attrs, .. })
+            | Item::Type(ItemType { attrs, .. })
+            | Item::Union(ItemUnion { attrs, .. })
+            | Item::Use(ItemUse { attrs, .. }) =&gt; mem::replace(attrs, new),
             Item::Verbatim(<span class="kw">_</span>) =&gt; Vec::new(),
-
-            <span class="attr">#[cfg(syn_no_non_exhaustive)]
-            </span><span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
         }
     }
 }
@@ -3780,8 +3737,6 @@
 <span class="macro">ast_enum_of_structs! </span>{
     <span class="doccomment">/// A suffix of an import tree in a `use` item: `Type as Renamed` or `*`.
     ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    ///
     /// # Syntax tree enum
     ///
     /// This type is a [syntax tree enum].
@@ -3808,8 +3763,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A path prefix of imports in a `use` item: `std::...`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>UsePath {
         <span class="kw">pub </span>ident: Ident,
@@ -3820,8 +3773,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An identifier imported by a `use` item: `HashMap`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>UseName {
         <span class="kw">pub </span>ident: Ident,
@@ -3830,8 +3781,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An renamed identifier imported by a `use` item: `HashMap as Map`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>UseRename {
         <span class="kw">pub </span>ident: Ident,
@@ -3842,8 +3791,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A glob import in a `use` item: `*`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>UseGlob {
         <span class="kw">pub </span>star_token: <span class="macro">Token!</span>[<span class="kw-2">*</span>],
@@ -3852,8 +3799,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A braced group of imports in a `use` item: `{A, B, C}`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>UseGroup {
         <span class="kw">pub </span>brace_token: token::Brace,
@@ -3864,15 +3809,13 @@
 <span class="macro">ast_enum_of_structs! </span>{
     <span class="doccomment">/// An item within an `extern` block.
     ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    ///
     /// # Syntax tree enum
     ///
     /// This type is a [syntax tree enum].
     ///
     /// [syntax tree enum]: Expr#syntax-tree-enums
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    #[cfg_attr(not(syn_no_non_exhaustive), non_exhaustive)]
+    #[non_exhaustive]
     </span><span class="kw">pub enum </span>ForeignItem {
         <span class="doccomment">/// A foreign function in an `extern` block.
         </span>Fn(ForeignItemFn),
@@ -3889,9 +3832,7 @@
         <span class="doccomment">/// Tokens in an `extern` block not interpreted by Syn.
         </span>Verbatim(TokenStream),
 
-        <span class="comment">// Not public API.
-        //
-        // For testing exhaustiveness in downstream code, use the following idiom:
+        <span class="comment">// For testing exhaustiveness in downstream code, use the following idiom:
         //
         //     match item {
         //         ForeignItem::Fn(item) =&gt; {...}
@@ -3907,16 +3848,11 @@
         // a variant. You will be notified by a test failure when a variant is
         // added, so that you can add code to handle it, but your library will
         // continue to compile and work for downstream users in the interim.
-        </span><span class="attr">#[cfg(syn_no_non_exhaustive)]
-        #[doc(hidden)]
-        </span>__NonExhaustive,
-    }
+    </span>}
 }
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A foreign function in an `extern` block.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ForeignItemFn {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3928,14 +3864,12 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A foreign static item in an `extern` block: `static ext: u8`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ForeignItemStatic {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>vis: Visibility,
         <span class="kw">pub </span>static_token: <span class="macro">Token!</span>[<span class="kw">static</span>],
-        <span class="kw">pub </span>mutability: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw-2">mut</span>]&gt;,
+        <span class="kw">pub </span>mutability: StaticMutability,
         <span class="kw">pub </span>ident: Ident,
         <span class="kw">pub </span>colon_token: <span class="macro">Token!</span>[:],
         <span class="kw">pub </span>ty: Box&lt;Type&gt;,
@@ -3945,22 +3879,19 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A foreign type in an `extern` block: `type void`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ForeignItemType {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>vis: Visibility,
         <span class="kw">pub </span>type_token: <span class="macro">Token!</span>[<span class="kw">type</span>],
         <span class="kw">pub </span>ident: Ident,
+        <span class="kw">pub </span>generics: Generics,
         <span class="kw">pub </span>semi_token: <span class="macro">Token!</span>[;],
     }
 }
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A macro invocation within an extern block.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ForeignItemMacro {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3972,21 +3903,19 @@
 <span class="macro">ast_enum_of_structs! </span>{
     <span class="doccomment">/// An item declaration within the definition of a trait.
     ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    ///
     /// # Syntax tree enum
     ///
     /// This type is a [syntax tree enum].
     ///
     /// [syntax tree enum]: Expr#syntax-tree-enums
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    #[cfg_attr(not(syn_no_non_exhaustive), non_exhaustive)]
+    #[non_exhaustive]
     </span><span class="kw">pub enum </span>TraitItem {
         <span class="doccomment">/// An associated constant within the definition of a trait.
         </span>Const(TraitItemConst),
 
-        <span class="doccomment">/// A trait method within the definition of a trait.
-        </span>Method(TraitItemMethod),
+        <span class="doccomment">/// An associated function within the definition of a trait.
+        </span>Fn(TraitItemFn),
 
         <span class="doccomment">/// An associated type within the definition of a trait.
         </span>Type(TraitItemType),
@@ -3997,13 +3926,11 @@
         <span class="doccomment">/// Tokens within the definition of a trait not interpreted by Syn.
         </span>Verbatim(TokenStream),
 
-        <span class="comment">// Not public API.
-        //
-        // For testing exhaustiveness in downstream code, use the following idiom:
+        <span class="comment">// For testing exhaustiveness in downstream code, use the following idiom:
         //
         //     match item {
         //         TraitItem::Const(item) =&gt; {...}
-        //         TraitItem::Method(item) =&gt; {...}
+        //         TraitItem::Fn(item) =&gt; {...}
         //         ...
         //         TraitItem::Verbatim(item) =&gt; {...}
         //
@@ -4015,21 +3942,17 @@
         // a variant. You will be notified by a test failure when a variant is
         // added, so that you can add code to handle it, but your library will
         // continue to compile and work for downstream users in the interim.
-        </span><span class="attr">#[cfg(syn_no_non_exhaustive)]
-        #[doc(hidden)]
-        </span>__NonExhaustive,
-    }
+    </span>}
 }
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An associated constant within the definition of a trait.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>TraitItemConst {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>const_token: <span class="macro">Token!</span>[<span class="kw">const</span>],
         <span class="kw">pub </span>ident: Ident,
+        <span class="kw">pub </span>generics: Generics,
         <span class="kw">pub </span>colon_token: <span class="macro">Token!</span>[:],
         <span class="kw">pub </span>ty: Type,
         <span class="kw">pub </span>default: <span class="prelude-ty">Option</span>&lt;(<span class="macro">Token!</span>[=], Expr)&gt;,
@@ -4038,11 +3961,9 @@
 }
 
 <span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// A trait method within the definition of a trait.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
+    <span class="doccomment">/// An associated function within the definition of a trait.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub struct </span>TraitItemMethod {
+    </span><span class="kw">pub struct </span>TraitItemFn {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>sig: Signature,
         <span class="kw">pub </span>default: <span class="prelude-ty">Option</span>&lt;Block&gt;,
@@ -4052,8 +3973,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An associated type within the definition of a trait.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>TraitItemType {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4069,8 +3988,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A macro invocation within the definition of a trait.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>TraitItemMacro {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4082,21 +3999,19 @@
 <span class="macro">ast_enum_of_structs! </span>{
     <span class="doccomment">/// An item within an impl block.
     ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    ///
     /// # Syntax tree enum
     ///
     /// This type is a [syntax tree enum].
     ///
     /// [syntax tree enum]: Expr#syntax-tree-enums
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    #[cfg_attr(not(syn_no_non_exhaustive), non_exhaustive)]
+    #[non_exhaustive]
     </span><span class="kw">pub enum </span>ImplItem {
         <span class="doccomment">/// An associated constant within an impl block.
         </span>Const(ImplItemConst),
 
-        <span class="doccomment">/// A method within an impl block.
-        </span>Method(ImplItemMethod),
+        <span class="doccomment">/// An associated function within an impl block.
+        </span>Fn(ImplItemFn),
 
         <span class="doccomment">/// An associated type within an impl block.
         </span>Type(ImplItemType),
@@ -4107,13 +4022,11 @@
         <span class="doccomment">/// Tokens within an impl block not interpreted by Syn.
         </span>Verbatim(TokenStream),
 
-        <span class="comment">// Not public API.
-        //
-        // For testing exhaustiveness in downstream code, use the following idiom:
+        <span class="comment">// For testing exhaustiveness in downstream code, use the following idiom:
         //
         //     match item {
         //         ImplItem::Const(item) =&gt; {...}
-        //         ImplItem::Method(item) =&gt; {...}
+        //         ImplItem::Fn(item) =&gt; {...}
         //         ...
         //         ImplItem::Verbatim(item) =&gt; {...}
         //
@@ -4125,16 +4038,11 @@
         // a variant. You will be notified by a test failure when a variant is
         // added, so that you can add code to handle it, but your library will
         // continue to compile and work for downstream users in the interim.
-        </span><span class="attr">#[cfg(syn_no_non_exhaustive)]
-        #[doc(hidden)]
-        </span>__NonExhaustive,
-    }
+    </span>}
 }
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An associated constant within an impl block.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ImplItemConst {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4142,6 +4050,7 @@
         <span class="kw">pub </span>defaultness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[default]&gt;,
         <span class="kw">pub </span>const_token: <span class="macro">Token!</span>[<span class="kw">const</span>],
         <span class="kw">pub </span>ident: Ident,
+        <span class="kw">pub </span>generics: Generics,
         <span class="kw">pub </span>colon_token: <span class="macro">Token!</span>[:],
         <span class="kw">pub </span>ty: Type,
         <span class="kw">pub </span>eq_token: <span class="macro">Token!</span>[=],
@@ -4151,11 +4060,9 @@
 }
 
 <span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// A method within an impl block.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
+    <span class="doccomment">/// An associated function within an impl block.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub struct </span>ImplItemMethod {
+    </span><span class="kw">pub struct </span>ImplItemFn {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>vis: Visibility,
         <span class="kw">pub </span>defaultness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[default]&gt;,
@@ -4166,8 +4073,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An associated type within an impl block.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ImplItemType {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4184,8 +4089,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A macro invocation within an impl block.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ImplItemMacro {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4197,8 +4100,6 @@
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A function signature in a trait or implementation: `unsafe fn
     /// initialize(&amp;self)`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>Signature {
         <span class="kw">pub </span>constness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">const</span>]&gt;,
@@ -4217,33 +4118,20 @@
 
 <span class="kw">impl </span>Signature {
     <span class="doccomment">/// A method&#39;s `self` receiver, such as `&amp;self` or `self: Box&lt;Self&gt;`.
-    </span><span class="kw">pub fn </span>receiver(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>FnArg&gt; {
+    </span><span class="kw">pub fn </span>receiver(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>Receiver&gt; {
         <span class="kw">let </span>arg = <span class="self">self</span>.inputs.first()<span class="question-mark">?</span>;
         <span class="kw">match </span>arg {
-            FnArg::Receiver(<span class="kw">_</span>) =&gt; <span class="prelude-val">Some</span>(arg),
-            FnArg::Typed(PatType { pat, .. }) =&gt; {
-                <span class="kw">if let </span>Pat::Ident(PatIdent { ident, .. }) = <span class="kw-2">&amp;**</span>pat {
-                    <span class="kw">if </span>ident == <span class="string">&quot;self&quot; </span>{
-                        <span class="kw">return </span><span class="prelude-val">Some</span>(arg);
-                    }
-                }
-                <span class="prelude-val">None
-            </span>}
+            FnArg::Receiver(receiver) =&gt; <span class="prelude-val">Some</span>(receiver),
+            FnArg::Typed(<span class="kw">_</span>) =&gt; <span class="prelude-val">None</span>,
         }
     }
 }
 
 <span class="macro">ast_enum_of_structs! </span>{
     <span class="doccomment">/// An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub enum </span>FnArg {
-        <span class="doccomment">/// The `self` argument of an associated method, whether taken by value
-        /// or by reference.
-        ///
-        /// Note that `self` receivers with a specified type, such as `self:
-        /// Box&lt;Self&gt;`, are parsed as a `FnArg::Typed`.
+        <span class="doccomment">/// The `self` argument of an associated method.
         </span>Receiver(Receiver),
 
         <span class="doccomment">/// A function argument accepted by pattern and type.
@@ -4252,19 +4140,21 @@
 }
 
 <span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// The `self` argument of an associated method, whether taken by value
-    /// or by reference.
+    <span class="doccomment">/// The `self` argument of an associated method.
     ///
-    /// Note that `self` receivers with a specified type, such as `self:
-    /// Box&lt;Self&gt;`, are parsed as a `FnArg::Typed`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
+    /// If `colon_token` is present, the receiver is written with an explicit
+    /// type such as `self: Box&lt;Self&gt;`. If `colon_token` is absent, the receiver
+    /// is written in shorthand such as `self` or `&amp;self` or `&amp;mut self`. In the
+    /// shorthand case, the type in `ty` is reconstructed as one of `Self`,
+    /// `&amp;Self`, or `&amp;mut Self`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>Receiver {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>reference: <span class="prelude-ty">Option</span>&lt;(<span class="macro">Token!</span>[<span class="kw-2">&amp;</span>], <span class="prelude-ty">Option</span>&lt;Lifetime&gt;)&gt;,
         <span class="kw">pub </span>mutability: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw-2">mut</span>]&gt;,
         <span class="kw">pub </span>self_token: <span class="macro">Token!</span>[<span class="self">self</span>],
+        <span class="kw">pub </span>colon_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[:]&gt;,
+        <span class="kw">pub </span>ty: Box&lt;Type&gt;,
     }
 }
 
@@ -4274,194 +4164,233 @@
     }
 }
 
+<span class="macro">ast_struct! </span>{
+    <span class="doccomment">/// The variadic argument of a foreign function.
+    ///
+    /// ```rust
+    /// # struct c_char;
+    /// # struct c_int;
+    /// #
+    /// extern &quot;C&quot; {
+    ///     fn printf(format: *const c_char, ...) -&gt; c_int;
+    ///     //                               ^^^
+    /// }
+    /// ```
+    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
+    </span><span class="kw">pub struct </span>Variadic {
+        <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
+        <span class="kw">pub </span>pat: <span class="prelude-ty">Option</span>&lt;(Box&lt;Pat&gt;, <span class="macro">Token!</span>[:])&gt;,
+        <span class="kw">pub </span>dots: <span class="macro">Token!</span>[...],
+        <span class="kw">pub </span>comma: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[,]&gt;,
+    }
+}
+
+<span class="macro">ast_enum! </span>{
+    <span class="doccomment">/// The mutability of an `Item::Static` or `ForeignItem::Static`.
+    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
+    #[non_exhaustive]
+    </span><span class="kw">pub enum </span>StaticMutability {
+        Mut(<span class="macro">Token!</span>[<span class="kw-2">mut</span>]),
+        <span class="prelude-val">None</span>,
+    }
+}
+
+<span class="macro">ast_enum! </span>{
+    <span class="doccomment">/// Unused, but reserved for RFC 3323 restrictions.
+    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
+    #[non_exhaustive]
+    </span><span class="kw">pub enum </span>ImplRestriction {}
+
+
+    <span class="comment">// TODO: https://rust-lang.github.io/rfcs/3323-restrictions.html
+    //
+    // pub struct ImplRestriction {
+    //     pub impl_token: Token![impl],
+    //     pub paren_token: token::Paren,
+    //     pub in_token: Option&lt;Token![in]&gt;,
+    //     pub path: Box&lt;Path&gt;,
+    // }
+</span>}
+
 <span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
-</span><span class="kw">pub mod </span>parsing {
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>parsing {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
     <span class="kw">use </span><span class="kw">crate</span>::ext::IdentExt;
     <span class="kw">use </span><span class="kw">crate</span>::parse::discouraged::Speculative;
     <span class="kw">use </span><span class="kw">crate</span>::parse::{Parse, ParseBuffer, ParseStream, <span class="prelude-ty">Result</span>};
-    <span class="kw">use </span><span class="kw">crate</span>::token::Brace;
-    <span class="kw">use </span>proc_macro2::{Delimiter, Group, Punct, Spacing, TokenTree};
-    <span class="kw">use </span>std::iter::{<span class="self">self</span>, FromIterator};
-
-    <span class="macro">crate::custom_keyword!</span>(macro_rules);
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>Item {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
             <span class="kw">let </span>begin = input.fork();
-            <span class="kw">let </span><span class="kw-2">mut </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
-            <span class="kw">let </span>ahead = input.fork();
-            <span class="kw">let </span>vis: Visibility = ahead.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
+            parse_rest_of_item(begin, attrs, input)
+        }
+    }
 
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_rest_of_item(
+        begin: ParseBuffer,
+        <span class="kw-2">mut </span>attrs: Vec&lt;Attribute&gt;,
+        input: ParseStream,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Item&gt; {
+        <span class="kw">let </span>ahead = input.fork();
+        <span class="kw">let </span>vis: Visibility = ahead.parse()<span class="question-mark">?</span>;
+
+        <span class="kw">let </span>lookahead = ahead.lookahead1();
+        <span class="kw">let </span><span class="kw-2">mut </span>item = <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">fn</span>]) || peek_signature(<span class="kw-2">&amp;</span>ahead) {
+            <span class="kw">let </span>vis: Visibility = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>sig: Signature = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[;]) {
+                input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
+                <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
+            } <span class="kw">else </span>{
+                parse_rest_of_fn(input, Vec::new(), vis, sig).map(Item::Fn)
+            }
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">extern</span>]) {
+            ahead.parse::&lt;<span class="macro">Token!</span>[<span class="kw">extern</span>]&gt;()<span class="question-mark">?</span>;
             <span class="kw">let </span>lookahead = ahead.lookahead1();
-            <span class="kw">let </span><span class="kw-2">mut </span>item = <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">fn</span>]) || peek_signature(<span class="kw-2">&amp;</span>ahead) {
-                <span class="kw">let </span>vis: Visibility = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span>sig: Signature = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>]) {
+                input.parse().map(Item::ExternCrate)
+            } <span class="kw">else if </span>lookahead.peek(token::Brace) {
+                input.parse().map(Item::ForeignMod)
+            } <span class="kw">else if </span>lookahead.peek(LitStr) {
+                ahead.parse::&lt;LitStr&gt;()<span class="question-mark">?</span>;
+                <span class="kw">let </span>lookahead = ahead.lookahead1();
+                <span class="kw">if </span>lookahead.peek(token::Brace) {
+                    input.parse().map(Item::ForeignMod)
+                } <span class="kw">else </span>{
+                    <span class="prelude-val">Err</span>(lookahead.error())
+                }
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Err</span>(lookahead.error())
+            }
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">use</span>]) {
+            <span class="kw">let </span>allow_crate_root_in_path = <span class="bool-val">true</span>;
+            <span class="kw">match </span>parse_item_use(input, allow_crate_root_in_path)<span class="question-mark">? </span>{
+                <span class="prelude-val">Some</span>(item_use) =&gt; <span class="prelude-val">Ok</span>(Item::Use(item_use)),
+                <span class="prelude-val">None </span>=&gt; <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input))),
+            }
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">static</span>]) {
+            <span class="kw">let </span>vis = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>static_token = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>mutability = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>ident = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[=]) {
+                input.parse::&lt;<span class="macro">Token!</span>[=]&gt;()<span class="question-mark">?</span>;
+                input.parse::&lt;Expr&gt;()<span class="question-mark">?</span>;
+                input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
+                <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>colon_token = input.parse()<span class="question-mark">?</span>;
+                <span class="kw">let </span>ty = input.parse()<span class="question-mark">?</span>;
                 <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[;]) {
                     input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
+                    <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
                 } <span class="kw">else </span>{
-                    parse_rest_of_fn(input, Vec::new(), vis, sig).map(Item::Fn)
+                    <span class="prelude-val">Ok</span>(Item::Static(ItemStatic {
+                        attrs: Vec::new(),
+                        vis,
+                        static_token,
+                        mutability,
+                        ident,
+                        colon_token,
+                        ty,
+                        eq_token: input.parse()<span class="question-mark">?</span>,
+                        expr: input.parse()<span class="question-mark">?</span>,
+                        semi_token: input.parse()<span class="question-mark">?</span>,
+                    }))
                 }
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">extern</span>]) {
-                ahead.parse::&lt;<span class="macro">Token!</span>[<span class="kw">extern</span>]&gt;()<span class="question-mark">?</span>;
-                <span class="kw">let </span>lookahead = ahead.lookahead1();
-                <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>]) {
-                    input.parse().map(Item::ExternCrate)
-                } <span class="kw">else if </span>lookahead.peek(token::Brace) {
-                    input.parse().map(Item::ForeignMod)
-                } <span class="kw">else if </span>lookahead.peek(LitStr) {
-                    ahead.parse::&lt;LitStr&gt;()<span class="question-mark">?</span>;
-                    <span class="kw">let </span>lookahead = ahead.lookahead1();
-                    <span class="kw">if </span>lookahead.peek(token::Brace) {
-                        input.parse().map(Item::ForeignMod)
-                    } <span class="kw">else </span>{
-                        <span class="prelude-val">Err</span>(lookahead.error())
-                    }
-                } <span class="kw">else </span>{
-                    <span class="prelude-val">Err</span>(lookahead.error())
-                }
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">use</span>]) {
-                input.parse().map(Item::Use)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">static</span>]) {
-                <span class="kw">let </span>vis = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span>static_token = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span>mutability = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span>ident = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[=]) {
-                    input.parse::&lt;<span class="macro">Token!</span>[=]&gt;()<span class="question-mark">?</span>;
-                    input.parse::&lt;Expr&gt;()<span class="question-mark">?</span>;
-                    input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
-                } <span class="kw">else </span>{
-                    <span class="kw">let </span>colon_token = input.parse()<span class="question-mark">?</span>;
-                    <span class="kw">let </span>ty = input.parse()<span class="question-mark">?</span>;
-                    <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[;]) {
-                        input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
-                        <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
-                    } <span class="kw">else </span>{
-                        <span class="prelude-val">Ok</span>(Item::Static(ItemStatic {
-                            attrs: Vec::new(),
-                            vis,
-                            static_token,
-                            mutability,
-                            ident,
-                            colon_token,
-                            ty,
-                            eq_token: input.parse()<span class="question-mark">?</span>,
-                            expr: input.parse()<span class="question-mark">?</span>,
-                            semi_token: input.parse()<span class="question-mark">?</span>,
-                        }))
-                    }
-                }
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) {
-                ahead.parse::&lt;<span class="macro">Token!</span>[<span class="kw">const</span>]&gt;()<span class="question-mark">?</span>;
-                <span class="kw">let </span>lookahead = ahead.lookahead1();
-                <span class="kw">if </span>lookahead.peek(Ident) || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">_</span>]) {
-                    <span class="kw">let </span>vis = input.parse()<span class="question-mark">?</span>;
-                    <span class="kw">let </span>const_token = input.parse()<span class="question-mark">?</span>;
-                    <span class="kw">let </span>ident = {
-                        <span class="kw">let </span>lookahead = input.lookahead1();
-                        <span class="kw">if </span>lookahead.peek(Ident) || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">_</span>]) {
-                            input.call(Ident::parse_any)<span class="question-mark">?
-                        </span>} <span class="kw">else </span>{
-                            <span class="kw">return </span><span class="prelude-val">Err</span>(lookahead.error());
-                        }
-                    };
-                    <span class="kw">let </span>colon_token = input.parse()<span class="question-mark">?</span>;
-                    <span class="kw">let </span>ty = input.parse()<span class="question-mark">?</span>;
-                    <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[;]) {
-                        input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
-                        <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
-                    } <span class="kw">else </span>{
-                        <span class="prelude-val">Ok</span>(Item::Const(ItemConst {
-                            attrs: Vec::new(),
-                            vis,
-                            const_token,
-                            ident,
-                            colon_token,
-                            ty,
-                            eq_token: input.parse()<span class="question-mark">?</span>,
-                            expr: input.parse()<span class="question-mark">?</span>,
-                            semi_token: input.parse()<span class="question-mark">?</span>,
-                        }))
-                    }
-                } <span class="kw">else </span>{
-                    <span class="prelude-val">Err</span>(lookahead.error())
-                }
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">unsafe</span>]) {
-                ahead.parse::&lt;<span class="macro">Token!</span>[<span class="kw">unsafe</span>]&gt;()<span class="question-mark">?</span>;
-                <span class="kw">let </span>lookahead = ahead.lookahead1();
-                <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">trait</span>])
-                    || lookahead.peek(<span class="macro">Token!</span>[auto]) &amp;&amp; ahead.peek2(<span class="macro">Token!</span>[<span class="kw">trait</span>])
-                {
-                    input.parse().map(Item::Trait)
-                } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">impl</span>]) {
-                    <span class="kw">let </span>allow_verbatim_impl = <span class="bool-val">true</span>;
-                    <span class="kw">if let </span><span class="prelude-val">Some</span>(item) = parse_impl(input, allow_verbatim_impl)<span class="question-mark">? </span>{
-                        <span class="prelude-val">Ok</span>(Item::Impl(item))
-                    } <span class="kw">else </span>{
-                        <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
-                    }
-                } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">extern</span>]) {
-                    input.parse::&lt;Visibility&gt;()<span class="question-mark">?</span>;
-                    input.parse::&lt;<span class="macro">Token!</span>[<span class="kw">unsafe</span>]&gt;()<span class="question-mark">?</span>;
-                    input.parse::&lt;ItemForeignMod&gt;()<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
-                } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">mod</span>]) {
-                    input.parse::&lt;Visibility&gt;()<span class="question-mark">?</span>;
-                    input.parse::&lt;<span class="macro">Token!</span>[<span class="kw">unsafe</span>]&gt;()<span class="question-mark">?</span>;
-                    input.parse::&lt;ItemMod&gt;()<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
-                } <span class="kw">else </span>{
-                    <span class="prelude-val">Err</span>(lookahead.error())
-                }
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">mod</span>]) {
-                input.parse().map(Item::Mod)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">type</span>]) {
-                parse_item_type(begin, input)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">struct</span>]) {
-                input.parse().map(Item::Struct)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">enum</span>]) {
-                input.parse().map(Item::Enum)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[union]) &amp;&amp; ahead.peek2(Ident) {
-                input.parse().map(Item::Union)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">trait</span>]) {
-                input.call(parse_trait_or_trait_alias)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[auto]) &amp;&amp; ahead.peek2(<span class="macro">Token!</span>[<span class="kw">trait</span>]) {
-                input.parse().map(Item::Trait)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">impl</span>])
-                || lookahead.peek(<span class="macro">Token!</span>[default]) &amp;&amp; !ahead.peek2(<span class="macro">Token!</span>[!])
+            }
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) {
+            <span class="kw">let </span>vis = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>const_token: <span class="macro">Token!</span>[<span class="kw">const</span>] = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>lookahead = input.lookahead1();
+            <span class="kw">let </span>ident = <span class="kw">if </span>lookahead.peek(Ident) || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">_</span>]) {
+                input.call(Ident::parse_any)<span class="question-mark">?
+            </span>} <span class="kw">else </span>{
+                <span class="kw">return </span><span class="prelude-val">Err</span>(lookahead.error());
+            };
+            <span class="kw">let </span>colon_token = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>ty = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[;]) {
+                input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
+                <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Ok</span>(Item::Const(ItemConst {
+                    attrs: Vec::new(),
+                    vis,
+                    const_token,
+                    ident,
+                    generics: Generics::default(),
+                    colon_token,
+                    ty,
+                    eq_token: input.parse()<span class="question-mark">?</span>,
+                    expr: input.parse()<span class="question-mark">?</span>,
+                    semi_token: input.parse()<span class="question-mark">?</span>,
+                }))
+            }
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">unsafe</span>]) {
+            ahead.parse::&lt;<span class="macro">Token!</span>[<span class="kw">unsafe</span>]&gt;()<span class="question-mark">?</span>;
+            <span class="kw">let </span>lookahead = ahead.lookahead1();
+            <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">trait</span>])
+                || lookahead.peek(<span class="macro">Token!</span>[auto]) &amp;&amp; ahead.peek2(<span class="macro">Token!</span>[<span class="kw">trait</span>])
             {
+                input.parse().map(Item::Trait)
+            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">impl</span>]) {
                 <span class="kw">let </span>allow_verbatim_impl = <span class="bool-val">true</span>;
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(item) = parse_impl(input, allow_verbatim_impl)<span class="question-mark">? </span>{
                     <span class="prelude-val">Ok</span>(Item::Impl(item))
                 } <span class="kw">else </span>{
-                    <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
+                    <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
                 }
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">macro</span>]) {
-                input.parse().map(Item::Macro2)
-            } <span class="kw">else if </span>vis.is_inherited()
-                &amp;&amp; (lookahead.peek(Ident)
-                    || lookahead.peek(<span class="macro">Token!</span>[<span class="self">self</span>])
-                    || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">super</span>])
-                    || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>])
-                    || lookahead.peek(<span class="macro">Token!</span>[::]))
-            {
-                input.parse().map(Item::Macro)
-            } <span class="kw">else if </span>ahead.peek(macro_rules) {
-                input.advance_to(<span class="kw-2">&amp;</span>ahead);
-                input.parse::&lt;ItemMacro&gt;()<span class="question-mark">?</span>;
-                <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
+            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">extern</span>]) {
+                input.parse().map(Item::ForeignMod)
+            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">mod</span>]) {
+                input.parse().map(Item::Mod)
             } <span class="kw">else </span>{
                 <span class="prelude-val">Err</span>(lookahead.error())
-            }<span class="question-mark">?</span>;
+            }
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">mod</span>]) {
+            input.parse().map(Item::Mod)
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">type</span>]) {
+            parse_item_type(begin, input)
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">struct</span>]) {
+            input.parse().map(Item::Struct)
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">enum</span>]) {
+            input.parse().map(Item::Enum)
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[union]) &amp;&amp; ahead.peek2(Ident) {
+            input.parse().map(Item::Union)
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">trait</span>]) {
+            input.call(parse_trait_or_trait_alias)
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[auto]) &amp;&amp; ahead.peek2(<span class="macro">Token!</span>[<span class="kw">trait</span>]) {
+            input.parse().map(Item::Trait)
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">impl</span>])
+            || lookahead.peek(<span class="macro">Token!</span>[default]) &amp;&amp; !ahead.peek2(<span class="macro">Token!</span>[!])
+        {
+            <span class="kw">let </span>allow_verbatim_impl = <span class="bool-val">true</span>;
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(item) = parse_impl(input, allow_verbatim_impl)<span class="question-mark">? </span>{
+                <span class="prelude-val">Ok</span>(Item::Impl(item))
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
+            }
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">macro</span>]) {
+            input.advance_to(<span class="kw-2">&amp;</span>ahead);
+            parse_macro2(begin, vis, input)
+        } <span class="kw">else if </span>vis.is_inherited()
+            &amp;&amp; (lookahead.peek(Ident)
+                || lookahead.peek(<span class="macro">Token!</span>[<span class="self">self</span>])
+                || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">super</span>])
+                || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>])
+                || lookahead.peek(<span class="macro">Token!</span>[::]))
+        {
+            input.parse().map(Item::Macro)
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(lookahead.error())
+        }<span class="question-mark">?</span>;
 
-            attrs.extend(item.replace_attrs(Vec::new()));
-            item.replace_attrs(attrs);
-            <span class="prelude-val">Ok</span>(item)
-        }
+        attrs.extend(item.replace_attrs(Vec::new()));
+        item.replace_attrs(attrs);
+        <span class="prelude-val">Ok</span>(item)
     }
 
     <span class="kw">struct </span>FlexibleItemType {
@@ -4476,51 +4405,44 @@
         semi_token: <span class="macro">Token!</span>[;],
     }
 
+    <span class="kw">enum </span>TypeDefaultness {
+        Optional,
+        Disallowed,
+    }
+
     <span class="kw">enum </span>WhereClauseLocation {
         <span class="comment">// type Ty&lt;T&gt; where T: &#39;static = T;
         </span>BeforeEq,
         <span class="comment">// type Ty&lt;T&gt; = T where T: &#39;static;
-        </span><span class="attr">#[allow(dead_code)]
         </span>AfterEq,
         <span class="comment">// TODO: goes away once the migration period on rust-lang/rust#89122 is over
         </span>Both,
     }
 
     <span class="kw">impl </span>FlexibleItemType {
-        <span class="kw">fn </span>parse(input: ParseStream, where_clause_location: WhereClauseLocation) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+        <span class="kw">fn </span>parse(
+            input: ParseStream,
+            allow_defaultness: TypeDefaultness,
+            where_clause_location: WhereClauseLocation,
+        ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
             <span class="kw">let </span>vis: Visibility = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>defaultness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[default]&gt; = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>defaultness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[default]&gt; = <span class="kw">match </span>allow_defaultness {
+                TypeDefaultness::Optional =&gt; input.parse()<span class="question-mark">?</span>,
+                TypeDefaultness::Disallowed =&gt; <span class="prelude-val">None</span>,
+            };
             <span class="kw">let </span>type_token: <span class="macro">Token!</span>[<span class="kw">type</span>] = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span>ident: Ident = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span><span class="kw-2">mut </span>generics: Generics = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>colon_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[:]&gt; = input.parse()<span class="question-mark">?</span>;
-
-            <span class="kw">let </span><span class="kw-2">mut </span>bounds = Punctuated::new();
-            <span class="kw">if </span>colon_token.is_some() {
-                <span class="kw">loop </span>{
-                    <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">where</span>]) || input.peek(<span class="macro">Token!</span>[=]) || input.peek(<span class="macro">Token!</span>[;]) {
-                        <span class="kw">break</span>;
-                    }
-                    bounds.push_value(input.parse::&lt;TypeParamBound&gt;()<span class="question-mark">?</span>);
-                    <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">where</span>]) || input.peek(<span class="macro">Token!</span>[=]) || input.peek(<span class="macro">Token!</span>[;]) {
-                        <span class="kw">break</span>;
-                    }
-                    bounds.push_punct(input.parse::&lt;<span class="macro">Token!</span>[+]&gt;()<span class="question-mark">?</span>);
-                }
-            }
+            <span class="kw">let </span>(colon_token, bounds) = <span class="self">Self</span>::parse_optional_bounds(input)<span class="question-mark">?</span>;
 
             <span class="kw">match </span>where_clause_location {
                 WhereClauseLocation::BeforeEq | WhereClauseLocation::Both =&gt; {
                     generics.where_clause = input.parse()<span class="question-mark">?</span>;
                 }
-                <span class="kw">_ </span>=&gt; {}
+                WhereClauseLocation::AfterEq =&gt; {}
             }
 
-            <span class="kw">let </span>ty = <span class="kw">if let </span><span class="prelude-val">Some</span>(eq_token) = input.parse()<span class="question-mark">? </span>{
-                <span class="prelude-val">Some</span>((eq_token, input.parse::&lt;Type&gt;()<span class="question-mark">?</span>))
-            } <span class="kw">else </span>{
-                <span class="prelude-val">None
-            </span>};
+            <span class="kw">let </span>ty = <span class="self">Self</span>::parse_optional_definition(input)<span class="question-mark">?</span>;
 
             <span class="kw">match </span>where_clause_location {
                 WhereClauseLocation::AfterEq | WhereClauseLocation::Both
@@ -4545,6 +4467,38 @@
                 semi_token,
             })
         }
+
+        <span class="kw">fn </span>parse_optional_bounds(
+            input: ParseStream,
+        ) -&gt; <span class="prelude-ty">Result</span>&lt;(<span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[:]&gt;, Punctuated&lt;TypeParamBound, <span class="macro">Token!</span>[+]&gt;)&gt; {
+            <span class="kw">let </span>colon_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[:]&gt; = input.parse()<span class="question-mark">?</span>;
+
+            <span class="kw">let </span><span class="kw-2">mut </span>bounds = Punctuated::new();
+            <span class="kw">if </span>colon_token.is_some() {
+                <span class="kw">loop </span>{
+                    <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">where</span>]) || input.peek(<span class="macro">Token!</span>[=]) || input.peek(<span class="macro">Token!</span>[;]) {
+                        <span class="kw">break</span>;
+                    }
+                    bounds.push_value(input.parse::&lt;TypeParamBound&gt;()<span class="question-mark">?</span>);
+                    <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">where</span>]) || input.peek(<span class="macro">Token!</span>[=]) || input.peek(<span class="macro">Token!</span>[;]) {
+                        <span class="kw">break</span>;
+                    }
+                    bounds.push_punct(input.parse::&lt;<span class="macro">Token!</span>[+]&gt;()<span class="question-mark">?</span>);
+                }
+            }
+
+            <span class="prelude-val">Ok</span>((colon_token, bounds))
+        }
+
+        <span class="kw">fn </span>parse_optional_definition(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;(<span class="macro">Token!</span>[=], Type)&gt;&gt; {
+            <span class="kw">let </span>eq_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[=]&gt; = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(eq_token) = eq_token {
+                <span class="kw">let </span>definition: Type = input.parse()<span class="question-mark">?</span>;
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>((eq_token, definition)))
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
+            }
+        }
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
@@ -4553,7 +4507,11 @@
             <span class="kw">let </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
             <span class="kw">let </span>path = input.call(Path::parse_mod_style)<span class="question-mark">?</span>;
             <span class="kw">let </span>bang_token: <span class="macro">Token!</span>[!] = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>ident: <span class="prelude-ty">Option</span>&lt;Ident&gt; = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>ident: <span class="prelude-ty">Option</span>&lt;Ident&gt; = <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">try</span>]) {
+                input.call(Ident::parse_any).map(<span class="prelude-val">Some</span>)
+            } <span class="kw">else </span>{
+                input.parse()
+            }<span class="question-mark">?</span>;
             <span class="kw">let </span>(delimiter, tokens) = input.call(mac::parse_delimiter)<span class="question-mark">?</span>;
             <span class="kw">let </span>semi_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[;]&gt; = <span class="kw">if </span>!delimiter.is_brace() {
                 <span class="prelude-val">Some</span>(input.parse()<span class="question-mark">?</span>)
@@ -4574,45 +4532,27 @@
         }
     }
 
-    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
-    </span><span class="kw">impl </span>Parse <span class="kw">for </span>ItemMacro2 {
-        <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
-            <span class="kw">let </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
-            <span class="kw">let </span>vis: Visibility = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>macro_token: <span class="macro">Token!</span>[<span class="kw">macro</span>] = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>ident: Ident = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span><span class="kw-2">mut </span>rules = TokenStream::new();
+    <span class="kw">fn </span>parse_macro2(begin: ParseBuffer, _vis: Visibility, input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Item&gt; {
+        input.parse::&lt;<span class="macro">Token!</span>[<span class="kw">macro</span>]&gt;()<span class="question-mark">?</span>;
+        input.parse::&lt;Ident&gt;()<span class="question-mark">?</span>;
 
-            <span class="kw">let </span><span class="kw-2">mut </span>lookahead = input.lookahead1();
-            <span class="kw">if </span>lookahead.peek(token::Paren) {
-                <span class="kw">let </span>paren_content;
-                <span class="kw">let </span>paren_token = <span class="macro">parenthesized!</span>(paren_content <span class="kw">in </span>input);
-                <span class="kw">let </span>args: TokenStream = paren_content.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span><span class="kw-2">mut </span>args = Group::new(Delimiter::Parenthesis, args);
-                args.set_span(paren_token.span);
-                rules.extend(iter::once(TokenTree::Group(args)));
-                lookahead = input.lookahead1();
-            }
-
-            <span class="kw">if </span>lookahead.peek(token::Brace) {
-                <span class="kw">let </span>brace_content;
-                <span class="kw">let </span>brace_token = <span class="macro">braced!</span>(brace_content <span class="kw">in </span>input);
-                <span class="kw">let </span>body: TokenStream = brace_content.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span><span class="kw-2">mut </span>body = Group::new(Delimiter::Brace, body);
-                body.set_span(brace_token.span);
-                rules.extend(iter::once(TokenTree::Group(body)));
-            } <span class="kw">else </span>{
-                <span class="kw">return </span><span class="prelude-val">Err</span>(lookahead.error());
-            }
-
-            <span class="prelude-val">Ok</span>(ItemMacro2 {
-                attrs,
-                vis,
-                macro_token,
-                ident,
-                rules,
-            })
+        <span class="kw">let </span><span class="kw-2">mut </span>lookahead = input.lookahead1();
+        <span class="kw">if </span>lookahead.peek(token::Paren) {
+            <span class="kw">let </span>paren_content;
+            <span class="macro">parenthesized!</span>(paren_content <span class="kw">in </span>input);
+            paren_content.parse::&lt;TokenStream&gt;()<span class="question-mark">?</span>;
+            lookahead = input.lookahead1();
         }
+
+        <span class="kw">if </span>lookahead.peek(token::Brace) {
+            <span class="kw">let </span>brace_content;
+            <span class="macro">braced!</span>(brace_content <span class="kw">in </span>input);
+            brace_content.parse::&lt;TokenStream&gt;()<span class="question-mark">?</span>;
+        } <span class="kw">else </span>{
+            <span class="kw">return </span><span class="prelude-val">Err</span>(lookahead.error());
+        }
+
+        <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
@@ -4651,63 +4591,116 @@
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>ItemUse {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
-            <span class="prelude-val">Ok</span>(ItemUse {
-                attrs: input.call(Attribute::parse_outer)<span class="question-mark">?</span>,
-                vis: input.parse()<span class="question-mark">?</span>,
-                use_token: input.parse()<span class="question-mark">?</span>,
-                leading_colon: input.parse()<span class="question-mark">?</span>,
-                tree: input.parse()<span class="question-mark">?</span>,
-                semi_token: input.parse()<span class="question-mark">?</span>,
-            })
+            <span class="kw">let </span>allow_crate_root_in_path = <span class="bool-val">false</span>;
+            parse_item_use(input, allow_crate_root_in_path).map(Option::unwrap)
         }
+    }
+
+    <span class="kw">fn </span>parse_item_use(
+        input: ParseStream,
+        allow_crate_root_in_path: bool,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;ItemUse&gt;&gt; {
+        <span class="kw">let </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
+        <span class="kw">let </span>vis: Visibility = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>use_token: <span class="macro">Token!</span>[<span class="kw">use</span>] = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>leading_colon: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[::]&gt; = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>tree = parse_use_tree(input, allow_crate_root_in_path &amp;&amp; leading_colon.is_none())<span class="question-mark">?</span>;
+        <span class="kw">let </span>semi_token: <span class="macro">Token!</span>[;] = input.parse()<span class="question-mark">?</span>;
+
+        <span class="kw">let </span>tree = <span class="kw">match </span>tree {
+            <span class="prelude-val">Some</span>(tree) =&gt; tree,
+            <span class="prelude-val">None </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+        };
+
+        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(ItemUse {
+            attrs,
+            vis,
+            use_token,
+            leading_colon,
+            tree,
+            semi_token,
+        }))
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>UseTree {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;UseTree&gt; {
-            <span class="kw">let </span>lookahead = input.lookahead1();
-            <span class="kw">if </span>lookahead.peek(Ident)
-                || lookahead.peek(<span class="macro">Token!</span>[<span class="self">self</span>])
-                || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">super</span>])
-                || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>])
-            {
-                <span class="kw">let </span>ident = input.call(Ident::parse_any)<span class="question-mark">?</span>;
-                <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[::]) {
-                    <span class="prelude-val">Ok</span>(UseTree::Path(UsePath {
-                        ident,
-                        colon2_token: input.parse()<span class="question-mark">?</span>,
-                        tree: Box::new(input.parse()<span class="question-mark">?</span>),
-                    }))
-                } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">as</span>]) {
-                    <span class="prelude-val">Ok</span>(UseTree::Rename(UseRename {
-                        ident,
-                        as_token: input.parse()<span class="question-mark">?</span>,
-                        rename: {
-                            <span class="kw">if </span>input.peek(Ident) {
-                                input.parse()<span class="question-mark">?
-                            </span>} <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">_</span>]) {
-                                Ident::from(input.parse::&lt;<span class="macro">Token!</span>[<span class="kw">_</span>]&gt;()<span class="question-mark">?</span>)
-                            } <span class="kw">else </span>{
-                                <span class="kw">return </span><span class="prelude-val">Err</span>(input.error(<span class="string">&quot;expected identifier or underscore&quot;</span>));
-                            }
-                        },
-                    }))
-                } <span class="kw">else </span>{
-                    <span class="prelude-val">Ok</span>(UseTree::Name(UseName { ident }))
-                }
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw-2">*</span>]) {
-                <span class="prelude-val">Ok</span>(UseTree::Glob(UseGlob {
-                    star_token: input.parse()<span class="question-mark">?</span>,
-                }))
-            } <span class="kw">else if </span>lookahead.peek(token::Brace) {
-                <span class="kw">let </span>content;
-                <span class="prelude-val">Ok</span>(UseTree::Group(UseGroup {
-                    brace_token: <span class="macro">braced!</span>(content <span class="kw">in </span>input),
-                    items: content.parse_terminated(UseTree::parse)<span class="question-mark">?</span>,
-                }))
+            <span class="kw">let </span>allow_crate_root_in_path = <span class="bool-val">false</span>;
+            parse_use_tree(input, allow_crate_root_in_path).map(Option::unwrap)
+        }
+    }
+
+    <span class="kw">fn </span>parse_use_tree(
+        input: ParseStream,
+        allow_crate_root_in_path: bool,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;UseTree&gt;&gt; {
+        <span class="kw">let </span>lookahead = input.lookahead1();
+        <span class="kw">if </span>lookahead.peek(Ident)
+            || lookahead.peek(<span class="macro">Token!</span>[<span class="self">self</span>])
+            || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">super</span>])
+            || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>])
+            || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">try</span>])
+        {
+            <span class="kw">let </span>ident = input.call(Ident::parse_any)<span class="question-mark">?</span>;
+            <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[::]) {
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(UseTree::Path(UsePath {
+                    ident,
+                    colon2_token: input.parse()<span class="question-mark">?</span>,
+                    tree: Box::new(input.parse()<span class="question-mark">?</span>),
+                })))
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">as</span>]) {
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(UseTree::Rename(UseRename {
+                    ident,
+                    as_token: input.parse()<span class="question-mark">?</span>,
+                    rename: {
+                        <span class="kw">if </span>input.peek(Ident) {
+                            input.parse()<span class="question-mark">?
+                        </span>} <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">_</span>]) {
+                            Ident::from(input.parse::&lt;<span class="macro">Token!</span>[<span class="kw">_</span>]&gt;()<span class="question-mark">?</span>)
+                        } <span class="kw">else </span>{
+                            <span class="kw">return </span><span class="prelude-val">Err</span>(input.error(<span class="string">&quot;expected identifier or underscore&quot;</span>));
+                        }
+                    },
+                })))
             } <span class="kw">else </span>{
-                <span class="prelude-val">Err</span>(lookahead.error())
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(UseTree::Name(UseName { ident })))
             }
+        } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw-2">*</span>]) {
+            <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(UseTree::Glob(UseGlob {
+                star_token: input.parse()<span class="question-mark">?</span>,
+            })))
+        } <span class="kw">else if </span>lookahead.peek(token::Brace) {
+            <span class="kw">let </span>content;
+            <span class="kw">let </span>brace_token = <span class="macro">braced!</span>(content <span class="kw">in </span>input);
+            <span class="kw">let </span><span class="kw-2">mut </span>items = Punctuated::new();
+            <span class="kw">let </span><span class="kw-2">mut </span>has_any_crate_root_in_path = <span class="bool-val">false</span>;
+            <span class="kw">loop </span>{
+                <span class="kw">if </span>content.is_empty() {
+                    <span class="kw">break</span>;
+                }
+                <span class="kw">let </span>this_tree_starts_with_crate_root =
+                    allow_crate_root_in_path &amp;&amp; content.parse::&lt;<span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[::]&gt;&gt;()<span class="question-mark">?</span>.is_some();
+                has_any_crate_root_in_path |= this_tree_starts_with_crate_root;
+                <span class="kw">match </span>parse_use_tree(
+                    <span class="kw-2">&amp;</span>content,
+                    allow_crate_root_in_path &amp;&amp; !this_tree_starts_with_crate_root,
+                )<span class="question-mark">? </span>{
+                    <span class="prelude-val">Some</span>(tree) =&gt; items.push_value(tree),
+                    <span class="prelude-val">None </span>=&gt; has_any_crate_root_in_path = <span class="bool-val">true</span>,
+                }
+                <span class="kw">if </span>content.is_empty() {
+                    <span class="kw">break</span>;
+                }
+                <span class="kw">let </span>comma: <span class="macro">Token!</span>[,] = content.parse()<span class="question-mark">?</span>;
+                items.push_punct(comma);
+            }
+            <span class="kw">if </span>has_any_crate_root_in_path {
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(UseTree::Group(UseGroup { brace_token, items })))
+            }
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(lookahead.error())
         }
     }
 
@@ -4744,6 +4737,7 @@
                         <span class="kw">return </span><span class="prelude-val">Err</span>(lookahead.error());
                     }
                 },
+                generics: Generics::default(),
                 colon_token: input.parse()<span class="question-mark">?</span>,
                 ty: input.parse()<span class="question-mark">?</span>,
                 eq_token: input.parse()<span class="question-mark">?</span>,
@@ -4751,54 +4745,6 @@
                 semi_token: input.parse()<span class="question-mark">?</span>,
             })
         }
-    }
-
-    <span class="kw">fn </span>pop_variadic(args: <span class="kw-2">&amp;mut </span>Punctuated&lt;FnArg, <span class="macro">Token!</span>[,]&gt;) -&gt; <span class="prelude-ty">Option</span>&lt;Variadic&gt; {
-        <span class="kw">let </span>trailing_punct = args.trailing_punct();
-
-        <span class="kw">let </span>last = <span class="kw">match </span>args.last_mut()<span class="question-mark">? </span>{
-            FnArg::Typed(last) =&gt; last,
-            <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">None</span>,
-        };
-
-        <span class="kw">let </span>ty = <span class="kw">match </span>last.ty.as_ref() {
-            Type::Verbatim(ty) =&gt; ty,
-            <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">None</span>,
-        };
-
-        <span class="kw">let </span><span class="kw-2">mut </span>variadic = Variadic {
-            attrs: Vec::new(),
-            dots: parse2(ty.clone()).ok()<span class="question-mark">?</span>,
-        };
-
-        <span class="kw">if let </span>Pat::Verbatim(pat) = last.pat.as_ref() {
-            <span class="kw">if </span>pat.to_string() == <span class="string">&quot;...&quot; </span>&amp;&amp; !trailing_punct {
-                variadic.attrs = mem::replace(<span class="kw-2">&amp;mut </span>last.attrs, Vec::new());
-                args.pop();
-            }
-        }
-
-        <span class="prelude-val">Some</span>(variadic)
-    }
-
-    <span class="kw">fn </span>variadic_to_tokens(dots: <span class="kw-2">&amp;</span><span class="macro">Token!</span>[...]) -&gt; TokenStream {
-        TokenStream::from_iter(<span class="macro">vec!</span>[
-            TokenTree::Punct({
-                <span class="kw">let </span><span class="kw-2">mut </span>dot = Punct::new(<span class="string">&#39;.&#39;</span>, Spacing::Joint);
-                dot.set_span(dots.spans[<span class="number">0</span>]);
-                dot
-            }),
-            TokenTree::Punct({
-                <span class="kw">let </span><span class="kw-2">mut </span>dot = Punct::new(<span class="string">&#39;.&#39;</span>, Spacing::Joint);
-                dot.set_span(dots.spans[<span class="number">1</span>]);
-                dot
-            }),
-            TokenTree::Punct({
-                <span class="kw">let </span><span class="kw-2">mut </span>dot = Punct::new(<span class="string">&#39;.&#39;</span>, Spacing::Alone);
-                dot.set_span(dots.spans[<span class="number">2</span>]);
-                dot
-            }),
-        ])
     }
 
     <span class="kw">fn </span>peek_signature(input: ParseStream) -&gt; bool {
@@ -4823,8 +4769,7 @@
 
             <span class="kw">let </span>content;
             <span class="kw">let </span>paren_token = <span class="macro">parenthesized!</span>(content <span class="kw">in </span>input);
-            <span class="kw">let </span><span class="kw-2">mut </span>inputs = parse_fn_args(<span class="kw-2">&amp;</span>content)<span class="question-mark">?</span>;
-            <span class="kw">let </span>variadic = pop_variadic(<span class="kw-2">&amp;mut </span>inputs);
+            <span class="kw">let </span>(inputs, variadic) = parse_fn_args(<span class="kw-2">&amp;</span>content)<span class="question-mark">?</span>;
 
             <span class="kw">let </span>output: ReturnType = input.parse()<span class="question-mark">?</span>;
             generics.where_clause = input.parse()<span class="question-mark">?</span>;
@@ -4877,78 +4822,171 @@
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>FnArg {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+            <span class="kw">let </span>allow_variadic = <span class="bool-val">false</span>;
             <span class="kw">let </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
-
-            <span class="kw">let </span>ahead = input.fork();
-            <span class="kw">if let </span><span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>receiver) = ahead.parse::&lt;Receiver&gt;() {
-                <span class="kw">if </span>!ahead.peek(<span class="macro">Token!</span>[:]) {
-                    input.advance_to(<span class="kw-2">&amp;</span>ahead);
-                    receiver.attrs = attrs;
-                    <span class="kw">return </span><span class="prelude-val">Ok</span>(FnArg::Receiver(receiver));
-                }
+            <span class="kw">match </span>parse_fn_arg_or_variadic(input, attrs, allow_variadic)<span class="question-mark">? </span>{
+                FnArgOrVariadic::FnArg(arg) =&gt; <span class="prelude-val">Ok</span>(arg),
+                FnArgOrVariadic::Variadic(<span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(),
             }
-
-            <span class="kw">let </span><span class="kw-2">mut </span>typed = input.call(fn_arg_typed)<span class="question-mark">?</span>;
-            typed.attrs = attrs;
-            <span class="prelude-val">Ok</span>(FnArg::Typed(typed))
         }
+    }
+
+    <span class="kw">enum </span>FnArgOrVariadic {
+        FnArg(FnArg),
+        Variadic(Variadic),
+    }
+
+    <span class="kw">fn </span>parse_fn_arg_or_variadic(
+        input: ParseStream,
+        attrs: Vec&lt;Attribute&gt;,
+        allow_variadic: bool,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;FnArgOrVariadic&gt; {
+        <span class="kw">let </span>ahead = input.fork();
+        <span class="kw">if let </span><span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>receiver) = ahead.parse::&lt;Receiver&gt;() {
+            input.advance_to(<span class="kw-2">&amp;</span>ahead);
+            receiver.attrs = attrs;
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(FnArgOrVariadic::FnArg(FnArg::Receiver(receiver)));
+        }
+
+        <span class="comment">// Hack to parse pre-2018 syntax in
+        // test/ui/rfc-2565-param-attrs/param-attrs-pretty.rs
+        // because the rest of the test case is valuable.
+        </span><span class="kw">if </span>input.peek(Ident) &amp;&amp; input.peek2(<span class="macro">Token!</span>[&lt;]) {
+            <span class="kw">let </span>span = input.fork().parse::&lt;Ident&gt;()<span class="question-mark">?</span>.span();
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(FnArgOrVariadic::FnArg(FnArg::Typed(PatType {
+                attrs,
+                pat: Box::new(Pat::Wild(PatWild {
+                    attrs: Vec::new(),
+                    underscore_token: <span class="macro">Token!</span>[<span class="kw">_</span>](span),
+                })),
+                colon_token: <span class="macro">Token!</span>[:](span),
+                ty: input.parse()<span class="question-mark">?</span>,
+            })));
+        }
+
+        <span class="kw">let </span>pat = Box::new(Pat::parse_single(input)<span class="question-mark">?</span>);
+        <span class="kw">let </span>colon_token: <span class="macro">Token!</span>[:] = input.parse()<span class="question-mark">?</span>;
+
+        <span class="kw">if </span>allow_variadic {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(dots) = input.parse::&lt;<span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[...]&gt;&gt;()<span class="question-mark">? </span>{
+                <span class="kw">return </span><span class="prelude-val">Ok</span>(FnArgOrVariadic::Variadic(Variadic {
+                    attrs,
+                    pat: <span class="prelude-val">Some</span>((pat, colon_token)),
+                    dots,
+                    comma: <span class="prelude-val">None</span>,
+                }));
+            }
+        }
+
+        <span class="prelude-val">Ok</span>(FnArgOrVariadic::FnArg(FnArg::Typed(PatType {
+            attrs,
+            pat,
+            colon_token,
+            ty: input.parse()<span class="question-mark">?</span>,
+        })))
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>Receiver {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+            <span class="kw">let </span>reference = <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw-2">&amp;</span>]) {
+                <span class="kw">let </span>ampersand: <span class="macro">Token!</span>[<span class="kw-2">&amp;</span>] = input.parse()<span class="question-mark">?</span>;
+                <span class="kw">let </span>lifetime: <span class="prelude-ty">Option</span>&lt;Lifetime&gt; = input.parse()<span class="question-mark">?</span>;
+                <span class="prelude-val">Some</span>((ampersand, lifetime))
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>};
+            <span class="kw">let </span>mutability: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw-2">mut</span>]&gt; = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>self_token: <span class="macro">Token!</span>[<span class="self">self</span>] = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>colon_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[:]&gt; = <span class="kw">if </span>reference.is_some() {
+                <span class="prelude-val">None
+            </span>} <span class="kw">else </span>{
+                input.parse()<span class="question-mark">?
+            </span>};
+            <span class="kw">let </span>ty: Type = <span class="kw">if </span>colon_token.is_some() {
+                input.parse()<span class="question-mark">?
+            </span>} <span class="kw">else </span>{
+                <span class="kw">let </span><span class="kw-2">mut </span>ty = Type::Path(TypePath {
+                    qself: <span class="prelude-val">None</span>,
+                    path: Path::from(Ident::new(<span class="string">&quot;Self&quot;</span>, self_token.span)),
+                });
+                <span class="kw">if let </span><span class="prelude-val">Some</span>((ampersand, lifetime)) = reference.as_ref() {
+                    ty = Type::Reference(TypeReference {
+                        and_token: <span class="macro">Token!</span>[<span class="kw-2">&amp;</span>](ampersand.span),
+                        lifetime: lifetime.clone(),
+                        mutability: mutability.as_ref().map(|m| <span class="macro">Token!</span>[<span class="kw-2">mut</span>](m.span)),
+                        elem: Box::new(ty),
+                    });
+                }
+                ty
+            };
             <span class="prelude-val">Ok</span>(Receiver {
                 attrs: Vec::new(),
-                reference: {
-                    <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw-2">&amp;</span>]) {
-                        <span class="prelude-val">Some</span>((input.parse()<span class="question-mark">?</span>, input.parse()<span class="question-mark">?</span>))
-                    } <span class="kw">else </span>{
-                        <span class="prelude-val">None
-                    </span>}
-                },
-                mutability: input.parse()<span class="question-mark">?</span>,
-                self_token: input.parse()<span class="question-mark">?</span>,
+                reference,
+                mutability,
+                self_token,
+                colon_token,
+                ty: Box::new(ty),
             })
         }
     }
 
-    <span class="kw">fn </span>parse_fn_args(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Punctuated&lt;FnArg, <span class="macro">Token!</span>[,]&gt;&gt; {
+    <span class="kw">fn </span>parse_fn_args(
+        input: ParseStream,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;(Punctuated&lt;FnArg, <span class="macro">Token!</span>[,]&gt;, <span class="prelude-ty">Option</span>&lt;Variadic&gt;)&gt; {
         <span class="kw">let </span><span class="kw-2">mut </span>args = Punctuated::new();
+        <span class="kw">let </span><span class="kw-2">mut </span>variadic = <span class="prelude-val">None</span>;
         <span class="kw">let </span><span class="kw-2">mut </span>has_receiver = <span class="bool-val">false</span>;
 
         <span class="kw">while </span>!input.is_empty() {
             <span class="kw">let </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
 
-            <span class="kw">let </span>arg = <span class="kw">if let </span><span class="prelude-val">Some</span>(dots) = input.parse::&lt;<span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[...]&gt;&gt;()<span class="question-mark">? </span>{
-                FnArg::Typed(PatType {
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(dots) = input.parse::&lt;<span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[...]&gt;&gt;()<span class="question-mark">? </span>{
+                variadic = <span class="prelude-val">Some</span>(Variadic {
                     attrs,
-                    pat: Box::new(Pat::Verbatim(variadic_to_tokens(<span class="kw-2">&amp;</span>dots))),
-                    colon_token: <span class="macro">Token!</span>[:](dots.spans[<span class="number">0</span>]),
-                    ty: Box::new(Type::Verbatim(variadic_to_tokens(<span class="kw-2">&amp;</span>dots))),
-                })
-            } <span class="kw">else </span>{
-                <span class="kw">let </span><span class="kw-2">mut </span>arg: FnArg = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">match </span><span class="kw-2">&amp;mut </span>arg {
-                    FnArg::Receiver(receiver) <span class="kw">if </span>has_receiver =&gt; {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new(
-                            receiver.self_token.span,
-                            <span class="string">&quot;unexpected second method receiver&quot;</span>,
-                        ));
-                    }
-                    FnArg::Receiver(receiver) <span class="kw">if </span>!args.is_empty() =&gt; {
-                        <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new(
-                            receiver.self_token.span,
-                            <span class="string">&quot;unexpected method receiver&quot;</span>,
-                        ));
-                    }
-                    FnArg::Receiver(receiver) =&gt; {
-                        has_receiver = <span class="bool-val">true</span>;
-                        receiver.attrs = attrs;
-                    }
-                    FnArg::Typed(arg) =&gt; arg.attrs = attrs,
+                    pat: <span class="prelude-val">None</span>,
+                    dots,
+                    comma: <span class="kw">if </span>input.is_empty() {
+                        <span class="prelude-val">None
+                    </span>} <span class="kw">else </span>{
+                        <span class="prelude-val">Some</span>(input.parse()<span class="question-mark">?</span>)
+                    },
+                });
+                <span class="kw">break</span>;
+            }
+
+            <span class="kw">let </span>allow_variadic = <span class="bool-val">true</span>;
+            <span class="kw">let </span>arg = <span class="kw">match </span>parse_fn_arg_or_variadic(input, attrs, allow_variadic)<span class="question-mark">? </span>{
+                FnArgOrVariadic::FnArg(arg) =&gt; arg,
+                FnArgOrVariadic::Variadic(arg) =&gt; {
+                    variadic = <span class="prelude-val">Some</span>(Variadic {
+                        comma: <span class="kw">if </span>input.is_empty() {
+                            <span class="prelude-val">None
+                        </span>} <span class="kw">else </span>{
+                            <span class="prelude-val">Some</span>(input.parse()<span class="question-mark">?</span>)
+                        },
+                        ..arg
+                    });
+                    <span class="kw">break</span>;
                 }
-                arg
             };
+
+            <span class="kw">match </span><span class="kw-2">&amp;</span>arg {
+                FnArg::Receiver(receiver) <span class="kw">if </span>has_receiver =&gt; {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new(
+                        receiver.self_token.span,
+                        <span class="string">&quot;unexpected second method receiver&quot;</span>,
+                    ));
+                }
+                FnArg::Receiver(receiver) <span class="kw">if </span>!args.is_empty() =&gt; {
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(Error::new(
+                        receiver.self_token.span,
+                        <span class="string">&quot;unexpected method receiver&quot;</span>,
+                    ));
+                }
+                FnArg::Receiver(<span class="kw">_</span>) =&gt; has_receiver = <span class="bool-val">true</span>,
+                FnArg::Typed(<span class="kw">_</span>) =&gt; {}
+            }
             args.push_value(arg);
 
             <span class="kw">if </span>input.is_empty() {
@@ -4959,35 +4997,7 @@
             args.push_punct(comma);
         }
 
-        <span class="prelude-val">Ok</span>(args)
-    }
-
-    <span class="kw">fn </span>fn_arg_typed(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;PatType&gt; {
-        <span class="comment">// Hack to parse pre-2018 syntax in
-        // test/ui/rfc-2565-param-attrs/param-attrs-pretty.rs
-        // because the rest of the test case is valuable.
-        </span><span class="kw">if </span>input.peek(Ident) &amp;&amp; input.peek2(<span class="macro">Token!</span>[&lt;]) {
-            <span class="kw">let </span>span = input.fork().parse::&lt;Ident&gt;()<span class="question-mark">?</span>.span();
-            <span class="kw">return </span><span class="prelude-val">Ok</span>(PatType {
-                attrs: Vec::new(),
-                pat: Box::new(Pat::Wild(PatWild {
-                    attrs: Vec::new(),
-                    underscore_token: <span class="macro">Token!</span>[<span class="kw">_</span>](span),
-                })),
-                colon_token: <span class="macro">Token!</span>[:](span),
-                ty: input.parse()<span class="question-mark">?</span>,
-            });
-        }
-
-        <span class="prelude-val">Ok</span>(PatType {
-            attrs: Vec::new(),
-            pat: Box::new(pat::parsing::multi_pat(input)<span class="question-mark">?</span>),
-            colon_token: input.parse()<span class="question-mark">?</span>,
-            ty: Box::new(<span class="kw">match </span>input.parse::&lt;<span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[...]&gt;&gt;()<span class="question-mark">? </span>{
-                <span class="prelude-val">Some</span>(dot3) =&gt; Type::Verbatim(variadic_to_tokens(<span class="kw-2">&amp;</span>dot3)),
-                <span class="prelude-val">None </span>=&gt; input.parse()<span class="question-mark">?</span>,
-            }),
-        })
+        <span class="prelude-val">Ok</span>((args, variadic))
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
@@ -4995,14 +5005,20 @@
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
             <span class="kw">let </span><span class="kw-2">mut </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
             <span class="kw">let </span>vis: Visibility = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>unsafety: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">unsafe</span>]&gt; = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span>mod_token: <span class="macro">Token!</span>[<span class="kw">mod</span>] = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>ident: Ident = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>ident: Ident = <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">try</span>]) {
+                input.call(Ident::parse_any)
+            } <span class="kw">else </span>{
+                input.parse()
+            }<span class="question-mark">?</span>;
 
             <span class="kw">let </span>lookahead = input.lookahead1();
             <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[;]) {
                 <span class="prelude-val">Ok</span>(ItemMod {
                     attrs,
                     vis,
+                    unsafety,
                     mod_token,
                     ident,
                     content: <span class="prelude-val">None</span>,
@@ -5021,6 +5037,7 @@
                 <span class="prelude-val">Ok</span>(ItemMod {
                     attrs,
                     vis,
+                    unsafety,
                     mod_token,
                     ident,
                     content: <span class="prelude-val">Some</span>((brace_token, items)),
@@ -5036,6 +5053,7 @@
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>ItemForeignMod {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
             <span class="kw">let </span><span class="kw-2">mut </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
+            <span class="kw">let </span>unsafety: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">unsafe</span>]&gt; = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span>abi: Abi = input.parse()<span class="question-mark">?</span>;
 
             <span class="kw">let </span>content;
@@ -5048,6 +5066,7 @@
 
             <span class="prelude-val">Ok</span>(ItemForeignMod {
                 attrs,
+                unsafety,
                 abi,
                 brace_token,
                 items,
@@ -5073,7 +5092,7 @@
                     content.call(Attribute::parse_inner)<span class="question-mark">?</span>;
                     content.call(Block::parse_within)<span class="question-mark">?</span>;
 
-                    <span class="prelude-val">Ok</span>(ForeignItem::Verbatim(verbatim::between(begin, input)))
+                    <span class="prelude-val">Ok</span>(ForeignItem::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
                 } <span class="kw">else </span>{
                     <span class="prelude-val">Ok</span>(ForeignItem::Fn(ForeignItemFn {
                         attrs: Vec::new(),
@@ -5093,7 +5112,7 @@
                     input.parse::&lt;<span class="macro">Token!</span>[=]&gt;()<span class="question-mark">?</span>;
                     input.parse::&lt;Expr&gt;()<span class="question-mark">?</span>;
                     input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
-                    <span class="prelude-val">Ok</span>(ForeignItem::Verbatim(verbatim::between(begin, input)))
+                    <span class="prelude-val">Ok</span>(ForeignItem::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
                 } <span class="kw">else </span>{
                     <span class="prelude-val">Ok</span>(ForeignItem::Static(ForeignItemStatic {
                         attrs: Vec::new(),
@@ -5126,9 +5145,6 @@
                 ForeignItem::Type(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
                 ForeignItem::Macro(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
                 ForeignItem::Verbatim(<span class="kw">_</span>) =&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(item),
-
-                <span class="attr">#[cfg(syn_no_non_exhaustive)]
-                </span><span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
             };
             attrs.append(item_attrs);
             <span class="kw-2">*</span>item_attrs = attrs;
@@ -5177,6 +5193,11 @@
                 vis: input.parse()<span class="question-mark">?</span>,
                 type_token: input.parse()<span class="question-mark">?</span>,
                 ident: input.parse()<span class="question-mark">?</span>,
+                generics: {
+                    <span class="kw">let </span><span class="kw-2">mut </span>generics: Generics = input.parse()<span class="question-mark">?</span>;
+                    generics.where_clause = input.parse()<span class="question-mark">?</span>;
+                    generics
+                },
                 semi_token: input.parse()<span class="question-mark">?</span>,
             })
         }
@@ -5185,7 +5206,7 @@
     <span class="kw">fn </span>parse_foreign_item_type(begin: ParseBuffer, input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;ForeignItem&gt; {
         <span class="kw">let </span>FlexibleItemType {
             vis,
-            defaultness,
+            defaultness: <span class="kw">_</span>,
             type_token,
             ident,
             generics,
@@ -5193,21 +5214,21 @@
             bounds: <span class="kw">_</span>,
             ty,
             semi_token,
-        } = FlexibleItemType::parse(input, WhereClauseLocation::BeforeEq)<span class="question-mark">?</span>;
+        } = FlexibleItemType::parse(
+            input,
+            TypeDefaultness::Disallowed,
+            WhereClauseLocation::Both,
+        )<span class="question-mark">?</span>;
 
-        <span class="kw">if </span>defaultness.is_some()
-            || generics.lt_token.is_some()
-            || generics.where_clause.is_some()
-            || colon_token.is_some()
-            || ty.is_some()
-        {
-            <span class="prelude-val">Ok</span>(ForeignItem::Verbatim(verbatim::between(begin, input)))
+        <span class="kw">if </span>colon_token.is_some() || ty.is_some() {
+            <span class="prelude-val">Ok</span>(ForeignItem::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
         } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(ForeignItem::Type(ForeignItemType {
                 attrs: Vec::new(),
                 vis,
                 type_token,
                 ident,
+                generics,
                 semi_token,
             }))
         }
@@ -5254,7 +5275,7 @@
     <span class="kw">fn </span>parse_item_type(begin: ParseBuffer, input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Item&gt; {
         <span class="kw">let </span>FlexibleItemType {
             vis,
-            defaultness,
+            defaultness: <span class="kw">_</span>,
             type_token,
             ident,
             generics,
@@ -5262,23 +5283,27 @@
             bounds: <span class="kw">_</span>,
             ty,
             semi_token,
-        } = FlexibleItemType::parse(input, WhereClauseLocation::BeforeEq)<span class="question-mark">?</span>;
+        } = FlexibleItemType::parse(
+            input,
+            TypeDefaultness::Disallowed,
+            WhereClauseLocation::BeforeEq,
+        )<span class="question-mark">?</span>;
 
-        <span class="kw">if </span>defaultness.is_some() || colon_token.is_some() || ty.is_none() {
-            <span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(begin, input)))
-        } <span class="kw">else </span>{
-            <span class="kw">let </span>(eq_token, ty) = ty.unwrap();
-            <span class="prelude-val">Ok</span>(Item::Type(ItemType {
-                attrs: Vec::new(),
-                vis,
-                type_token,
-                ident,
-                generics,
-                eq_token,
-                ty: Box::new(ty),
-                semi_token,
-            }))
-        }
+        <span class="kw">let </span>(eq_token, ty) = <span class="kw">match </span>ty {
+            <span class="prelude-val">Some</span>(ty) <span class="kw">if </span>colon_token.is_none() =&gt; ty,
+            <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(Item::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input))),
+        };
+
+        <span class="prelude-val">Ok</span>(Item::Type(ItemType {
+            attrs: Vec::new(),
+            vis,
+            type_token,
+            ident,
+            generics,
+            eq_token,
+            ty: Box::new(ty),
+            semi_token,
+        }))
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
@@ -5444,6 +5469,7 @@
             vis,
             unsafety,
             auto_token,
+            restriction: <span class="prelude-val">None</span>,
             trait_token,
             ident,
             generics,
@@ -5521,7 +5547,7 @@
 
             <span class="kw">let </span>lookahead = ahead.lookahead1();
             <span class="kw">let </span><span class="kw-2">mut </span>item = <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">fn</span>]) || peek_signature(<span class="kw-2">&amp;</span>ahead) {
-                input.parse().map(TraitItem::Method)
+                input.parse().map(TraitItem::Fn)
             } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) {
                 ahead.parse::&lt;<span class="macro">Token!</span>[<span class="kw">const</span>]&gt;()<span class="question-mark">?</span>;
                 <span class="kw">let </span>lookahead = ahead.lookahead1();
@@ -5532,17 +5558,19 @@
                     || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">extern</span>])
                     || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">fn</span>])
                 {
-                    input.parse().map(TraitItem::Method)
+                    input.parse().map(TraitItem::Fn)
                 } <span class="kw">else </span>{
                     <span class="prelude-val">Err</span>(lookahead.error())
                 }
             } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">type</span>]) {
                 parse_trait_item_type(begin.fork(), input)
-            } <span class="kw">else if </span>lookahead.peek(Ident)
-                || lookahead.peek(<span class="macro">Token!</span>[<span class="self">self</span>])
-                || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">super</span>])
-                || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>])
-                || lookahead.peek(<span class="macro">Token!</span>[::])
+            } <span class="kw">else if </span>vis.is_inherited()
+                &amp;&amp; defaultness.is_none()
+                &amp;&amp; (lookahead.peek(Ident)
+                    || lookahead.peek(<span class="macro">Token!</span>[<span class="self">self</span>])
+                    || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">super</span>])
+                    || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>])
+                    || lookahead.peek(<span class="macro">Token!</span>[::]))
             {
                 input.parse().map(TraitItem::Macro)
             } <span class="kw">else </span>{
@@ -5551,18 +5579,15 @@
 
             <span class="kw">match </span>(vis, defaultness) {
                 (Visibility::Inherited, <span class="prelude-val">None</span>) =&gt; {}
-                <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(TraitItem::Verbatim(verbatim::between(begin, input))),
+                <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(TraitItem::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input))),
             }
 
             <span class="kw">let </span>item_attrs = <span class="kw">match </span><span class="kw-2">&amp;mut </span>item {
                 TraitItem::Const(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
-                TraitItem::Method(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
+                TraitItem::Fn(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
                 TraitItem::Type(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
                 TraitItem::Macro(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
                 TraitItem::Verbatim(<span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(),
-
-                <span class="attr">#[cfg(syn_no_non_exhaustive)]
-                </span><span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
             };
             attrs.append(item_attrs);
             <span class="kw-2">*</span>item_attrs = attrs;
@@ -5584,6 +5609,7 @@
                         <span class="kw">return </span><span class="prelude-val">Err</span>(lookahead.error());
                     }
                 },
+                generics: Generics::default(),
                 colon_token: input.parse()<span class="question-mark">?</span>,
                 ty: input.parse()<span class="question-mark">?</span>,
                 default: {
@@ -5601,7 +5627,7 @@
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
-    </span><span class="kw">impl </span>Parse <span class="kw">for </span>TraitItemMethod {
+    </span><span class="kw">impl </span>Parse <span class="kw">for </span>TraitItemFn {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
             <span class="kw">let </span><span class="kw-2">mut </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
             <span class="kw">let </span>sig: Signature = input.parse()<span class="question-mark">?</span>;
@@ -5620,7 +5646,7 @@
                 <span class="kw">return </span><span class="prelude-val">Err</span>(lookahead.error());
             };
 
-            <span class="prelude-val">Ok</span>(TraitItemMethod {
+            <span class="prelude-val">Ok</span>(TraitItemFn {
                 attrs,
                 sig,
                 default: brace_token.map(|brace_token| Block { brace_token, stmts }),
@@ -5636,30 +5662,10 @@
             <span class="kw">let </span>type_token: <span class="macro">Token!</span>[<span class="kw">type</span>] = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span>ident: Ident = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span><span class="kw-2">mut </span>generics: Generics = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>colon_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[:]&gt; = input.parse()<span class="question-mark">?</span>;
-
-            <span class="kw">let </span><span class="kw-2">mut </span>bounds = Punctuated::new();
-            <span class="kw">if </span>colon_token.is_some() {
-                <span class="kw">while </span>!input.peek(<span class="macro">Token!</span>[<span class="kw">where</span>]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[=]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[;])
-                {
-                    <span class="kw">if </span>!bounds.is_empty() {
-                        bounds.push_punct(input.parse()<span class="question-mark">?</span>);
-                    }
-                    bounds.push_value(input.parse()<span class="question-mark">?</span>);
-                }
-            }
-
-            <span class="kw">let </span>default = <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[=]) {
-                <span class="kw">let </span>eq_token: <span class="macro">Token!</span>[=] = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span>default: Type = input.parse()<span class="question-mark">?</span>;
-                <span class="prelude-val">Some</span>((eq_token, default))
-            } <span class="kw">else </span>{
-                <span class="prelude-val">None
-            </span>};
-
+            <span class="kw">let </span>(colon_token, bounds) = FlexibleItemType::parse_optional_bounds(input)<span class="question-mark">?</span>;
+            <span class="kw">let </span>default = FlexibleItemType::parse_optional_definition(input)<span class="question-mark">?</span>;
             generics.where_clause = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span>semi_token: <span class="macro">Token!</span>[;] = input.parse()<span class="question-mark">?</span>;
-
             <span class="prelude-val">Ok</span>(TraitItemType {
                 attrs,
                 type_token,
@@ -5676,7 +5682,7 @@
     <span class="kw">fn </span>parse_trait_item_type(begin: ParseBuffer, input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;TraitItem&gt; {
         <span class="kw">let </span>FlexibleItemType {
             vis,
-            defaultness,
+            defaultness: <span class="kw">_</span>,
             type_token,
             ident,
             generics,
@@ -5684,10 +5690,14 @@
             bounds,
             ty,
             semi_token,
-        } = FlexibleItemType::parse(input, WhereClauseLocation::Both)<span class="question-mark">?</span>;
+        } = FlexibleItemType::parse(
+            input,
+            TypeDefaultness::Disallowed,
+            WhereClauseLocation::AfterEq,
+        )<span class="question-mark">?</span>;
 
-        <span class="kw">if </span>defaultness.is_some() || vis.is_some() {
-            <span class="prelude-val">Ok</span>(TraitItem::Verbatim(verbatim::between(begin, input)))
+        <span class="kw">if </span>vis.is_some() {
+            <span class="prelude-val">Ok</span>(TraitItem::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
         } <span class="kw">else </span>{
             <span class="prelude-val">Ok</span>(TraitItem::Type(TraitItemType {
                 attrs: Vec::new(),
@@ -5800,7 +5810,7 @@
             self_ty = <span class="kw">if </span>polarity.is_none() {
                 first_ty
             } <span class="kw">else </span>{
-                Type::Verbatim(verbatim::between(begin, input))
+                Type::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input))
             };
         }
 
@@ -5850,34 +5860,40 @@
             </span>};
 
             <span class="kw">let </span><span class="kw-2">mut </span>item = <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">fn</span>]) || peek_signature(<span class="kw-2">&amp;</span>ahead) {
-                input.parse().map(ImplItem::Method)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) {
-                <span class="kw">let </span>const_token: <span class="macro">Token!</span>[<span class="kw">const</span>] = ahead.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span>lookahead = ahead.lookahead1();
-                <span class="kw">if </span>lookahead.peek(Ident) || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">_</span>]) {
-                    input.advance_to(<span class="kw-2">&amp;</span>ahead);
-                    <span class="kw">let </span>ident: Ident = input.call(Ident::parse_any)<span class="question-mark">?</span>;
-                    <span class="kw">let </span>colon_token: <span class="macro">Token!</span>[:] = input.parse()<span class="question-mark">?</span>;
-                    <span class="kw">let </span>ty: Type = input.parse()<span class="question-mark">?</span>;
-                    <span class="kw">if let </span><span class="prelude-val">Some</span>(eq_token) = input.parse()<span class="question-mark">? </span>{
-                        <span class="kw">return </span><span class="prelude-val">Ok</span>(ImplItem::Const(ImplItemConst {
-                            attrs,
-                            vis,
-                            defaultness,
-                            const_token,
-                            ident,
-                            colon_token,
-                            ty,
-                            eq_token,
-                            expr: input.parse()<span class="question-mark">?</span>,
-                            semi_token: input.parse()<span class="question-mark">?</span>,
-                        }));
-                    } <span class="kw">else </span>{
-                        input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
-                        <span class="kw">return </span><span class="prelude-val">Ok</span>(ImplItem::Verbatim(verbatim::between(begin, input)));
-                    }
+                <span class="kw">let </span>allow_omitted_body = <span class="bool-val">true</span>;
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(item) = parse_impl_item_fn(input, allow_omitted_body)<span class="question-mark">? </span>{
+                    <span class="prelude-val">Ok</span>(ImplItem::Fn(item))
                 } <span class="kw">else </span>{
-                    <span class="prelude-val">Err</span>(lookahead.error())
+                    <span class="prelude-val">Ok</span>(ImplItem::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
+                }
+            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) {
+                input.advance_to(<span class="kw-2">&amp;</span>ahead);
+                <span class="kw">let </span>const_token: <span class="macro">Token!</span>[<span class="kw">const</span>] = input.parse()<span class="question-mark">?</span>;
+                <span class="kw">let </span>lookahead = input.lookahead1();
+                <span class="kw">let </span>ident = <span class="kw">if </span>lookahead.peek(Ident) || lookahead.peek(<span class="macro">Token!</span>[<span class="kw">_</span>]) {
+                    input.call(Ident::parse_any)<span class="question-mark">?
+                </span>} <span class="kw">else </span>{
+                    <span class="kw">return </span><span class="prelude-val">Err</span>(lookahead.error());
+                };
+                <span class="kw">let </span>colon_token: <span class="macro">Token!</span>[:] = input.parse()<span class="question-mark">?</span>;
+                <span class="kw">let </span>ty: Type = input.parse()<span class="question-mark">?</span>;
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(eq_token) = input.parse()<span class="question-mark">? </span>{
+                    <span class="kw">return </span><span class="prelude-val">Ok</span>(ImplItem::Const(ImplItemConst {
+                        attrs,
+                        vis,
+                        defaultness,
+                        const_token,
+                        ident,
+                        generics: Generics::default(),
+                        colon_token,
+                        ty,
+                        eq_token,
+                        expr: input.parse()<span class="question-mark">?</span>,
+                        semi_token: input.parse()<span class="question-mark">?</span>,
+                    }));
+                } <span class="kw">else </span>{
+                    input.parse::&lt;<span class="macro">Token!</span>[;]&gt;()<span class="question-mark">?</span>;
+                    <span class="kw">return </span><span class="prelude-val">Ok</span>(ImplItem::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)));
                 }
             } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[<span class="kw">type</span>]) {
                 parse_impl_item_type(begin, input)
@@ -5897,13 +5913,10 @@
             {
                 <span class="kw">let </span>item_attrs = <span class="kw">match </span><span class="kw-2">&amp;mut </span>item {
                     ImplItem::Const(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
-                    ImplItem::Method(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
+                    ImplItem::Fn(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
                     ImplItem::Type(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
                     ImplItem::Macro(item) =&gt; <span class="kw-2">&amp;mut </span>item.attrs,
                     ImplItem::Verbatim(<span class="kw">_</span>) =&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(item),
-
-                    <span class="attr">#[cfg(syn_no_non_exhaustive)]
-                    </span><span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
                 };
                 attrs.append(item_attrs);
                 <span class="kw-2">*</span>item_attrs = attrs;
@@ -5929,6 +5942,7 @@
                         <span class="kw">return </span><span class="prelude-val">Err</span>(lookahead.error());
                     }
                 },
+                generics: Generics::default(),
                 colon_token: input.parse()<span class="question-mark">?</span>,
                 ty: input.parse()<span class="question-mark">?</span>,
                 eq_token: input.parse()<span class="question-mark">?</span>,
@@ -5939,43 +5953,44 @@
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
-    </span><span class="kw">impl </span>Parse <span class="kw">for </span>ImplItemMethod {
+    </span><span class="kw">impl </span>Parse <span class="kw">for </span>ImplItemFn {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
-            <span class="kw">let </span><span class="kw-2">mut </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
-            <span class="kw">let </span>vis: Visibility = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>defaultness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[default]&gt; = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>sig: Signature = input.parse()<span class="question-mark">?</span>;
-
-            <span class="kw">let </span>block = <span class="kw">if let </span><span class="prelude-val">Some</span>(semi) = input.parse::&lt;<span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[;]&gt;&gt;()<span class="question-mark">? </span>{
-                <span class="comment">// Accept methods without a body in an impl block because
-                // rustc&#39;s *parser* does not reject them (the compilation error
-                // is emitted later than parsing) and it can be useful for macro
-                // DSLs.
-                </span><span class="kw">let </span><span class="kw-2">mut </span>punct = Punct::new(<span class="string">&#39;;&#39;</span>, Spacing::Alone);
-                punct.set_span(semi.span);
-                <span class="kw">let </span>tokens = TokenStream::from_iter(<span class="macro">vec!</span>[TokenTree::Punct(punct)]);
-                Block {
-                    brace_token: Brace { span: semi.span },
-                    stmts: <span class="macro">vec!</span>[Stmt::Item(Item::Verbatim(tokens))],
-                }
-            } <span class="kw">else </span>{
-                <span class="kw">let </span>content;
-                <span class="kw">let </span>brace_token = <span class="macro">braced!</span>(content <span class="kw">in </span>input);
-                attrs.extend(content.call(Attribute::parse_inner)<span class="question-mark">?</span>);
-                Block {
-                    brace_token,
-                    stmts: content.call(Block::parse_within)<span class="question-mark">?</span>,
-                }
-            };
-
-            <span class="prelude-val">Ok</span>(ImplItemMethod {
-                attrs,
-                vis,
-                defaultness,
-                sig,
-                block,
-            })
+            <span class="kw">let </span>allow_omitted_body = <span class="bool-val">false</span>;
+            parse_impl_item_fn(input, allow_omitted_body).map(Option::unwrap)
         }
+    }
+
+    <span class="kw">fn </span>parse_impl_item_fn(
+        input: ParseStream,
+        allow_omitted_body: bool,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;ImplItemFn&gt;&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
+        <span class="kw">let </span>vis: Visibility = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>defaultness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[default]&gt; = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>sig: Signature = input.parse()<span class="question-mark">?</span>;
+
+        <span class="comment">// Accept functions without a body in an impl block because rustc&#39;s
+        // *parser* does not reject them (the compilation error is emitted later
+        // than parsing) and it can be useful for macro DSLs.
+        </span><span class="kw">if </span>allow_omitted_body &amp;&amp; input.parse::&lt;<span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[;]&gt;&gt;()<span class="question-mark">?</span>.is_some() {
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>);
+        }
+
+        <span class="kw">let </span>content;
+        <span class="kw">let </span>brace_token = <span class="macro">braced!</span>(content <span class="kw">in </span>input);
+        attrs.extend(content.call(Attribute::parse_inner)<span class="question-mark">?</span>);
+        <span class="kw">let </span>block = Block {
+            brace_token,
+            stmts: content.call(Block::parse_within)<span class="question-mark">?</span>,
+        };
+
+        <span class="prelude-val">Ok</span>(<span class="prelude-val">Some</span>(ImplItemFn {
+            attrs,
+            vis,
+            defaultness,
+            sig,
+            block,
+        }))
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
@@ -6016,24 +6031,28 @@
             bounds: <span class="kw">_</span>,
             ty,
             semi_token,
-        } = FlexibleItemType::parse(input, WhereClauseLocation::Both)<span class="question-mark">?</span>;
+        } = FlexibleItemType::parse(
+            input,
+            TypeDefaultness::Optional,
+            WhereClauseLocation::AfterEq,
+        )<span class="question-mark">?</span>;
 
-        <span class="kw">if </span>colon_token.is_some() || ty.is_none() {
-            <span class="prelude-val">Ok</span>(ImplItem::Verbatim(verbatim::between(begin, input)))
-        } <span class="kw">else </span>{
-            <span class="kw">let </span>(eq_token, ty) = ty.unwrap();
-            <span class="prelude-val">Ok</span>(ImplItem::Type(ImplItemType {
-                attrs: Vec::new(),
-                vis,
-                defaultness,
-                type_token,
-                ident,
-                generics,
-                eq_token,
-                ty,
-                semi_token,
-            }))
-        }
+        <span class="kw">let </span>(eq_token, ty) = <span class="kw">match </span>ty {
+            <span class="prelude-val">Some</span>(ty) <span class="kw">if </span>colon_token.is_none() =&gt; ty,
+            <span class="kw">_ </span>=&gt; <span class="kw">return </span><span class="prelude-val">Ok</span>(ImplItem::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input))),
+        };
+
+        <span class="prelude-val">Ok</span>(ImplItem::Type(ImplItemType {
+            attrs: Vec::new(),
+            vis,
+            defaultness,
+            type_token,
+            ident,
+            generics,
+            eq_token,
+            ty,
+            semi_token,
+        }))
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
@@ -6056,7 +6075,7 @@
 
     <span class="kw">impl </span>Visibility {
         <span class="kw">fn </span>is_inherited(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-            <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
+            <span class="kw">match </span><span class="self">self </span>{
                 Visibility::Inherited =&gt; <span class="bool-val">true</span>,
                 <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
             }
@@ -6064,11 +6083,19 @@
     }
 
     <span class="kw">impl </span>MacroDelimiter {
-        <span class="kw">fn </span>is_brace(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-            <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>is_brace(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+            <span class="kw">match </span><span class="self">self </span>{
                 MacroDelimiter::Brace(<span class="kw">_</span>) =&gt; <span class="bool-val">true</span>,
                 MacroDelimiter::Paren(<span class="kw">_</span>) | MacroDelimiter::Bracket(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
             }
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
+    </span><span class="kw">impl </span>Parse <span class="kw">for </span>StaticMutability {
+        <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+            <span class="kw">let </span>mut_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw-2">mut</span>]&gt; = input.parse()<span class="question-mark">?</span>;
+            <span class="prelude-val">Ok</span>(mut_token.map_or(StaticMutability::None, StaticMutability::Mut))
         }
     }
 }
@@ -6158,6 +6185,7 @@
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             tokens.append_all(<span class="self">self</span>.attrs.outer());
             <span class="self">self</span>.vis.to_tokens(tokens);
+            <span class="self">self</span>.unsafety.to_tokens(tokens);
             <span class="self">self</span>.mod_token.to_tokens(tokens);
             <span class="self">self</span>.ident.to_tokens(tokens);
             <span class="kw">if let </span><span class="prelude-val">Some</span>((brace, items)) = <span class="kw-2">&amp;</span><span class="self">self</span>.content {
@@ -6175,6 +6203,7 @@
     </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ItemForeignMod {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             tokens.append_all(<span class="self">self</span>.attrs.outer());
+            <span class="self">self</span>.unsafety.to_tokens(tokens);
             <span class="self">self</span>.abi.to_tokens(tokens);
             <span class="self">self</span>.brace_token.surround(tokens, |tokens| {
                 tokens.append_all(<span class="self">self</span>.attrs.inner());
@@ -6334,17 +6363,6 @@
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ItemMacro2 {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            tokens.append_all(<span class="self">self</span>.attrs.outer());
-            <span class="self">self</span>.vis.to_tokens(tokens);
-            <span class="self">self</span>.macro_token.to_tokens(tokens);
-            <span class="self">self</span>.ident.to_tokens(tokens);
-            <span class="self">self</span>.rules.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
     </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>UsePath {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             <span class="self">self</span>.ident.to_tokens(tokens);
@@ -6402,7 +6420,7 @@
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>TraitItemMethod {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>TraitItemFn {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             tokens.append_all(<span class="self">self</span>.attrs.outer());
             <span class="self">self</span>.sig.to_tokens(tokens);
@@ -6466,20 +6484,12 @@
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ImplItemMethod {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ImplItemFn {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             tokens.append_all(<span class="self">self</span>.attrs.outer());
             <span class="self">self</span>.vis.to_tokens(tokens);
             <span class="self">self</span>.defaultness.to_tokens(tokens);
             <span class="self">self</span>.sig.to_tokens(tokens);
-            <span class="kw">if </span><span class="self">self</span>.block.stmts.len() == <span class="number">1 </span>{
-                <span class="kw">if let </span>Stmt::Item(Item::Verbatim(verbatim)) = <span class="kw-2">&amp;</span><span class="self">self</span>.block.stmts[<span class="number">0</span>] {
-                    <span class="kw">if </span>verbatim.to_string() == <span class="string">&quot;;&quot; </span>{
-                        verbatim.to_tokens(tokens);
-                        <span class="kw">return</span>;
-                    }
-                }
-            }
             <span class="self">self</span>.block.brace_token.surround(tokens, |tokens| {
                 tokens.append_all(<span class="self">self</span>.attrs.inner());
                 tokens.append_all(<span class="kw-2">&amp;</span><span class="self">self</span>.block.stmts);
@@ -6543,6 +6553,8 @@
             <span class="self">self</span>.vis.to_tokens(tokens);
             <span class="self">self</span>.type_token.to_tokens(tokens);
             <span class="self">self</span>.ident.to_tokens(tokens);
+            <span class="self">self</span>.generics.to_tokens(tokens);
+            <span class="self">self</span>.generics.where_clause.to_tokens(tokens);
             <span class="self">self</span>.semi_token.to_tokens(tokens);
         }
     }
@@ -6553,33 +6565,6 @@
             tokens.append_all(<span class="self">self</span>.attrs.outer());
             <span class="self">self</span>.mac.to_tokens(tokens);
             <span class="self">self</span>.semi_token.to_tokens(tokens);
-        }
-    }
-
-    <span class="kw">fn </span>maybe_variadic_to_tokens(arg: <span class="kw-2">&amp;</span>FnArg, tokens: <span class="kw-2">&amp;mut </span>TokenStream) -&gt; bool {
-        <span class="kw">let </span>arg = <span class="kw">match </span>arg {
-            FnArg::Typed(arg) =&gt; arg,
-            FnArg::Receiver(receiver) =&gt; {
-                receiver.to_tokens(tokens);
-                <span class="kw">return </span><span class="bool-val">false</span>;
-            }
-        };
-
-        <span class="kw">match </span>arg.ty.as_ref() {
-            Type::Verbatim(ty) <span class="kw">if </span>ty.to_string() == <span class="string">&quot;...&quot; </span>=&gt; {
-                <span class="kw">match </span>arg.pat.as_ref() {
-                    Pat::Verbatim(pat) <span class="kw">if </span>pat.to_string() == <span class="string">&quot;...&quot; </span>=&gt; {
-                        tokens.append_all(arg.attrs.outer());
-                        pat.to_tokens(tokens);
-                    }
-                    <span class="kw">_ </span>=&gt; arg.to_tokens(tokens),
-                }
-                <span class="bool-val">true
-            </span>}
-            <span class="kw">_ </span>=&gt; {
-                arg.to_tokens(tokens);
-                <span class="bool-val">false
-            </span>}
         }
     }
 
@@ -6594,16 +6579,12 @@
             <span class="self">self</span>.ident.to_tokens(tokens);
             <span class="self">self</span>.generics.to_tokens(tokens);
             <span class="self">self</span>.paren_token.surround(tokens, |tokens| {
-                <span class="kw">let </span><span class="kw-2">mut </span>last_is_variadic = <span class="bool-val">false</span>;
-                <span class="kw">for </span>pair <span class="kw">in </span><span class="self">self</span>.inputs.pairs() {
-                    last_is_variadic = maybe_variadic_to_tokens(pair.value(), tokens);
-                    pair.punct().to_tokens(tokens);
-                }
-                <span class="kw">if </span><span class="self">self</span>.variadic.is_some() &amp;&amp; !last_is_variadic {
+                <span class="self">self</span>.inputs.to_tokens(tokens);
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(variadic) = <span class="kw-2">&amp;</span><span class="self">self</span>.variadic {
                     <span class="kw">if </span>!<span class="self">self</span>.inputs.empty_or_trailing() {
                         &lt;<span class="macro">Token!</span>[,]&gt;::default().to_tokens(tokens);
                     }
-                    <span class="self">self</span>.variadic.to_tokens(tokens);
+                    variadic.to_tokens(tokens);
                 }
             });
             <span class="self">self</span>.output.to_tokens(tokens);
@@ -6621,8 +6602,50 @@
             }
             <span class="self">self</span>.mutability.to_tokens(tokens);
             <span class="self">self</span>.self_token.to_tokens(tokens);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(colon_token) = <span class="kw-2">&amp;</span><span class="self">self</span>.colon_token {
+                colon_token.to_tokens(tokens);
+                <span class="self">self</span>.ty.to_tokens(tokens);
+            } <span class="kw">else </span>{
+                <span class="kw">let </span>consistent = <span class="kw">match </span>(<span class="kw-2">&amp;</span><span class="self">self</span>.reference, <span class="kw-2">&amp;</span><span class="self">self</span>.mutability, <span class="kw-2">&amp;*</span><span class="self">self</span>.ty) {
+                    (<span class="prelude-val">Some</span>(<span class="kw">_</span>), mutability, Type::Reference(ty)) =&gt; {
+                        mutability.is_some() == ty.mutability.is_some()
+                            &amp;&amp; <span class="kw">match </span><span class="kw-2">&amp;*</span>ty.elem {
+                                Type::Path(ty) =&gt; ty.qself.is_none() &amp;&amp; ty.path.is_ident(<span class="string">&quot;Self&quot;</span>),
+                                <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
+                            }
+                    }
+                    (<span class="prelude-val">None</span>, <span class="kw">_</span>, Type::Path(ty)) =&gt; ty.qself.is_none() &amp;&amp; ty.path.is_ident(<span class="string">&quot;Self&quot;</span>),
+                    <span class="kw">_ </span>=&gt; <span class="bool-val">false</span>,
+                };
+                <span class="kw">if </span>!consistent {
+                    &lt;<span class="macro">Token!</span>[:]&gt;::default().to_tokens(tokens);
+                    <span class="self">self</span>.ty.to_tokens(tokens);
+                }
+            }
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>Variadic {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            tokens.append_all(<span class="self">self</span>.attrs.outer());
+            <span class="kw">if let </span><span class="prelude-val">Some</span>((pat, colon)) = <span class="kw-2">&amp;</span><span class="self">self</span>.pat {
+                pat.to_tokens(tokens);
+                colon.to_tokens(tokens);
+            }
+            <span class="self">self</span>.dots.to_tokens(tokens);
+            <span class="self">self</span>.comma.to_tokens(tokens);
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>StaticMutability {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            <span class="kw">match </span><span class="self">self </span>{
+                StaticMutability::None =&gt; {}
+                StaticMutability::Mut(mut_token) =&gt; mut_token.to_tokens(tokens),
+            }
         }
     }
 }
-</code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</code></pre></div></section></main></body></html>

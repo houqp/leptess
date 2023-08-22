@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/syn-1.0.107/src/expr.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>expr.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../syn/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/syn-2.0.29/src/expr.rs`."><title>expr.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-f3501f0f5ae15dfb.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.71.1 (eb26296b5 2023-08-03)" data-search-js="search-4926e5fc22a5646a.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../../static.files/source-script-11255107d0a65077.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-f0540c1d82cde29b.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../syn/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -3375,191 +3375,8 @@
 <a href="#3375" id="3375">3375</a>
 <a href="#3376" id="3376">3376</a>
 <a href="#3377" id="3377">3377</a>
-<a href="#3378" id="3378">3378</a>
-<a href="#3379" id="3379">3379</a>
-<a href="#3380" id="3380">3380</a>
-<a href="#3381" id="3381">3381</a>
-<a href="#3382" id="3382">3382</a>
-<a href="#3383" id="3383">3383</a>
-<a href="#3384" id="3384">3384</a>
-<a href="#3385" id="3385">3385</a>
-<a href="#3386" id="3386">3386</a>
-<a href="#3387" id="3387">3387</a>
-<a href="#3388" id="3388">3388</a>
-<a href="#3389" id="3389">3389</a>
-<a href="#3390" id="3390">3390</a>
-<a href="#3391" id="3391">3391</a>
-<a href="#3392" id="3392">3392</a>
-<a href="#3393" id="3393">3393</a>
-<a href="#3394" id="3394">3394</a>
-<a href="#3395" id="3395">3395</a>
-<a href="#3396" id="3396">3396</a>
-<a href="#3397" id="3397">3397</a>
-<a href="#3398" id="3398">3398</a>
-<a href="#3399" id="3399">3399</a>
-<a href="#3400" id="3400">3400</a>
-<a href="#3401" id="3401">3401</a>
-<a href="#3402" id="3402">3402</a>
-<a href="#3403" id="3403">3403</a>
-<a href="#3404" id="3404">3404</a>
-<a href="#3405" id="3405">3405</a>
-<a href="#3406" id="3406">3406</a>
-<a href="#3407" id="3407">3407</a>
-<a href="#3408" id="3408">3408</a>
-<a href="#3409" id="3409">3409</a>
-<a href="#3410" id="3410">3410</a>
-<a href="#3411" id="3411">3411</a>
-<a href="#3412" id="3412">3412</a>
-<a href="#3413" id="3413">3413</a>
-<a href="#3414" id="3414">3414</a>
-<a href="#3415" id="3415">3415</a>
-<a href="#3416" id="3416">3416</a>
-<a href="#3417" id="3417">3417</a>
-<a href="#3418" id="3418">3418</a>
-<a href="#3419" id="3419">3419</a>
-<a href="#3420" id="3420">3420</a>
-<a href="#3421" id="3421">3421</a>
-<a href="#3422" id="3422">3422</a>
-<a href="#3423" id="3423">3423</a>
-<a href="#3424" id="3424">3424</a>
-<a href="#3425" id="3425">3425</a>
-<a href="#3426" id="3426">3426</a>
-<a href="#3427" id="3427">3427</a>
-<a href="#3428" id="3428">3428</a>
-<a href="#3429" id="3429">3429</a>
-<a href="#3430" id="3430">3430</a>
-<a href="#3431" id="3431">3431</a>
-<a href="#3432" id="3432">3432</a>
-<a href="#3433" id="3433">3433</a>
-<a href="#3434" id="3434">3434</a>
-<a href="#3435" id="3435">3435</a>
-<a href="#3436" id="3436">3436</a>
-<a href="#3437" id="3437">3437</a>
-<a href="#3438" id="3438">3438</a>
-<a href="#3439" id="3439">3439</a>
-<a href="#3440" id="3440">3440</a>
-<a href="#3441" id="3441">3441</a>
-<a href="#3442" id="3442">3442</a>
-<a href="#3443" id="3443">3443</a>
-<a href="#3444" id="3444">3444</a>
-<a href="#3445" id="3445">3445</a>
-<a href="#3446" id="3446">3446</a>
-<a href="#3447" id="3447">3447</a>
-<a href="#3448" id="3448">3448</a>
-<a href="#3449" id="3449">3449</a>
-<a href="#3450" id="3450">3450</a>
-<a href="#3451" id="3451">3451</a>
-<a href="#3452" id="3452">3452</a>
-<a href="#3453" id="3453">3453</a>
-<a href="#3454" id="3454">3454</a>
-<a href="#3455" id="3455">3455</a>
-<a href="#3456" id="3456">3456</a>
-<a href="#3457" id="3457">3457</a>
-<a href="#3458" id="3458">3458</a>
-<a href="#3459" id="3459">3459</a>
-<a href="#3460" id="3460">3460</a>
-<a href="#3461" id="3461">3461</a>
-<a href="#3462" id="3462">3462</a>
-<a href="#3463" id="3463">3463</a>
-<a href="#3464" id="3464">3464</a>
-<a href="#3465" id="3465">3465</a>
-<a href="#3466" id="3466">3466</a>
-<a href="#3467" id="3467">3467</a>
-<a href="#3468" id="3468">3468</a>
-<a href="#3469" id="3469">3469</a>
-<a href="#3470" id="3470">3470</a>
-<a href="#3471" id="3471">3471</a>
-<a href="#3472" id="3472">3472</a>
-<a href="#3473" id="3473">3473</a>
-<a href="#3474" id="3474">3474</a>
-<a href="#3475" id="3475">3475</a>
-<a href="#3476" id="3476">3476</a>
-<a href="#3477" id="3477">3477</a>
-<a href="#3478" id="3478">3478</a>
-<a href="#3479" id="3479">3479</a>
-<a href="#3480" id="3480">3480</a>
-<a href="#3481" id="3481">3481</a>
-<a href="#3482" id="3482">3482</a>
-<a href="#3483" id="3483">3483</a>
-<a href="#3484" id="3484">3484</a>
-<a href="#3485" id="3485">3485</a>
-<a href="#3486" id="3486">3486</a>
-<a href="#3487" id="3487">3487</a>
-<a href="#3488" id="3488">3488</a>
-<a href="#3489" id="3489">3489</a>
-<a href="#3490" id="3490">3490</a>
-<a href="#3491" id="3491">3491</a>
-<a href="#3492" id="3492">3492</a>
-<a href="#3493" id="3493">3493</a>
-<a href="#3494" id="3494">3494</a>
-<a href="#3495" id="3495">3495</a>
-<a href="#3496" id="3496">3496</a>
-<a href="#3497" id="3497">3497</a>
-<a href="#3498" id="3498">3498</a>
-<a href="#3499" id="3499">3499</a>
-<a href="#3500" id="3500">3500</a>
-<a href="#3501" id="3501">3501</a>
-<a href="#3502" id="3502">3502</a>
-<a href="#3503" id="3503">3503</a>
-<a href="#3504" id="3504">3504</a>
-<a href="#3505" id="3505">3505</a>
-<a href="#3506" id="3506">3506</a>
-<a href="#3507" id="3507">3507</a>
-<a href="#3508" id="3508">3508</a>
-<a href="#3509" id="3509">3509</a>
-<a href="#3510" id="3510">3510</a>
-<a href="#3511" id="3511">3511</a>
-<a href="#3512" id="3512">3512</a>
-<a href="#3513" id="3513">3513</a>
-<a href="#3514" id="3514">3514</a>
-<a href="#3515" id="3515">3515</a>
-<a href="#3516" id="3516">3516</a>
-<a href="#3517" id="3517">3517</a>
-<a href="#3518" id="3518">3518</a>
-<a href="#3519" id="3519">3519</a>
-<a href="#3520" id="3520">3520</a>
-<a href="#3521" id="3521">3521</a>
-<a href="#3522" id="3522">3522</a>
-<a href="#3523" id="3523">3523</a>
-<a href="#3524" id="3524">3524</a>
-<a href="#3525" id="3525">3525</a>
-<a href="#3526" id="3526">3526</a>
-<a href="#3527" id="3527">3527</a>
-<a href="#3528" id="3528">3528</a>
-<a href="#3529" id="3529">3529</a>
-<a href="#3530" id="3530">3530</a>
-<a href="#3531" id="3531">3531</a>
-<a href="#3532" id="3532">3532</a>
-<a href="#3533" id="3533">3533</a>
-<a href="#3534" id="3534">3534</a>
-<a href="#3535" id="3535">3535</a>
-<a href="#3536" id="3536">3536</a>
-<a href="#3537" id="3537">3537</a>
-<a href="#3538" id="3538">3538</a>
-<a href="#3539" id="3539">3539</a>
-<a href="#3540" id="3540">3540</a>
-<a href="#3541" id="3541">3541</a>
-<a href="#3542" id="3542">3542</a>
-<a href="#3543" id="3543">3543</a>
-<a href="#3544" id="3544">3544</a>
-<a href="#3545" id="3545">3545</a>
-<a href="#3546" id="3546">3546</a>
-<a href="#3547" id="3547">3547</a>
-<a href="#3548" id="3548">3548</a>
-<a href="#3549" id="3549">3549</a>
-<a href="#3550" id="3550">3550</a>
-<a href="#3551" id="3551">3551</a>
-<a href="#3552" id="3552">3552</a>
-<a href="#3553" id="3553">3553</a>
-<a href="#3554" id="3554">3554</a>
-<a href="#3555" id="3555">3555</a>
-<a href="#3556" id="3556">3556</a>
-<a href="#3557" id="3557">3557</a>
-<a href="#3558" id="3558">3558</a>
-</pre><pre class="rust"><code><span class="kw">use super</span>::<span class="kw-2">*</span>;
+</pre></div><pre class="rust"><code><span class="kw">use super</span>::<span class="kw-2">*</span>;
 <span class="kw">use </span><span class="kw">crate</span>::punctuated::Punctuated;
-<span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-</span><span class="kw">use </span><span class="kw">crate</span>::reserved::Reserved;
 <span class="kw">use </span>proc_macro2::{Span, TokenStream};
 <span class="attr">#[cfg(feature = <span class="string">&quot;printing&quot;</span>)]
 </span><span class="kw">use </span>quote::IdentFragment;
@@ -3645,7 +3462,7 @@
     /// see names getting repeated in your code, like accessing
     /// `receiver.receiver` or `pat.pat` or `cond.cond`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
-    #[cfg_attr(not(syn_no_non_exhaustive), non_exhaustive)]
+    #[non_exhaustive]
     </span><span class="kw">pub enum </span>Expr {
         <span class="doccomment">/// A slice literal expression: `[a, b, c, d]`.
         </span>Array(ExprArray),
@@ -3653,23 +3470,17 @@
         <span class="doccomment">/// An assignment expression: `a = compute()`.
         </span>Assign(ExprAssign),
 
-        <span class="doccomment">/// A compound assignment expression: `counter += 1`.
-        </span>AssignOp(ExprAssignOp),
-
         <span class="doccomment">/// An async block: `async { ... }`.
         </span>Async(ExprAsync),
 
         <span class="doccomment">/// An await expression: `fut.await`.
         </span>Await(ExprAwait),
 
-        <span class="doccomment">/// A binary operation: `a + b`, `a * b`.
+        <span class="doccomment">/// A binary operation: `a + b`, `a += b`.
         </span>Binary(ExprBinary),
 
         <span class="doccomment">/// A blocked scope: `{ ... }`.
         </span>Block(ExprBlock),
-
-        <span class="doccomment">/// A box expression: `box f`.
-        </span>Box(ExprBox),
 
         <span class="doccomment">/// A `break`, with an optional label to break and an optional
         /// expression.
@@ -3683,6 +3494,9 @@
 
         <span class="doccomment">/// A closure expression: `|a, b| a + b`.
         </span>Closure(ExprClosure),
+
+        <span class="doccomment">/// A const block: `const { ... }`.
+        </span>Const(ExprConst),
 
         <span class="doccomment">/// A `continue`, with an optional label.
         </span>Continue(ExprContinue),
@@ -3710,6 +3524,9 @@
 
         <span class="doccomment">/// A square bracketed indexing expression: `vector[2]`.
         </span>Index(ExprIndex),
+
+        <span class="doccomment">/// The inferred value of a const generic argument, denoted `_`.
+        </span>Infer(ExprInfer),
 
         <span class="doccomment">/// A `let` guard: `let Some(x) = opt`.
         </span>Let(ExprLet),
@@ -3765,9 +3582,6 @@
         <span class="doccomment">/// A tuple expression: `(a, b, c, d)`.
         </span>Tuple(ExprTuple),
 
-        <span class="doccomment">/// A type ascription expression: `foo: f64`.
-        </span>Type(ExprType),
-
         <span class="doccomment">/// A unary operation: `!x`, `*x`.
         </span>Unary(ExprUnary),
 
@@ -3783,9 +3597,7 @@
         <span class="doccomment">/// A yield expression: `yield expr`.
         </span>Yield(ExprYield),
 
-        <span class="comment">// Not public API.
-        //
-        // For testing exhaustiveness in downstream code, use the following idiom:
+        <span class="comment">// For testing exhaustiveness in downstream code, use the following idiom:
         //
         //     match expr {
         //         Expr::Array(expr) =&gt; {...}
@@ -3801,16 +3613,11 @@
         // a variant. You will be notified by a test failure when a variant is
         // added, so that you can add code to handle it, but your library will
         // continue to compile and work for downstream users in the interim.
-        </span><span class="attr">#[cfg(syn_no_non_exhaustive)]
-        #[doc(hidden)]
-        </span>__NonExhaustive,
-    }
+    </span>}
 }
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A slice literal expression: `[a, b, c, d]`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprArray #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3821,8 +3628,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An assignment expression: `a = compute()`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprAssign #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3833,22 +3638,7 @@
 }
 
 <span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// A compound assignment expression: `counter += 1`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub struct </span>ExprAssignOp #full {
-        <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
-        <span class="kw">pub </span>left: Box&lt;Expr&gt;,
-        <span class="kw">pub </span>op: BinOp,
-        <span class="kw">pub </span>right: Box&lt;Expr&gt;,
-    }
-}
-
-<span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An async block: `async { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprAsync #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3860,22 +3650,17 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An await expression: `fut.await`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprAwait #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>base: Box&lt;Expr&gt;,
         <span class="kw">pub </span>dot_token: <span class="macro">Token!</span>[.],
-        <span class="kw">pub </span>await_token: token::Await,
+        <span class="kw">pub </span>await_token: <span class="macro">Token!</span>[<span class="kw">await</span>],
     }
 }
 
 <span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// A binary operation: `a + b`, `a * b`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;derive&quot;` or
-    /// `&quot;full&quot;` feature.*
+    <span class="doccomment">/// A binary operation: `a + b`, `a += b`.
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>ExprBinary {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3887,8 +3672,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A blocked scope: `{ ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprBlock #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3898,22 +3681,8 @@
 }
 
 <span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// A box expression: `box f`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub struct </span>ExprBox #full {
-        <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
-        <span class="kw">pub </span>box_token: <span class="macro">Token!</span>[<span class="kw">box</span>],
-        <span class="kw">pub </span>expr: Box&lt;Expr&gt;,
-    }
-}
-
-<span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A `break`, with an optional label to break and an optional
     /// expression.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprBreak #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3925,9 +3694,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A function call expression: `invoke(a, b)`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;derive&quot;` or
-    /// `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>ExprCall {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3939,9 +3705,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A cast expression: `foo as f64`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;derive&quot;` or
-    /// `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>ExprCast {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3953,11 +3716,11 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A closure expression: `|a, b| a + b`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprClosure #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
+        <span class="kw">pub </span>lifetimes: <span class="prelude-ty">Option</span>&lt;BoundLifetimes&gt;,
+        <span class="kw">pub </span>constness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">const</span>]&gt;,
         <span class="kw">pub </span>movability: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">static</span>]&gt;,
         <span class="kw">pub </span>asyncness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">async</span>]&gt;,
         <span class="kw">pub </span>capture: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">move</span>]&gt;,
@@ -3970,9 +3733,16 @@
 }
 
 <span class="macro">ast_struct! </span>{
+    <span class="doccomment">/// A const block: `const { ... }`.
+    </span><span class="kw">pub struct </span>ExprConst #full {
+        <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
+        <span class="kw">pub </span>const_token: <span class="macro">Token!</span>[<span class="kw">const</span>],
+        <span class="kw">pub </span>block: Block,
+    }
+}
+
+<span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A `continue`, with an optional label.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprContinue #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3984,8 +3754,6 @@
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// Access of a named struct field (`obj.k`) or unnamed tuple struct
     /// field (`obj.0`).
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>ExprField {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -3997,14 +3765,12 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A for loop: `for pat in expr { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprForLoop #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>label: <span class="prelude-ty">Option</span>&lt;Label&gt;,
         <span class="kw">pub </span>for_token: <span class="macro">Token!</span>[<span class="kw">for</span>],
-        <span class="kw">pub </span>pat: Pat,
+        <span class="kw">pub </span>pat: Box&lt;Pat&gt;,
         <span class="kw">pub </span>in_token: <span class="macro">Token!</span>[<span class="kw">in</span>],
         <span class="kw">pub </span>expr: Box&lt;Expr&gt;,
         <span class="kw">pub </span>body: Block,
@@ -4017,10 +3783,8 @@
     /// This variant is important for faithfully representing the precedence
     /// of expressions and is related to `None`-delimited spans in a
     /// `TokenStream`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub struct </span>ExprGroup #full {
+    </span><span class="kw">pub struct </span>ExprGroup {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>group_token: token::Group,
         <span class="kw">pub </span>expr: Box&lt;Expr&gt;,
@@ -4033,8 +3797,6 @@
     ///
     /// The `else` branch expression may only be an `If` or `Block`
     /// expression, not any of the other types of expression.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprIf #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4047,9 +3809,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A square bracketed indexing expression: `vector[2]`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;derive&quot;` or
-    /// `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>ExprIndex {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4060,14 +3819,20 @@
 }
 
 <span class="macro">ast_struct! </span>{
+    <span class="doccomment">/// The inferred value of a const generic argument, denoted `_`.
+    </span><span class="kw">pub struct </span>ExprInfer #full {
+        <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
+        <span class="kw">pub </span>underscore_token: <span class="macro">Token!</span>[<span class="kw">_</span>],
+    }
+}
+
+<span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A `let` guard: `let Some(x) = opt`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprLet #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>let_token: <span class="macro">Token!</span>[<span class="kw">let</span>],
-        <span class="kw">pub </span>pat: Pat,
+        <span class="kw">pub </span>pat: Box&lt;Pat&gt;,
         <span class="kw">pub </span>eq_token: <span class="macro">Token!</span>[=],
         <span class="kw">pub </span>expr: Box&lt;Expr&gt;,
     }
@@ -4075,9 +3840,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A literal in place of an expression: `1`, `&quot;foo&quot;`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;derive&quot;` or
-    /// `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>ExprLit {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4087,8 +3849,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// Conditionless loop: `loop { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprLoop #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4100,10 +3860,7 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A macro invocation expression: `format!(&quot;{}&quot;, q)`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub struct </span>ExprMacro #full {
+    </span><span class="kw">pub struct </span>ExprMacro {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>mac: Macro,
     }
@@ -4111,8 +3868,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A `match` expression: `match n { Some(n) =&gt; {}, None =&gt; {} }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprMatch #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4125,15 +3880,13 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A method call expression: `x.foo::&lt;T&gt;(a, b)`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprMethodCall #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>receiver: Box&lt;Expr&gt;,
         <span class="kw">pub </span>dot_token: <span class="macro">Token!</span>[.],
         <span class="kw">pub </span>method: Ident,
-        <span class="kw">pub </span>turbofish: <span class="prelude-ty">Option</span>&lt;MethodTurbofish&gt;,
+        <span class="kw">pub </span>turbofish: <span class="prelude-ty">Option</span>&lt;AngleBracketedGenericArguments&gt;,
         <span class="kw">pub </span>paren_token: token::Paren,
         <span class="kw">pub </span>args: Punctuated&lt;Expr, <span class="macro">Token!</span>[,]&gt;,
     }
@@ -4141,8 +3894,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A parenthesized expression: `(a + b)`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>ExprParen {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4156,9 +3907,6 @@
     /// parameters and a qualified self-type.
     ///
     /// A plain identifier like `x` is a path of length 1.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;derive&quot;` or
-    /// `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>ExprPath {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4169,26 +3917,21 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprRange #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
-        <span class="kw">pub </span>from: <span class="prelude-ty">Option</span>&lt;Box&lt;Expr&gt;&gt;,
+        <span class="kw">pub </span>start: <span class="prelude-ty">Option</span>&lt;Box&lt;Expr&gt;&gt;,
         <span class="kw">pub </span>limits: RangeLimits,
-        <span class="kw">pub </span>to: <span class="prelude-ty">Option</span>&lt;Box&lt;Expr&gt;&gt;,
+        <span class="kw">pub </span>end: <span class="prelude-ty">Option</span>&lt;Box&lt;Expr&gt;&gt;,
     }
 }
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A referencing operation: `&amp;a` or `&amp;mut a`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprReference #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
         <span class="kw">pub </span>and_token: <span class="macro">Token!</span>[<span class="kw-2">&amp;</span>],
-        <span class="kw">pub </span>raw: Reserved,
         <span class="kw">pub </span>mutability: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw-2">mut</span>]&gt;,
         <span class="kw">pub </span>expr: Box&lt;Expr&gt;,
     }
@@ -4196,8 +3939,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An array literal constructed from one repeated element: `[0u8; N]`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprRepeat #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4210,8 +3951,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A `return`, with an optional value to be returned.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprReturn #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4225,11 +3964,10 @@
     ///
     /// The `rest` provides the value of the remaining fields as in `S { a:
     /// 1, b: 1, ..rest }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprStruct #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
+        <span class="kw">pub </span>qself: <span class="prelude-ty">Option</span>&lt;QSelf&gt;,
         <span class="kw">pub </span>path: Path,
         <span class="kw">pub </span>brace_token: token::Brace,
         <span class="kw">pub </span>fields: Punctuated&lt;FieldValue, <span class="macro">Token!</span>[,]&gt;,
@@ -4240,8 +3978,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A try-expression: `expr?`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprTry #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4252,8 +3988,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A try block: `try { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprTryBlock #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4264,8 +3998,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A tuple expression: `(a, b, c, d)`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprTuple #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4275,23 +4007,7 @@
 }
 
 <span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// A type ascription expression: `foo: f64`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub struct </span>ExprType #full {
-        <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
-        <span class="kw">pub </span>expr: Box&lt;Expr&gt;,
-        <span class="kw">pub </span>colon_token: <span class="macro">Token!</span>[:],
-        <span class="kw">pub </span>ty: Box&lt;Type&gt;,
-    }
-}
-
-<span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A unary operation: `!x`, `*x`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;derive&quot;` or
-    /// `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>ExprUnary {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4302,8 +4018,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// An unsafe block: `unsafe { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprUnsafe #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4314,8 +4028,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A while loop: `while expr { ... }`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprWhile #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4328,8 +4040,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A yield expression: `yield expr`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>ExprYield #full {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4339,7 +4049,7 @@
 }
 
 <span class="kw">impl </span>Expr {
-    <span class="attr">#[cfg(all(feature = <span class="string">&quot;parsing&quot;</span>, not(syn_no_const_vec_new)))]
+    <span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
     </span><span class="kw">const </span>DUMMY: <span class="self">Self </span>= Expr::Path(ExprPath {
         attrs: Vec::new(),
         qself: <span class="prelude-val">None</span>,
@@ -4352,49 +4062,45 @@
     <span class="attr">#[cfg(all(feature = <span class="string">&quot;parsing&quot;</span>, feature = <span class="string">&quot;full&quot;</span>))]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>replace_attrs(<span class="kw-2">&amp;mut </span><span class="self">self</span>, new: Vec&lt;Attribute&gt;) -&gt; Vec&lt;Attribute&gt; {
         <span class="kw">match </span><span class="self">self </span>{
-            Expr::Box(ExprBox { attrs, .. })
-            | Expr::Array(ExprArray { attrs, .. })
-            | Expr::Call(ExprCall { attrs, .. })
-            | Expr::MethodCall(ExprMethodCall { attrs, .. })
-            | Expr::Tuple(ExprTuple { attrs, .. })
-            | Expr::Binary(ExprBinary { attrs, .. })
-            | Expr::Unary(ExprUnary { attrs, .. })
-            | Expr::Lit(ExprLit { attrs, .. })
-            | Expr::Cast(ExprCast { attrs, .. })
-            | Expr::Type(ExprType { attrs, .. })
-            | Expr::Let(ExprLet { attrs, .. })
-            | Expr::If(ExprIf { attrs, .. })
-            | Expr::While(ExprWhile { attrs, .. })
-            | Expr::ForLoop(ExprForLoop { attrs, .. })
-            | Expr::Loop(ExprLoop { attrs, .. })
-            | Expr::Match(ExprMatch { attrs, .. })
-            | Expr::Closure(ExprClosure { attrs, .. })
-            | Expr::Unsafe(ExprUnsafe { attrs, .. })
-            | Expr::Block(ExprBlock { attrs, .. })
+            Expr::Array(ExprArray { attrs, .. })
             | Expr::Assign(ExprAssign { attrs, .. })
-            | Expr::AssignOp(ExprAssignOp { attrs, .. })
-            | Expr::Field(ExprField { attrs, .. })
-            | Expr::Index(ExprIndex { attrs, .. })
-            | Expr::Range(ExprRange { attrs, .. })
-            | Expr::Path(ExprPath { attrs, .. })
-            | Expr::Reference(ExprReference { attrs, .. })
-            | Expr::Break(ExprBreak { attrs, .. })
-            | Expr::Continue(ExprContinue { attrs, .. })
-            | Expr::Return(ExprReturn { attrs, .. })
-            | Expr::Macro(ExprMacro { attrs, .. })
-            | Expr::Struct(ExprStruct { attrs, .. })
-            | Expr::Repeat(ExprRepeat { attrs, .. })
-            | Expr::Paren(ExprParen { attrs, .. })
-            | Expr::Group(ExprGroup { attrs, .. })
-            | Expr::Try(ExprTry { attrs, .. })
             | Expr::Async(ExprAsync { attrs, .. })
             | Expr::Await(ExprAwait { attrs, .. })
+            | Expr::Binary(ExprBinary { attrs, .. })
+            | Expr::Block(ExprBlock { attrs, .. })
+            | Expr::Break(ExprBreak { attrs, .. })
+            | Expr::Call(ExprCall { attrs, .. })
+            | Expr::Cast(ExprCast { attrs, .. })
+            | Expr::Closure(ExprClosure { attrs, .. })
+            | Expr::Const(ExprConst { attrs, .. })
+            | Expr::Continue(ExprContinue { attrs, .. })
+            | Expr::Field(ExprField { attrs, .. })
+            | Expr::ForLoop(ExprForLoop { attrs, .. })
+            | Expr::Group(ExprGroup { attrs, .. })
+            | Expr::If(ExprIf { attrs, .. })
+            | Expr::Index(ExprIndex { attrs, .. })
+            | Expr::Infer(ExprInfer { attrs, .. })
+            | Expr::Let(ExprLet { attrs, .. })
+            | Expr::Lit(ExprLit { attrs, .. })
+            | Expr::Loop(ExprLoop { attrs, .. })
+            | Expr::Macro(ExprMacro { attrs, .. })
+            | Expr::Match(ExprMatch { attrs, .. })
+            | Expr::MethodCall(ExprMethodCall { attrs, .. })
+            | Expr::Paren(ExprParen { attrs, .. })
+            | Expr::Path(ExprPath { attrs, .. })
+            | Expr::Range(ExprRange { attrs, .. })
+            | Expr::Reference(ExprReference { attrs, .. })
+            | Expr::Repeat(ExprRepeat { attrs, .. })
+            | Expr::Return(ExprReturn { attrs, .. })
+            | Expr::Struct(ExprStruct { attrs, .. })
+            | Expr::Try(ExprTry { attrs, .. })
             | Expr::TryBlock(ExprTryBlock { attrs, .. })
+            | Expr::Tuple(ExprTuple { attrs, .. })
+            | Expr::Unary(ExprUnary { attrs, .. })
+            | Expr::Unsafe(ExprUnsafe { attrs, .. })
+            | Expr::While(ExprWhile { attrs, .. })
             | Expr::Yield(ExprYield { attrs, .. }) =&gt; mem::replace(attrs, new),
             Expr::Verbatim(<span class="kw">_</span>) =&gt; Vec::new(),
-
-            <span class="attr">#[cfg(syn_no_non_exhaustive)]
-            </span><span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
         }
     }
 }
@@ -4402,9 +4108,6 @@
 <span class="macro">ast_enum! </span>{
     <span class="doccomment">/// A struct or tuple struct field accessed in a struct literal or field
     /// expression.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;derive&quot;` or `&quot;full&quot;`
-    /// feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub enum </span>Member {
         <span class="doccomment">/// A named field like `self.x`.
@@ -4472,9 +4175,6 @@
 
 <span class="macro">ast_struct! </span>{
     <span class="doccomment">/// The index of an unnamed tuple struct field.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;derive&quot;` or `&quot;full&quot;`
-    /// feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))))]
     </span><span class="kw">pub struct </span>Index {
         <span class="kw">pub </span>index: u32,
@@ -4519,63 +4219,23 @@
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
 </span><span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// The `::&lt;&gt;` explicit type parameters passed to a method call:
-    /// `parse::&lt;u64&gt;()`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub struct </span>MethodTurbofish {
-        <span class="kw">pub </span>colon2_token: <span class="macro">Token!</span>[::],
-        <span class="kw">pub </span>lt_token: <span class="macro">Token!</span>[&lt;],
-        <span class="kw">pub </span>args: Punctuated&lt;GenericMethodArgument, <span class="macro">Token!</span>[,]&gt;,
-        <span class="kw">pub </span>gt_token: <span class="macro">Token!</span>[&gt;],
-    }
-}
-
-<span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-</span><span class="macro">ast_enum! </span>{
-    <span class="doccomment">/// An individual generic argument to a method, like `T`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
-    </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
-    </span><span class="kw">pub enum </span>GenericMethodArgument {
-        <span class="doccomment">/// A type argument.
-        </span>Type(Type),
-        <span class="doccomment">/// A const expression. Must be inside of a block.
-        ///
-        /// NOTE: Identity expressions are represented as Type arguments, as
-        /// they are indistinguishable syntactically.
-        </span>Const(Expr),
-    }
-}
-
-<span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-</span><span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A field-value pair in a struct literal.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>FieldValue {
-        <span class="doccomment">/// Attributes tagged on the field.
-        </span><span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
-
-        <span class="doccomment">/// Name or index of the field.
-        </span><span class="kw">pub </span>member: Member,
+        <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
+        <span class="kw">pub </span>member: Member,
 
         <span class="doccomment">/// The colon in `Struct { x: x }`. If written in shorthand like
         /// `Struct { x }`, there is no colon.
         </span><span class="kw">pub </span>colon_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[:]&gt;,
 
-        <span class="doccomment">/// Value of the field.
-        </span><span class="kw">pub </span>expr: Expr,
+        <span class="kw">pub </span>expr: Expr,
     }
 }
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
 </span><span class="macro">ast_struct! </span>{
     <span class="doccomment">/// A lifetime labeling a `for`, `while`, or `loop`.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>Label {
         <span class="kw">pub </span>name: Lifetime,
@@ -4585,7 +4245,7 @@
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
 </span><span class="macro">ast_struct! </span>{
-    <span class="doccomment">/// One arm of a `match` expression: `0...10 =&gt; { return true; }`.
+    <span class="doccomment">/// One arm of a `match` expression: `0..=10 =&gt; { return true; }`.
     ///
     /// As in:
     ///
@@ -4593,7 +4253,7 @@
     /// # fn f() -&gt; bool {
     /// #     let n = 0;
     /// match n {
-    ///     0...10 =&gt; {
+    ///     0..=10 =&gt; {
     ///         return true;
     ///     }
     ///     // ...
@@ -4602,8 +4262,6 @@
     /// #   false
     /// # }
     /// ```
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub struct </span>Arm {
         <span class="kw">pub </span>attrs: Vec&lt;Attribute&gt;,
@@ -4618,8 +4276,6 @@
 <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
 </span><span class="macro">ast_enum! </span>{
     <span class="doccomment">/// Limit types of a range, inclusive or exclusive.
-    ///
-    /// *This type is available only if Syn is built with the `&quot;full&quot;` feature.*
     </span><span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;full&quot;</span>)))]
     </span><span class="kw">pub enum </span>RangeLimits {
         <span class="doccomment">/// Inclusive at the beginning, exclusive at the end.
@@ -4632,40 +4288,71 @@
 <span class="attr">#[cfg(any(feature = <span class="string">&quot;parsing&quot;</span>, feature = <span class="string">&quot;printing&quot;</span>))]
 #[cfg(feature = <span class="string">&quot;full&quot;</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>requires_terminator(expr: <span class="kw-2">&amp;</span>Expr) -&gt; bool {
-    <span class="comment">// see https://github.com/rust-lang/rust/blob/2679c38fc/src/librustc_ast/util/classify.rs#L7-L25
-    </span><span class="kw">match </span><span class="kw-2">*</span>expr {
-        Expr::Unsafe(..)
-        | Expr::Block(..)
-        | Expr::If(..)
-        | Expr::Match(..)
-        | Expr::While(..)
-        | Expr::Loop(..)
-        | Expr::ForLoop(..)
-        | Expr::Async(..)
-        | Expr::TryBlock(..) =&gt; <span class="bool-val">false</span>,
-        <span class="kw">_ </span>=&gt; <span class="bool-val">true</span>,
-    }
+    <span class="comment">// see https://github.com/rust-lang/rust/blob/9a19e7604/compiler/rustc_ast/src/util/classify.rs#L7-L26
+    </span><span class="kw">match </span>expr {
+        Expr::If(<span class="kw">_</span>)
+        | Expr::Match(<span class="kw">_</span>)
+        | Expr::Block(<span class="kw">_</span>) | Expr::Unsafe(<span class="kw">_</span>) <span class="comment">// both under ExprKind::Block in rustc
+        </span>| Expr::While(<span class="kw">_</span>)
+        | Expr::Loop(<span class="kw">_</span>)
+        | Expr::ForLoop(<span class="kw">_</span>)
+        | Expr::TryBlock(<span class="kw">_</span>)
+        | Expr::Const(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
+        Expr::Array(<span class="kw">_</span>)
+        | Expr::Assign(<span class="kw">_</span>)
+        | Expr::Async(<span class="kw">_</span>)
+        | Expr::Await(<span class="kw">_</span>)
+        | Expr::Binary(<span class="kw">_</span>)
+        | Expr::Break(<span class="kw">_</span>)
+        | Expr::Call(<span class="kw">_</span>)
+        | Expr::Cast(<span class="kw">_</span>)
+        | Expr::Closure(<span class="kw">_</span>)
+        | Expr::Continue(<span class="kw">_</span>)
+        | Expr::Field(<span class="kw">_</span>)
+        | Expr::Group(<span class="kw">_</span>)
+        | Expr::Index(<span class="kw">_</span>)
+        | Expr::Infer(<span class="kw">_</span>)
+        | Expr::Let(<span class="kw">_</span>)
+        | Expr::Lit(<span class="kw">_</span>)
+        | Expr::Macro(<span class="kw">_</span>)
+        | Expr::MethodCall(<span class="kw">_</span>)
+        | Expr::Paren(<span class="kw">_</span>)
+        | Expr::Path(<span class="kw">_</span>)
+        | Expr::Range(<span class="kw">_</span>)
+        | Expr::Reference(<span class="kw">_</span>)
+        | Expr::Repeat(<span class="kw">_</span>)
+        | Expr::Return(<span class="kw">_</span>)
+        | Expr::Struct(<span class="kw">_</span>)
+        | Expr::Try(<span class="kw">_</span>)
+        | Expr::Tuple(<span class="kw">_</span>)
+        | Expr::Unary(<span class="kw">_</span>)
+        | Expr::Yield(<span class="kw">_</span>)
+        | Expr::Verbatim(<span class="kw">_</span>) =&gt; <span class="bool-val">true
+    </span>}
 }
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>parsing {
     <span class="kw">use super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use </span><span class="kw">crate</span>::parse::discouraged::Speculative;
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     </span><span class="kw">use </span><span class="kw">crate</span>::parse::ParseBuffer;
     <span class="kw">use </span><span class="kw">crate</span>::parse::{Parse, ParseStream, <span class="prelude-ty">Result</span>};
     <span class="kw">use </span><span class="kw">crate</span>::path;
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    </span><span class="kw">use </span>proc_macro2::TokenTree;
     <span class="kw">use </span>std::cmp::Ordering;
 
-    <span class="macro">crate::custom_keyword!</span>(raw);
+    <span class="kw">mod </span>kw {
+        <span class="macro">crate::custom_keyword!</span>(builtin);
+        <span class="macro">crate::custom_keyword!</span>(raw);
+    }
 
     <span class="comment">// When we&#39;re parsing expressions which occur before blocks, like in an if
     // statement&#39;s condition, we cannot parse a struct literal.
     //
     // Struct literals are ambiguous in certain positions
     // https://github.com/rust-lang/rfcs/pull/92
-    </span><span class="kw">pub struct </span>AllowStruct(bool);
+    </span><span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>AllowStruct(bool);
 
     <span class="kw">enum </span>Precedence {
         Any,
@@ -4685,7 +4372,7 @@
 
     <span class="kw">impl </span>Precedence {
         <span class="kw">fn </span>of(op: <span class="kw-2">&amp;</span>BinOp) -&gt; <span class="self">Self </span>{
-            <span class="kw">match </span><span class="kw-2">*</span>op {
+            <span class="kw">match </span>op {
                 BinOp::Add(<span class="kw">_</span>) | BinOp::Sub(<span class="kw">_</span>) =&gt; Precedence::Arithmetic,
                 BinOp::Mul(<span class="kw">_</span>) | BinOp::Div(<span class="kw">_</span>) | BinOp::Rem(<span class="kw">_</span>) =&gt; Precedence::Term,
                 BinOp::And(<span class="kw">_</span>) =&gt; Precedence::And,
@@ -4700,16 +4387,16 @@
                 | BinOp::Ne(<span class="kw">_</span>)
                 | BinOp::Ge(<span class="kw">_</span>)
                 | BinOp::Gt(<span class="kw">_</span>) =&gt; Precedence::Compare,
-                BinOp::AddEq(<span class="kw">_</span>)
-                | BinOp::SubEq(<span class="kw">_</span>)
-                | BinOp::MulEq(<span class="kw">_</span>)
-                | BinOp::DivEq(<span class="kw">_</span>)
-                | BinOp::RemEq(<span class="kw">_</span>)
-                | BinOp::BitXorEq(<span class="kw">_</span>)
-                | BinOp::BitAndEq(<span class="kw">_</span>)
-                | BinOp::BitOrEq(<span class="kw">_</span>)
-                | BinOp::ShlEq(<span class="kw">_</span>)
-                | BinOp::ShrEq(<span class="kw">_</span>) =&gt; Precedence::Assign,
+                BinOp::AddAssign(<span class="kw">_</span>)
+                | BinOp::SubAssign(<span class="kw">_</span>)
+                | BinOp::MulAssign(<span class="kw">_</span>)
+                | BinOp::DivAssign(<span class="kw">_</span>)
+                | BinOp::RemAssign(<span class="kw">_</span>)
+                | BinOp::BitXorAssign(<span class="kw">_</span>)
+                | BinOp::BitAndAssign(<span class="kw">_</span>)
+                | BinOp::BitOrAssign(<span class="kw">_</span>)
+                | BinOp::ShlAssign(<span class="kw">_</span>)
+                | BinOp::ShrAssign(<span class="kw">_</span>) =&gt; Precedence::Assign,
             }
         }
     }
@@ -4717,7 +4404,11 @@
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>Expr {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
-            ambiguous_expr(input, AllowStruct(<span class="bool-val">true</span>))
+            ambiguous_expr(
+                input,
+                <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+                </span>AllowStruct(<span class="bool-val">true</span>),
+            )
         }
     }
 
@@ -4809,9 +4500,11 @@
         }
     }
 
-    <span class="kw">impl </span>Copy <span class="kw">for </span>AllowStruct {}
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    </span><span class="kw">impl </span>Copy <span class="kw">for </span>AllowStruct {}
 
-    <span class="kw">impl </span>Clone <span class="kw">for </span>AllowStruct {
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    </span><span class="kw">impl </span>Clone <span class="kw">for </span>AllowStruct {
         <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
             <span class="kw-2">*</span><span class="self">self
         </span>}
@@ -4847,13 +4540,12 @@
         base: Precedence,
     ) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
         <span class="kw">loop </span>{
-            <span class="kw">if </span>input
-                .fork()
-                .parse::&lt;BinOp&gt;()
-                .ok()
-                .map_or(<span class="bool-val">false</span>, |op| Precedence::of(<span class="kw-2">&amp;</span>op) &gt;= base)
-            {
-                <span class="kw">let </span>op: BinOp = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>ahead = input.fork();
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(op) = <span class="kw">match </span>ahead.parse::&lt;BinOp&gt;() {
+                <span class="prelude-val">Ok</span>(op) <span class="kw">if </span>Precedence::of(<span class="kw-2">&amp;</span>op) &gt;= base =&gt; <span class="prelude-val">Some</span>(op),
+                <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
+            } {
+                input.advance_to(<span class="kw-2">&amp;</span>ahead);
                 <span class="kw">let </span>precedence = Precedence::of(<span class="kw-2">&amp;</span>op);
                 <span class="kw">let </span><span class="kw-2">mut </span>rhs = unary_expr(input, allow_struct)<span class="question-mark">?</span>;
                 <span class="kw">loop </span>{
@@ -4864,21 +4556,12 @@
                         <span class="kw">break</span>;
                     }
                 }
-                lhs = <span class="kw">if </span>precedence == Precedence::Assign {
-                    Expr::AssignOp(ExprAssignOp {
-                        attrs: Vec::new(),
-                        left: Box::new(lhs),
-                        op,
-                        right: Box::new(rhs),
-                    })
-                } <span class="kw">else </span>{
-                    Expr::Binary(ExprBinary {
-                        attrs: Vec::new(),
-                        left: Box::new(lhs),
-                        op,
-                        right: Box::new(rhs),
-                    })
-                };
+                lhs = Expr::Binary(ExprBinary {
+                    attrs: Vec::new(),
+                    left: Box::new(lhs),
+                    op,
+                    right: Box::new(rhs),
+                });
             } <span class="kw">else if </span>Precedence::Assign &gt;= base
                 &amp;&amp; input.peek(<span class="macro">Token!</span>[=])
                 &amp;&amp; !input.peek(<span class="macro">Token!</span>[==])
@@ -4902,11 +4585,12 @@
                 });
             } <span class="kw">else if </span>Precedence::Range &gt;= base &amp;&amp; input.peek(<span class="macro">Token!</span>[..]) {
                 <span class="kw">let </span>limits: RangeLimits = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span>rhs = <span class="kw">if </span>input.is_empty()
-                    || input.peek(<span class="macro">Token!</span>[,])
-                    || input.peek(<span class="macro">Token!</span>[;])
-                    || input.peek(<span class="macro">Token!</span>[.]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[..])
-                    || !allow_struct.<span class="number">0 </span>&amp;&amp; input.peek(token::Brace)
+                <span class="kw">let </span>rhs = <span class="kw">if </span><span class="macro">matches!</span>(limits, RangeLimits::HalfOpen(<span class="kw">_</span>))
+                    &amp;&amp; (input.is_empty()
+                        || input.peek(<span class="macro">Token!</span>[,])
+                        || input.peek(<span class="macro">Token!</span>[;])
+                        || input.peek(<span class="macro">Token!</span>[.]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[..])
+                        || !allow_struct.<span class="number">0 </span>&amp;&amp; input.peek(token::Brace))
                 {
                     <span class="prelude-val">None
                 </span>} <span class="kw">else </span>{
@@ -4923,9 +4607,9 @@
                 };
                 lhs = Expr::Range(ExprRange {
                     attrs: Vec::new(),
-                    from: <span class="prelude-val">Some</span>(Box::new(lhs)),
+                    start: <span class="prelude-val">Some</span>(Box::new(lhs)),
                     limits,
-                    to: rhs.map(Box::new),
+                    end: rhs.map(Box::new),
                 });
             } <span class="kw">else if </span>Precedence::Cast &gt;= base &amp;&amp; input.peek(<span class="macro">Token!</span>[<span class="kw">as</span>]) {
                 <span class="kw">let </span>as_token: <span class="macro">Token!</span>[<span class="kw">as</span>] = input.parse()<span class="question-mark">?</span>;
@@ -4939,18 +4623,6 @@
                     as_token,
                     ty: Box::new(ty),
                 });
-            } <span class="kw">else if </span>Precedence::Cast &gt;= base &amp;&amp; input.peek(<span class="macro">Token!</span>[:]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[::]) {
-                <span class="kw">let </span>colon_token: <span class="macro">Token!</span>[:] = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span>allow_plus = <span class="bool-val">false</span>;
-                <span class="kw">let </span>allow_group_generic = <span class="bool-val">false</span>;
-                <span class="kw">let </span>ty = ty::parsing::ambig_ty(input, allow_plus, allow_group_generic)<span class="question-mark">?</span>;
-                check_cast(input)<span class="question-mark">?</span>;
-                lhs = Expr::Type(ExprType {
-                    attrs: Vec::new(),
-                    expr: Box::new(lhs),
-                    colon_token,
-                    ty: Box::new(ty),
-                });
             } <span class="kw">else </span>{
                 <span class="kw">break</span>;
             }
@@ -4959,26 +4631,20 @@
     }
 
     <span class="attr">#[cfg(not(feature = <span class="string">&quot;full&quot;</span>))]
-    </span><span class="kw">fn </span>parse_expr(
-        input: ParseStream,
-        <span class="kw-2">mut </span>lhs: Expr,
-        allow_struct: AllowStruct,
-        base: Precedence,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
+    </span><span class="kw">fn </span>parse_expr(input: ParseStream, <span class="kw-2">mut </span>lhs: Expr, base: Precedence) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
         <span class="kw">loop </span>{
-            <span class="kw">if </span>input
-                .fork()
-                .parse::&lt;BinOp&gt;()
-                .ok()
-                .map_or(<span class="bool-val">false</span>, |op| Precedence::of(<span class="kw-2">&amp;</span>op) &gt;= base)
-            {
-                <span class="kw">let </span>op: BinOp = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>ahead = input.fork();
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(op) = <span class="kw">match </span>ahead.parse::&lt;BinOp&gt;() {
+                <span class="prelude-val">Ok</span>(op) <span class="kw">if </span>Precedence::of(<span class="kw-2">&amp;</span>op) &gt;= base =&gt; <span class="prelude-val">Some</span>(op),
+                <span class="kw">_ </span>=&gt; <span class="prelude-val">None</span>,
+            } {
+                input.advance_to(<span class="kw-2">&amp;</span>ahead);
                 <span class="kw">let </span>precedence = Precedence::of(<span class="kw-2">&amp;</span>op);
-                <span class="kw">let </span><span class="kw-2">mut </span>rhs = unary_expr(input, allow_struct)<span class="question-mark">?</span>;
+                <span class="kw">let </span><span class="kw-2">mut </span>rhs = unary_expr(input)<span class="question-mark">?</span>;
                 <span class="kw">loop </span>{
                     <span class="kw">let </span>next = peek_precedence(input);
                     <span class="kw">if </span>next &gt; precedence || next == precedence &amp;&amp; precedence == Precedence::Assign {
-                        rhs = parse_expr(input, rhs, allow_struct, next)<span class="question-mark">?</span>;
+                        rhs = parse_expr(input, rhs, next)<span class="question-mark">?</span>;
                     } <span class="kw">else </span>{
                         <span class="kw">break</span>;
                     }
@@ -5015,9 +4681,7 @@
             Precedence::Assign
         } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[..]) {
             Precedence::Range
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">as</span>])
-            || <span class="macro">cfg!</span>(feature = <span class="string">&quot;full&quot;</span>) &amp;&amp; input.peek(<span class="macro">Token!</span>[:]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[::])
-        {
+        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">as</span>]) {
             Precedence::Cast
         } <span class="kw">else </span>{
             Precedence::Any
@@ -5025,9 +4689,22 @@
     }
 
     <span class="comment">// Parse an arbitrary expression.
-    </span><span class="kw">fn </span>ambiguous_expr(input: ParseStream, allow_struct: AllowStruct) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
-        <span class="kw">let </span>lhs = unary_expr(input, allow_struct)<span class="question-mark">?</span>;
-        parse_expr(input, lhs, allow_struct, Precedence::Any)
+    </span><span class="kw">fn </span>ambiguous_expr(
+        input: ParseStream,
+        <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)] </span>allow_struct: AllowStruct,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
+        <span class="kw">let </span>lhs = unary_expr(
+            input,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+            </span>allow_struct,
+        )<span class="question-mark">?</span>;
+        parse_expr(
+            input,
+            lhs,
+            <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+            </span>allow_struct,
+            Precedence::Any,
+        )
     }
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
@@ -5064,30 +4741,28 @@
         <span class="kw">let </span>attrs = input.call(expr_attrs)<span class="question-mark">?</span>;
         <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw-2">&amp;</span>]) {
             <span class="kw">let </span>and_token: <span class="macro">Token!</span>[<span class="kw-2">&amp;</span>] = input.parse()<span class="question-mark">?</span>;
-            <span class="kw">let </span>raw: <span class="prelude-ty">Option</span>&lt;raw&gt; =
-                <span class="kw">if </span>input.peek(raw) &amp;&amp; (input.peek2(<span class="macro">Token!</span>[<span class="kw-2">mut</span>]) || input.peek2(<span class="macro">Token!</span>[<span class="kw">const</span>])) {
-                    <span class="prelude-val">Some</span>(input.parse()<span class="question-mark">?</span>)
-                } <span class="kw">else </span>{
-                    <span class="prelude-val">None
-                </span>};
+            <span class="kw">let </span>raw: <span class="prelude-ty">Option</span>&lt;kw::raw&gt; = <span class="kw">if </span>input.peek(kw::raw)
+                &amp;&amp; (input.peek2(<span class="macro">Token!</span>[<span class="kw-2">mut</span>]) || input.peek2(<span class="macro">Token!</span>[<span class="kw">const</span>]))
+            {
+                <span class="prelude-val">Some</span>(input.parse()<span class="question-mark">?</span>)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">None
+            </span>};
             <span class="kw">let </span>mutability: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw-2">mut</span>]&gt; = input.parse()<span class="question-mark">?</span>;
             <span class="kw">if </span>raw.is_some() &amp;&amp; mutability.is_none() {
                 input.parse::&lt;<span class="macro">Token!</span>[<span class="kw">const</span>]&gt;()<span class="question-mark">?</span>;
             }
             <span class="kw">let </span>expr = Box::new(unary_expr(input, allow_struct)<span class="question-mark">?</span>);
             <span class="kw">if </span>raw.is_some() {
-                <span class="prelude-val">Ok</span>(Expr::Verbatim(verbatim::between(begin, input)))
+                <span class="prelude-val">Ok</span>(Expr::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
             } <span class="kw">else </span>{
                 <span class="prelude-val">Ok</span>(Expr::Reference(ExprReference {
                     attrs,
                     and_token,
-                    raw: Reserved::default(),
                     mutability,
                     expr,
                 }))
             }
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">box</span>]) {
-            expr_box(input, attrs, allow_struct).map(Expr::Box)
         } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw-2">*</span>]) || input.peek(<span class="macro">Token!</span>[!]) || input.peek(<span class="macro">Token!</span>[-]) {
             expr_unary(input, attrs, allow_struct).map(Expr::Unary)
         } <span class="kw">else </span>{
@@ -5096,15 +4771,15 @@
     }
 
     <span class="attr">#[cfg(not(feature = <span class="string">&quot;full&quot;</span>))]
-    </span><span class="kw">fn </span>unary_expr(input: ParseStream, allow_struct: AllowStruct) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
+    </span><span class="kw">fn </span>unary_expr(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
         <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw-2">*</span>]) || input.peek(<span class="macro">Token!</span>[!]) || input.peek(<span class="macro">Token!</span>[-]) {
             <span class="prelude-val">Ok</span>(Expr::Unary(ExprUnary {
                 attrs: Vec::new(),
                 op: input.parse()<span class="question-mark">?</span>,
-                expr: Box::new(unary_expr(input, allow_struct)<span class="question-mark">?</span>),
+                expr: Box::new(unary_expr(input)<span class="question-mark">?</span>),
             }))
         } <span class="kw">else </span>{
-            trailer_expr(input, allow_struct)
+            trailer_expr(input)
         }
     }
 
@@ -5125,7 +4800,7 @@
         <span class="kw">let </span><span class="kw-2">mut </span>e = trailer_helper(input, atom)<span class="question-mark">?</span>;
 
         <span class="kw">if let </span>Expr::Verbatim(tokens) = <span class="kw-2">&amp;mut </span>e {
-            <span class="kw-2">*</span>tokens = verbatim::between(begin, input);
+            <span class="kw-2">*</span>tokens = verbatim::between(<span class="kw-2">&amp;</span>begin, input);
         } <span class="kw">else </span>{
             <span class="kw">let </span>inner_attrs = e.replace_attrs(Vec::new());
             attrs.extend(inner_attrs);
@@ -5144,7 +4819,7 @@
                     attrs: Vec::new(),
                     func: Box::new(e),
                     paren_token: <span class="macro">parenthesized!</span>(content <span class="kw">in </span>input),
-                    args: content.parse_terminated(Expr::parse)<span class="question-mark">?</span>,
+                    args: content.parse_terminated(Expr::parse, <span class="macro">Token!</span>[,])<span class="question-mark">?</span>,
                 });
             } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[.])
                 &amp;&amp; !input.peek(<span class="macro">Token!</span>[..])
@@ -5155,7 +4830,14 @@
             {
                 <span class="kw">let </span><span class="kw-2">mut </span>dot_token: <span class="macro">Token!</span>[.] = input.parse()<span class="question-mark">?</span>;
 
-                <span class="kw">let </span>await_token: <span class="prelude-ty">Option</span>&lt;token::Await&gt; = input.parse()<span class="question-mark">?</span>;
+                <span class="kw">let </span>float_token: <span class="prelude-ty">Option</span>&lt;LitFloat&gt; = input.parse()<span class="question-mark">?</span>;
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(float_token) = float_token {
+                    <span class="kw">if </span>multi_index(<span class="kw-2">&amp;mut </span>e, <span class="kw-2">&amp;mut </span>dot_token, float_token)<span class="question-mark">? </span>{
+                        <span class="kw">continue</span>;
+                    }
+                }
+
+                <span class="kw">let </span>await_token: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">await</span>]&gt; = input.parse()<span class="question-mark">?</span>;
                 <span class="kw">if let </span><span class="prelude-val">Some</span>(await_token) = await_token {
                     e = Expr::Await(ExprAwait {
                         attrs: Vec::new(),
@@ -5166,16 +4848,9 @@
                     <span class="kw">continue</span>;
                 }
 
-                <span class="kw">let </span>float_token: <span class="prelude-ty">Option</span>&lt;LitFloat&gt; = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(float_token) = float_token {
-                    <span class="kw">if </span>multi_index(<span class="kw-2">&amp;mut </span>e, <span class="kw-2">&amp;mut </span>dot_token, float_token)<span class="question-mark">? </span>{
-                        <span class="kw">continue</span>;
-                    }
-                }
-
                 <span class="kw">let </span>member: Member = input.parse()<span class="question-mark">?</span>;
                 <span class="kw">let </span>turbofish = <span class="kw">if </span>member.is_named() &amp;&amp; input.peek(<span class="macro">Token!</span>[::]) {
-                    <span class="prelude-val">Some</span>(input.parse::&lt;MethodTurbofish&gt;()<span class="question-mark">?</span>)
+                    <span class="prelude-val">Some</span>(AngleBracketedGenericArguments::parse_turbofish(input)<span class="question-mark">?</span>)
                 } <span class="kw">else </span>{
                     <span class="prelude-val">None
                 </span>};
@@ -5190,7 +4865,7 @@
                             method,
                             turbofish,
                             paren_token: <span class="macro">parenthesized!</span>(content <span class="kw">in </span>input),
-                            args: content.parse_terminated(Expr::parse)<span class="question-mark">?</span>,
+                            args: content.parse_terminated(Expr::parse, <span class="macro">Token!</span>[,])<span class="question-mark">?</span>,
                         });
                         <span class="kw">continue</span>;
                     }
@@ -5224,8 +4899,8 @@
     }
 
     <span class="attr">#[cfg(not(feature = <span class="string">&quot;full&quot;</span>))]
-    </span><span class="kw">fn </span>trailer_expr(input: ParseStream, allow_struct: AllowStruct) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>e = atom_expr(input, allow_struct)<span class="question-mark">?</span>;
+    </span><span class="kw">fn </span>trailer_expr(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
+        <span class="kw">let </span><span class="kw-2">mut </span>e = atom_expr(input)<span class="question-mark">?</span>;
 
         <span class="kw">loop </span>{
             <span class="kw">if </span>input.peek(token::Paren) {
@@ -5234,9 +4909,11 @@
                     attrs: Vec::new(),
                     func: Box::new(e),
                     paren_token: <span class="macro">parenthesized!</span>(content <span class="kw">in </span>input),
-                    args: content.parse_terminated(Expr::parse)<span class="question-mark">?</span>,
+                    args: content.parse_terminated(Expr::parse, <span class="macro">Token!</span>[,])<span class="question-mark">?</span>,
                 });
-            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[.]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[..]) &amp;&amp; !input.peek2(token::Await)
+            } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[.])
+                &amp;&amp; !input.peek(<span class="macro">Token!</span>[..])
+                &amp;&amp; !input.peek2(<span class="macro">Token!</span>[<span class="kw">await</span>])
             {
                 <span class="kw">let </span><span class="kw-2">mut </span>dot_token: <span class="macro">Token!</span>[.] = input.parse()<span class="question-mark">?</span>;
                 <span class="kw">let </span>float_token: <span class="prelude-ty">Option</span>&lt;LitFloat&gt; = input.parse()<span class="question-mark">?</span>;
@@ -5286,20 +4963,17 @@
         } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">try</span>]) &amp;&amp; input.peek2(token::Brace) {
             input.parse().map(Expr::TryBlock)
         } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[|])
-            || input.peek(<span class="macro">Token!</span>[<span class="kw">async</span>]) &amp;&amp; (input.peek2(<span class="macro">Token!</span>[|]) || input.peek2(<span class="macro">Token!</span>[<span class="kw">move</span>]))
-            || input.peek(<span class="macro">Token!</span>[<span class="kw">static</span>])
             || input.peek(<span class="macro">Token!</span>[<span class="kw">move</span>])
+            || input.peek(<span class="macro">Token!</span>[<span class="kw">for</span>])
+                &amp;&amp; input.peek2(<span class="macro">Token!</span>[&lt;])
+                &amp;&amp; (input.peek3(Lifetime) || input.peek3(<span class="macro">Token!</span>[&gt;]))
+            || input.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) &amp;&amp; !input.peek2(token::Brace)
+            || input.peek(<span class="macro">Token!</span>[<span class="kw">static</span>])
+            || input.peek(<span class="macro">Token!</span>[<span class="kw">async</span>]) &amp;&amp; (input.peek2(<span class="macro">Token!</span>[|]) || input.peek2(<span class="macro">Token!</span>[<span class="kw">move</span>]))
         {
             expr_closure(input, allow_struct).map(Expr::Closure)
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">for</span>])
-            &amp;&amp; input.peek2(<span class="macro">Token!</span>[&lt;])
-            &amp;&amp; (input.peek3(Lifetime) || input.peek3(<span class="macro">Token!</span>[&gt;]))
-        {
-            <span class="kw">let </span>begin = input.fork();
-            input.parse::&lt;BoundLifetimes&gt;()<span class="question-mark">?</span>;
-            expr_closure(input, allow_struct)<span class="question-mark">?</span>;
-            <span class="kw">let </span>verbatim = verbatim::between(begin, input);
-            <span class="prelude-val">Ok</span>(Expr::Verbatim(verbatim))
+        } <span class="kw">else if </span>input.peek(kw::builtin) &amp;&amp; input.peek2(<span class="macro">Token!</span>[#]) {
+            expr_builtin(input)
         } <span class="kw">else if </span>input.peek(Ident)
             || input.peek(<span class="macro">Token!</span>[::])
             || input.peek(<span class="macro">Token!</span>[&lt;])
@@ -5307,6 +4981,7 @@
             || input.peek(<span class="macro">Token!</span>[<span class="self">Self</span>])
             || input.peek(<span class="macro">Token!</span>[<span class="kw">super</span>])
             || input.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>])
+            || input.peek(<span class="macro">Token!</span>[<span class="kw">try</span>]) &amp;&amp; (input.peek2(<span class="macro">Token!</span>[!]) || input.peek2(<span class="macro">Token!</span>[::]))
         {
             path_or_macro_or_struct(input, allow_struct)
         } <span class="kw">else if </span>input.peek(token::Paren) {
@@ -5336,15 +5011,13 @@
         } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">unsafe</span>]) {
             input.parse().map(Expr::Unsafe)
         } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) {
-            input.call(expr_const).map(Expr::Verbatim)
+            input.parse().map(Expr::Const)
         } <span class="kw">else if </span>input.peek(token::Brace) {
             input.parse().map(Expr::Block)
         } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[..]) {
             expr_range(input, allow_struct).map(Expr::Range)
         } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">_</span>]) {
-            <span class="prelude-val">Ok</span>(Expr::Verbatim(TokenStream::from(
-                input.parse::&lt;TokenTree&gt;()<span class="question-mark">?</span>,
-            )))
+            input.parse().map(Expr::Infer)
         } <span class="kw">else if </span>input.peek(Lifetime) {
             <span class="kw">let </span>the_label: Label = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span><span class="kw-2">mut </span>expr = <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">while</span>]) {
@@ -5367,13 +5040,19 @@
             }
             <span class="prelude-val">Ok</span>(expr)
         } <span class="kw">else </span>{
-            <span class="prelude-val">Err</span>(input.error(<span class="string">&quot;expected expression&quot;</span>))
+            <span class="prelude-val">Err</span>(input.error(<span class="string">&quot;expected an expression&quot;</span>))
         }
     }
 
     <span class="attr">#[cfg(not(feature = <span class="string">&quot;full&quot;</span>))]
-    </span><span class="kw">fn </span>atom_expr(input: ParseStream, _allow_struct: AllowStruct) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
-        <span class="kw">if </span>input.peek(Lit) {
+    </span><span class="kw">fn </span>atom_expr(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
+        <span class="kw">if </span>input.peek(token::Group)
+            &amp;&amp; !input.peek2(<span class="macro">Token!</span>[::])
+            &amp;&amp; !input.peek2(<span class="macro">Token!</span>[!])
+            &amp;&amp; !input.peek2(token::Brace)
+        {
+            input.call(expr_group).map(Expr::Group)
+        } <span class="kw">else if </span>input.peek(Lit) {
             input.parse().map(Expr::Lit)
         } <span class="kw">else if </span>input.peek(token::Paren) {
             input.call(expr_paren).map(Expr::Paren)
@@ -5385,57 +5064,76 @@
             || input.peek(<span class="macro">Token!</span>[<span class="kw">super</span>])
             || input.peek(<span class="macro">Token!</span>[<span class="kw">crate</span>])
         {
-            input.parse().map(Expr::Path)
+            path_or_macro_or_struct(input)
+        } <span class="kw">else if </span>input.is_empty() {
+            <span class="prelude-val">Err</span>(input.error(<span class="string">&quot;expected an expression&quot;</span>))
         } <span class="kw">else </span>{
+            <span class="kw">if </span>input.peek(token::Brace) {
+                <span class="kw">let </span>scan = input.fork();
+                <span class="kw">let </span>content;
+                <span class="macro">braced!</span>(content <span class="kw">in </span>scan);
+                <span class="kw">if </span>content.parse::&lt;Expr&gt;().is_ok() &amp;&amp; content.is_empty() {
+                    <span class="kw">let </span>expr_block = verbatim::between(input, <span class="kw-2">&amp;</span>scan);
+                    input.advance_to(<span class="kw-2">&amp;</span>scan);
+                    <span class="kw">return </span><span class="prelude-val">Ok</span>(Expr::Verbatim(expr_block));
+                }
+            }
             <span class="prelude-val">Err</span>(input.error(<span class="string">&quot;unsupported expression; enable syn&#39;s features=[\&quot;full\&quot;]&quot;</span>))
         }
     }
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    </span><span class="kw">fn </span>path_or_macro_or_struct(input: ParseStream, allow_struct: AllowStruct) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
+    </span><span class="kw">fn </span>expr_builtin(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
         <span class="kw">let </span>begin = input.fork();
-        <span class="kw">let </span>expr: ExprPath = input.parse()<span class="question-mark">?</span>;
 
-        <span class="kw">if </span>expr.qself.is_none() &amp;&amp; input.peek(<span class="macro">Token!</span>[!]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[!=]) {
-            <span class="kw">let </span><span class="kw-2">mut </span>contains_arguments = <span class="bool-val">false</span>;
-            <span class="kw">for </span>segment <span class="kw">in </span><span class="kw-2">&amp;</span>expr.path.segments {
-                <span class="kw">match </span>segment.arguments {
-                    PathArguments::None =&gt; {}
-                    PathArguments::AngleBracketed(<span class="kw">_</span>) | PathArguments::Parenthesized(<span class="kw">_</span>) =&gt; {
-                        contains_arguments = <span class="bool-val">true</span>;
-                    }
-                }
-            }
+        input.parse::&lt;kw::builtin&gt;()<span class="question-mark">?</span>;
+        input.parse::&lt;<span class="macro">Token!</span>[#]&gt;()<span class="question-mark">?</span>;
+        input.parse::&lt;Ident&gt;()<span class="question-mark">?</span>;
 
-            <span class="kw">if </span>!contains_arguments {
-                <span class="kw">let </span>bang_token: <span class="macro">Token!</span>[!] = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">let </span>(delimiter, tokens) = mac::parse_delimiter(input)<span class="question-mark">?</span>;
-                <span class="kw">return </span><span class="prelude-val">Ok</span>(Expr::Macro(ExprMacro {
-                    attrs: Vec::new(),
-                    mac: Macro {
-                        path: expr.path,
-                        bang_token,
-                        delimiter,
-                        tokens,
-                    },
-                }));
-            }
-        }
+        <span class="kw">let </span>args;
+        <span class="macro">parenthesized!</span>(args <span class="kw">in </span>input);
+        args.parse::&lt;TokenStream&gt;()<span class="question-mark">?</span>;
 
-        <span class="kw">if </span>allow_struct.<span class="number">0 </span>&amp;&amp; input.peek(token::Brace) {
-            <span class="kw">let </span>expr_struct = expr_struct_helper(input, expr.path)<span class="question-mark">?</span>;
-            <span class="kw">if </span>expr.qself.is_some() {
-                <span class="prelude-val">Ok</span>(Expr::Verbatim(verbatim::between(begin, input)))
-            } <span class="kw">else </span>{
-                <span class="prelude-val">Ok</span>(Expr::Struct(expr_struct))
-            }
-        } <span class="kw">else </span>{
-            <span class="prelude-val">Ok</span>(Expr::Path(expr))
-        }
+        <span class="prelude-val">Ok</span>(Expr::Verbatim(verbatim::between(<span class="kw-2">&amp;</span>begin, input)))
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
+    <span class="kw">fn </span>path_or_macro_or_struct(
+        input: ParseStream,
+        <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)] </span>allow_struct: AllowStruct,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;Expr&gt; {
+        <span class="kw">let </span>(qself, path) = path::parsing::qpath(input, <span class="bool-val">true</span>)<span class="question-mark">?</span>;
+
+        <span class="kw">if </span>qself.is_none()
+            &amp;&amp; input.peek(<span class="macro">Token!</span>[!])
+            &amp;&amp; !input.peek(<span class="macro">Token!</span>[!=])
+            &amp;&amp; path.is_mod_style()
+        {
+            <span class="kw">let </span>bang_token: <span class="macro">Token!</span>[!] = input.parse()<span class="question-mark">?</span>;
+            <span class="kw">let </span>(delimiter, tokens) = mac::parse_delimiter(input)<span class="question-mark">?</span>;
+            <span class="kw">return </span><span class="prelude-val">Ok</span>(Expr::Macro(ExprMacro {
+                attrs: Vec::new(),
+                mac: Macro {
+                    path,
+                    bang_token,
+                    delimiter,
+                    tokens,
+                },
+            }));
+        }
+
+        <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+        </span><span class="kw">if </span>allow_struct.<span class="number">0 </span>&amp;&amp; input.peek(token::Brace) {
+            <span class="kw">return </span>expr_struct_helper(input, qself, path).map(Expr::Struct);
+        }
+
+        <span class="prelude-val">Ok</span>(Expr::Path(ExprPath {
+            attrs: Vec::new(),
+            qself,
+            path,
+        }))
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>ExprMacro {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
             <span class="prelude-val">Ok</span>(ExprMacro {
@@ -5589,8 +5287,8 @@
             Expr::TryBlock(input.parse()<span class="question-mark">?</span>)
         } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">unsafe</span>]) {
             Expr::Unsafe(input.parse()<span class="question-mark">?</span>)
-        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) {
-            Expr::Verbatim(input.call(expr_const)<span class="question-mark">?</span>)
+        } <span class="kw">else if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">const</span>]) &amp;&amp; input.peek2(token::Brace) {
+            Expr::Const(input.parse()<span class="question-mark">?</span>)
         } <span class="kw">else if </span>input.peek(token::Brace) {
             Expr::Block(input.parse()<span class="question-mark">?</span>)
         } <span class="kw">else </span>{
@@ -5628,8 +5326,7 @@
         }
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    </span><span class="kw">fn </span>expr_group(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;ExprGroup&gt; {
+    <span class="kw">fn </span>expr_group(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;ExprGroup&gt; {
         <span class="kw">let </span>group = <span class="kw">crate</span>::group::parse_group(input)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(ExprGroup {
             attrs: Vec::new(),
@@ -5657,58 +5354,12 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
-    </span><span class="kw">impl </span>Parse <span class="kw">for </span>GenericMethodArgument {
-        <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
-            <span class="kw">if </span>input.peek(Lit) {
-                <span class="kw">let </span>lit = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">return </span><span class="prelude-val">Ok</span>(GenericMethodArgument::Const(Expr::Lit(lit)));
-            }
-
-            <span class="kw">if </span>input.peek(token::Brace) {
-                <span class="kw">let </span>block: ExprBlock = input.parse()<span class="question-mark">?</span>;
-                <span class="kw">return </span><span class="prelude-val">Ok</span>(GenericMethodArgument::Const(Expr::Block(block)));
-            }
-
-            input.parse().map(GenericMethodArgument::Type)
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
-    </span><span class="kw">impl </span>Parse <span class="kw">for </span>MethodTurbofish {
-        <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
-            <span class="prelude-val">Ok</span>(MethodTurbofish {
-                colon2_token: input.parse()<span class="question-mark">?</span>,
-                lt_token: input.parse()<span class="question-mark">?</span>,
-                args: {
-                    <span class="kw">let </span><span class="kw-2">mut </span>args = Punctuated::new();
-                    <span class="kw">loop </span>{
-                        <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[&gt;]) {
-                            <span class="kw">break</span>;
-                        }
-                        <span class="kw">let </span>value: GenericMethodArgument = input.parse()<span class="question-mark">?</span>;
-                        args.push_value(value);
-                        <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[&gt;]) {
-                            <span class="kw">break</span>;
-                        }
-                        <span class="kw">let </span>punct = input.parse()<span class="question-mark">?</span>;
-                        args.push_punct(punct);
-                    }
-                    args
-                },
-                gt_token: input.parse()<span class="question-mark">?</span>,
-            })
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>ExprLet {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
             <span class="prelude-val">Ok</span>(ExprLet {
                 attrs: Vec::new(),
                 let_token: input.parse()<span class="question-mark">?</span>,
-                pat: pat::parsing::multi_pat_with_leading_vert(input)<span class="question-mark">?</span>,
+                pat: Box::new(Pat::parse_multi_with_leading_vert(input)<span class="question-mark">?</span>),
                 eq_token: input.parse()<span class="question-mark">?</span>,
                 expr: Box::new({
                     <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">false</span>);
@@ -5762,13 +5413,24 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
+    </span><span class="kw">impl </span>Parse <span class="kw">for </span>ExprInfer {
+        <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+            <span class="prelude-val">Ok</span>(ExprInfer {
+                attrs: input.call(Attribute::parse_outer)<span class="question-mark">?</span>,
+                underscore_token: input.parse()<span class="question-mark">?</span>,
+            })
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>ExprForLoop {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
             <span class="kw">let </span><span class="kw-2">mut </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
             <span class="kw">let </span>label: <span class="prelude-ty">Option</span>&lt;Label&gt; = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span>for_token: <span class="macro">Token!</span>[<span class="kw">for</span>] = input.parse()<span class="question-mark">?</span>;
 
-            <span class="kw">let </span>pat = pat::parsing::multi_pat_with_leading_vert(input)<span class="question-mark">?</span>;
+            <span class="kw">let </span>pat = Pat::parse_multi_with_leading_vert(input)<span class="question-mark">?</span>;
 
             <span class="kw">let </span>in_token: <span class="macro">Token!</span>[<span class="kw">in</span>] = input.parse()<span class="question-mark">?</span>;
             <span class="kw">let </span>expr: Expr = input.call(Expr::parse_without_eager_brace)<span class="question-mark">?</span>;
@@ -5782,7 +5444,7 @@
                 attrs,
                 label,
                 for_token,
-                pat,
+                pat: Box::new(pat),
                 in_token,
                 expr: Box::new(expr),
                 body: Block { brace_token, stmts },
@@ -5866,7 +5528,6 @@
 
     <span class="macro">impl_by_parsing_expr! </span>{
         ExprAssign, Assign, <span class="string">&quot;expected assignment expression&quot;</span>,
-        ExprAssignOp, AssignOp, <span class="string">&quot;expected compound assignment expression&quot;</span>,
         ExprAwait, Await, <span class="string">&quot;expected await expression&quot;</span>,
         ExprBinary, Binary, <span class="string">&quot;expected binary operation&quot;</span>,
         ExprCall, Call, <span class="string">&quot;expected function call expression&quot;</span>,
@@ -5877,30 +5538,6 @@
         ExprRange, Range, <span class="string">&quot;expected range expression&quot;</span>,
         ExprTry, Try, <span class="string">&quot;expected try expression&quot;</span>,
         ExprTuple, Tuple, <span class="string">&quot;expected tuple expression&quot;</span>,
-        ExprType, Type, <span class="string">&quot;expected type ascription expression&quot;</span>,
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
-    </span><span class="kw">impl </span>Parse <span class="kw">for </span>ExprBox {
-        <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
-            <span class="kw">let </span>attrs = Vec::new();
-            <span class="kw">let </span>allow_struct = AllowStruct(<span class="bool-val">true</span>);
-            expr_box(input, attrs, allow_struct)
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    </span><span class="kw">fn </span>expr_box(
-        input: ParseStream,
-        attrs: Vec&lt;Attribute&gt;,
-        allow_struct: AllowStruct,
-    ) -&gt; <span class="prelude-ty">Result</span>&lt;ExprBox&gt; {
-        <span class="prelude-val">Ok</span>(ExprBox {
-            attrs,
-            box_token: input.parse()<span class="question-mark">?</span>,
-            expr: Box::new(unary_expr(input, allow_struct)<span class="question-mark">?</span>),
-        })
     }
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
@@ -5943,7 +5580,6 @@
             <span class="prelude-val">Ok</span>(ExprReference {
                 attrs: Vec::new(),
                 and_token: input.parse()<span class="question-mark">?</span>,
-                raw: Reserved::default(),
                 mutability: input.parse()<span class="question-mark">?</span>,
                 expr: Box::new(unary_expr(input, allow_struct)<span class="question-mark">?</span>),
             })
@@ -6000,6 +5636,8 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     </span><span class="kw">fn </span>expr_closure(input: ParseStream, allow_struct: AllowStruct) -&gt; <span class="prelude-ty">Result</span>&lt;ExprClosure&gt; {
+        <span class="kw">let </span>lifetimes: <span class="prelude-ty">Option</span>&lt;BoundLifetimes&gt; = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>constness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">const</span>]&gt; = input.parse()<span class="question-mark">?</span>;
         <span class="kw">let </span>movability: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">static</span>]&gt; = input.parse()<span class="question-mark">?</span>;
         <span class="kw">let </span>asyncness: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">async</span>]&gt; = input.parse()<span class="question-mark">?</span>;
         <span class="kw">let </span>capture: <span class="prelude-ty">Option</span>&lt;<span class="macro">Token!</span>[<span class="kw">move</span>]&gt; = input.parse()<span class="question-mark">?</span>;
@@ -6039,6 +5677,8 @@
 
         <span class="prelude-val">Ok</span>(ExprClosure {
             attrs: Vec::new(),
+            lifetimes,
+            constness,
             movability,
             asyncness,
             capture,
@@ -6066,7 +5706,7 @@
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     </span><span class="kw">fn </span>closure_arg(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;Pat&gt; {
         <span class="kw">let </span>attrs = input.call(Attribute::parse_outer)<span class="question-mark">?</span>;
-        <span class="kw">let </span><span class="kw-2">mut </span>pat: Pat = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>pat = Pat::parse_single(input)<span class="question-mark">?</span>;
 
         <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[:]) {
             <span class="prelude-val">Ok</span>(Pat::Type(PatType {
@@ -6077,11 +5717,12 @@
             }))
         } <span class="kw">else </span>{
             <span class="kw">match </span><span class="kw-2">&amp;mut </span>pat {
-                Pat::Box(pat) =&gt; pat.attrs = attrs,
+                Pat::Const(pat) =&gt; pat.attrs = attrs,
                 Pat::Ident(pat) =&gt; pat.attrs = attrs,
                 Pat::Lit(pat) =&gt; pat.attrs = attrs,
                 Pat::Macro(pat) =&gt; pat.attrs = attrs,
                 Pat::Or(pat) =&gt; pat.attrs = attrs,
+                Pat::Paren(pat) =&gt; pat.attrs = attrs,
                 Pat::Path(pat) =&gt; pat.attrs = attrs,
                 Pat::Range(pat) =&gt; pat.attrs = attrs,
                 Pat::Reference(pat) =&gt; pat.attrs = attrs,
@@ -6093,9 +5734,6 @@
                 Pat::Type(<span class="kw">_</span>) =&gt; <span class="macro">unreachable!</span>(),
                 Pat::Verbatim(<span class="kw">_</span>) =&gt; {}
                 Pat::Wild(pat) =&gt; pat.attrs = attrs,
-
-                <span class="attr">#[cfg(syn_no_non_exhaustive)]
-                </span><span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(),
             }
             <span class="prelude-val">Ok</span>(pat)
         }
@@ -6121,6 +5759,25 @@
                 while_token,
                 cond: Box::new(cond),
                 body: Block { brace_token, stmts },
+            })
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
+    </span><span class="kw">impl </span>Parse <span class="kw">for </span>ExprConst {
+        <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+            <span class="kw">let </span>const_token: <span class="macro">Token!</span>[<span class="kw">const</span>] = input.parse()<span class="question-mark">?</span>;
+
+            <span class="kw">let </span>content;
+            <span class="kw">let </span>brace_token = <span class="macro">braced!</span>(content <span class="kw">in </span>input);
+            <span class="kw">let </span>inner_attrs = content.call(Attribute::parse_inner)<span class="question-mark">?</span>;
+            <span class="kw">let </span>stmts = content.call(Block::parse_within)<span class="question-mark">?</span>;
+
+            <span class="prelude-val">Ok</span>(ExprConst {
+                attrs: inner_attrs,
+                const_token,
+                block: Block { brace_token, stmts },
             })
         }
     }
@@ -6236,13 +5893,17 @@
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>ExprStruct {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
-            <span class="kw">let </span>path: Path = input.parse()<span class="question-mark">?</span>;
-            expr_struct_helper(input, path)
+            <span class="kw">let </span>(qself, path) = path::parsing::qpath(input, <span class="bool-val">true</span>)<span class="question-mark">?</span>;
+            expr_struct_helper(input, qself, path)
         }
     }
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    </span><span class="kw">fn </span>expr_struct_helper(input: ParseStream, path: Path) -&gt; <span class="prelude-ty">Result</span>&lt;ExprStruct&gt; {
+    </span><span class="kw">fn </span>expr_struct_helper(
+        input: ParseStream,
+        qself: <span class="prelude-ty">Option</span>&lt;QSelf&gt;,
+        path: Path,
+    ) -&gt; <span class="prelude-ty">Result</span>&lt;ExprStruct&gt; {
         <span class="kw">let </span>content;
         <span class="kw">let </span>brace_token = <span class="macro">braced!</span>(content <span class="kw">in </span>input);
 
@@ -6251,8 +5912,9 @@
             <span class="kw">if </span>content.peek(<span class="macro">Token!</span>[..]) {
                 <span class="kw">return </span><span class="prelude-val">Ok</span>(ExprStruct {
                     attrs: Vec::new(),
-                    brace_token,
+                    qself,
                     path,
+                    brace_token,
                     fields,
                     dot2_token: <span class="prelude-val">Some</span>(content.parse()<span class="question-mark">?</span>),
                     rest: <span class="kw">if </span>content.is_empty() {
@@ -6273,8 +5935,9 @@
 
         <span class="prelude-val">Ok</span>(ExprStruct {
             attrs: Vec::new(),
-            brace_token,
+            qself,
             path,
+            brace_token,
             fields,
             dot2_token: <span class="prelude-val">None</span>,
             rest: <span class="prelude-val">None</span>,
@@ -6301,19 +5964,6 @@
     }
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>expr_const(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;TokenStream&gt; {
-        <span class="kw">let </span>begin = input.fork();
-        input.parse::&lt;<span class="macro">Token!</span>[<span class="kw">const</span>]&gt;()<span class="question-mark">?</span>;
-
-        <span class="kw">let </span>content;
-        <span class="macro">braced!</span>(content <span class="kw">in </span>input);
-        content.call(Attribute::parse_inner)<span class="question-mark">?</span>;
-        content.call(Block::parse_within)<span class="question-mark">?</span>;
-
-        <span class="prelude-val">Ok</span>(verbatim::between(begin, input))
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>ExprBlock {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
@@ -6335,23 +5985,24 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     </span><span class="kw">fn </span>expr_range(input: ParseStream, allow_struct: AllowStruct) -&gt; <span class="prelude-ty">Result</span>&lt;ExprRange&gt; {
+        <span class="kw">let </span>limits: RangeLimits = input.parse()<span class="question-mark">?</span>;
+        <span class="kw">let </span>end = <span class="kw">if </span><span class="macro">matches!</span>(limits, RangeLimits::HalfOpen(<span class="kw">_</span>))
+            &amp;&amp; (input.is_empty()
+                || input.peek(<span class="macro">Token!</span>[,])
+                || input.peek(<span class="macro">Token!</span>[;])
+                || input.peek(<span class="macro">Token!</span>[.]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[..])
+                || !allow_struct.<span class="number">0 </span>&amp;&amp; input.peek(token::Brace))
+        {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="kw">let </span>to = ambiguous_expr(input, allow_struct)<span class="question-mark">?</span>;
+            <span class="prelude-val">Some</span>(Box::new(to))
+        };
         <span class="prelude-val">Ok</span>(ExprRange {
             attrs: Vec::new(),
-            from: <span class="prelude-val">None</span>,
-            limits: input.parse()<span class="question-mark">?</span>,
-            to: {
-                <span class="kw">if </span>input.is_empty()
-                    || input.peek(<span class="macro">Token!</span>[,])
-                    || input.peek(<span class="macro">Token!</span>[;])
-                    || input.peek(<span class="macro">Token!</span>[.]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[..])
-                    || !allow_struct.<span class="number">0 </span>&amp;&amp; input.peek(token::Brace)
-                {
-                    <span class="prelude-val">None
-                </span>} <span class="kw">else </span>{
-                    <span class="kw">let </span>to = ambiguous_expr(input, allow_struct)<span class="question-mark">?</span>;
-                    <span class="prelude-val">Some</span>(Box::new(to))
-                }
-            },
+            start: <span class="prelude-val">None</span>,
+            limits,
+            end,
         })
     }
 
@@ -6360,12 +6011,32 @@
     </span><span class="kw">impl </span>Parse <span class="kw">for </span>RangeLimits {
         <span class="kw">fn </span>parse(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
             <span class="kw">let </span>lookahead = input.lookahead1();
-            <span class="kw">if </span>lookahead.peek(<span class="macro">Token!</span>[..=]) {
+            <span class="kw">let </span>dot_dot = lookahead.peek(<span class="macro">Token!</span>[..]);
+            <span class="kw">let </span>dot_dot_eq = dot_dot &amp;&amp; lookahead.peek(<span class="macro">Token!</span>[..=]);
+            <span class="kw">let </span>dot_dot_dot = dot_dot &amp;&amp; input.peek(<span class="macro">Token!</span>[...]);
+            <span class="kw">if </span>dot_dot_eq {
                 input.parse().map(RangeLimits::Closed)
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[...]) {
+            } <span class="kw">else if </span>dot_dot &amp;&amp; !dot_dot_dot {
+                input.parse().map(RangeLimits::HalfOpen)
+            } <span class="kw">else </span>{
+                <span class="prelude-val">Err</span>(lookahead.error())
+            }
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    </span><span class="kw">impl </span>RangeLimits {
+        <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>parse_obsolete(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt; {
+            <span class="kw">let </span>lookahead = input.lookahead1();
+            <span class="kw">let </span>dot_dot = lookahead.peek(<span class="macro">Token!</span>[..]);
+            <span class="kw">let </span>dot_dot_eq = dot_dot &amp;&amp; lookahead.peek(<span class="macro">Token!</span>[..=]);
+            <span class="kw">let </span>dot_dot_dot = dot_dot &amp;&amp; input.peek(<span class="macro">Token!</span>[...]);
+            <span class="kw">if </span>dot_dot_eq {
+                input.parse().map(RangeLimits::Closed)
+            } <span class="kw">else if </span>dot_dot_dot {
                 <span class="kw">let </span>dot3: <span class="macro">Token!</span>[...] = input.parse()<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(RangeLimits::Closed(<span class="macro">Token!</span>[..=](dot3.spans)))
-            } <span class="kw">else if </span>lookahead.peek(<span class="macro">Token!</span>[..]) {
+            } <span class="kw">else if </span>dot_dot {
                 input.parse().map(RangeLimits::HalfOpen)
             } <span class="kw">else </span>{
                 <span class="prelude-val">Err</span>(lookahead.error())
@@ -6407,7 +6078,7 @@
             <span class="kw">let </span>requires_comma;
             <span class="prelude-val">Ok</span>(Arm {
                 attrs: input.call(Attribute::parse_outer)<span class="question-mark">?</span>,
-                pat: pat::parsing::multi_pat_with_leading_vert(input)<span class="question-mark">?</span>,
+                pat: Pat::parse_multi_with_leading_vert(input)<span class="question-mark">?</span>,
                 guard: {
                     <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[<span class="kw">if</span>]) {
                         <span class="kw">let </span>if_token: <span class="macro">Token!</span>[<span class="kw">if</span>] = input.parse()<span class="question-mark">?</span>;
@@ -6453,32 +6124,43 @@
     }
 
     <span class="kw">fn </span>multi_index(e: <span class="kw-2">&amp;mut </span>Expr, dot_token: <span class="kw-2">&amp;mut </span><span class="macro">Token!</span>[.], float: LitFloat) -&gt; <span class="prelude-ty">Result</span>&lt;bool&gt; {
-        <span class="kw">let </span><span class="kw-2">mut </span>float_repr = float.to_string();
+        <span class="kw">let </span>float_token = float.token();
+        <span class="kw">let </span>float_span = float_token.span();
+        <span class="kw">let </span><span class="kw-2">mut </span>float_repr = float_token.to_string();
         <span class="kw">let </span>trailing_dot = float_repr.ends_with(<span class="string">&#39;.&#39;</span>);
         <span class="kw">if </span>trailing_dot {
             float_repr.truncate(float_repr.len() - <span class="number">1</span>);
         }
+
+        <span class="kw">let </span><span class="kw-2">mut </span>offset = <span class="number">0</span>;
         <span class="kw">for </span>part <span class="kw">in </span>float_repr.split(<span class="string">&#39;.&#39;</span>) {
-            <span class="kw">let </span>index = <span class="kw">crate</span>::parse_str(part).map_err(|err| Error::new(float.span(), err))<span class="question-mark">?</span>;
-            <span class="attr">#[cfg(not(syn_no_const_vec_new))]
-            </span><span class="kw">let </span>base = mem::replace(e, Expr::DUMMY);
-            <span class="attr">#[cfg(syn_no_const_vec_new)]
-            </span><span class="kw">let </span>base = mem::replace(e, Expr::Verbatim(TokenStream::new()));
+            <span class="kw">let </span><span class="kw-2">mut </span>index: Index =
+                <span class="kw">crate</span>::parse_str(part).map_err(|err| Error::new(float_span, err))<span class="question-mark">?</span>;
+            <span class="kw">let </span>part_end = offset + part.len();
+            index.span = float_token.subspan(offset..part_end).unwrap_or(float_span);
+
+            <span class="kw">let </span>base = mem::replace(e, Expr::DUMMY);
             <span class="kw-2">*</span>e = Expr::Field(ExprField {
                 attrs: Vec::new(),
                 base: Box::new(base),
                 dot_token: <span class="macro">Token!</span>[.](dot_token.span),
                 member: Member::Unnamed(index),
             });
-            <span class="kw-2">*</span>dot_token = <span class="macro">Token!</span>[.](float.span());
+
+            <span class="kw">let </span>dot_span = float_token
+                .subspan(part_end..part_end + <span class="number">1</span>)
+                .unwrap_or(float_span);
+            <span class="kw-2">*</span>dot_token = <span class="macro">Token!</span>[.](dot_span);
+            offset = part_end + <span class="number">1</span>;
         }
+
         <span class="prelude-val">Ok</span>(!trailing_dot)
     }
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     </span><span class="kw">impl </span>Member {
         <span class="kw">fn </span>is_named(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
-            <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
+            <span class="kw">match </span><span class="self">self </span>{
                 Member::Named(<span class="kw">_</span>) =&gt; <span class="bool-val">true</span>,
                 Member::Unnamed(<span class="kw">_</span>) =&gt; <span class="bool-val">false</span>,
             }
@@ -6487,7 +6169,7 @@
 
     <span class="kw">fn </span>check_cast(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;()&gt; {
         <span class="kw">let </span>kind = <span class="kw">if </span>input.peek(<span class="macro">Token!</span>[.]) &amp;&amp; !input.peek(<span class="macro">Token!</span>[..]) {
-            <span class="kw">if </span>input.peek2(token::Await) {
+            <span class="kw">if </span>input.peek2(<span class="macro">Token!</span>[<span class="kw">await</span>]) {
                 <span class="string">&quot;`.await`&quot;
             </span>} <span class="kw">else if </span>input.peek2(Ident) &amp;&amp; (input.peek3(token::Paren) || input.peek3(<span class="macro">Token!</span>[::])) {
                 <span class="string">&quot;a method call&quot;
@@ -6544,16 +6226,6 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprBox {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.box_token.to_tokens(tokens);
-            <span class="self">self</span>.expr.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
     </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprArray {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
@@ -6563,67 +6235,36 @@
         }
     }
 
-    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprCall {
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprAssign {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.func.to_tokens(tokens);
-            <span class="self">self</span>.paren_token.surround(tokens, |tokens| {
-                <span class="self">self</span>.args.to_tokens(tokens);
-            });
+            <span class="self">self</span>.left.to_tokens(tokens);
+            <span class="self">self</span>.eq_token.to_tokens(tokens);
+            <span class="self">self</span>.right.to_tokens(tokens);
         }
     }
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprMethodCall {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprAsync {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.receiver.to_tokens(tokens);
+            <span class="self">self</span>.async_token.to_tokens(tokens);
+            <span class="self">self</span>.capture.to_tokens(tokens);
+            <span class="self">self</span>.block.to_tokens(tokens);
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprAwait {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.base.to_tokens(tokens);
             <span class="self">self</span>.dot_token.to_tokens(tokens);
-            <span class="self">self</span>.method.to_tokens(tokens);
-            <span class="self">self</span>.turbofish.to_tokens(tokens);
-            <span class="self">self</span>.paren_token.surround(tokens, |tokens| {
-                <span class="self">self</span>.args.to_tokens(tokens);
-            });
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>MethodTurbofish {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            <span class="self">self</span>.colon2_token.to_tokens(tokens);
-            <span class="self">self</span>.lt_token.to_tokens(tokens);
-            <span class="self">self</span>.args.to_tokens(tokens);
-            <span class="self">self</span>.gt_token.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>GenericMethodArgument {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            <span class="kw">match </span><span class="self">self </span>{
-                GenericMethodArgument::Type(t) =&gt; t.to_tokens(tokens),
-                GenericMethodArgument::Const(c) =&gt; c.to_tokens(tokens),
-            }
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprTuple {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.paren_token.surround(tokens, |tokens| {
-                <span class="self">self</span>.elems.to_tokens(tokens);
-                <span class="comment">// If we only have one argument, we need a trailing comma to
-                // distinguish ExprTuple from ExprParen.
-                </span><span class="kw">if </span><span class="self">self</span>.elems.len() == <span class="number">1 </span>&amp;&amp; !<span class="self">self</span>.elems.trailing_punct() {
-                    &lt;<span class="macro">Token!</span>[,]&gt;::default().to_tokens(tokens);
-                }
-            });
+            <span class="self">self</span>.await_token.to_tokens(tokens);
         }
     }
 
@@ -6637,20 +6278,38 @@
         }
     }
 
-    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprUnary {
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprBlock {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.op.to_tokens(tokens);
+            <span class="self">self</span>.label.to_tokens(tokens);
+            <span class="self">self</span>.block.brace_token.surround(tokens, |tokens| {
+                inner_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+                tokens.append_all(<span class="kw-2">&amp;</span><span class="self">self</span>.block.stmts);
+            });
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprBreak {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.break_token.to_tokens(tokens);
+            <span class="self">self</span>.label.to_tokens(tokens);
             <span class="self">self</span>.expr.to_tokens(tokens);
         }
     }
 
     <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprLit {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprCall {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.lit.to_tokens(tokens);
+            <span class="self">self</span>.func.to_tokens(tokens);
+            <span class="self">self</span>.paren_token.surround(tokens, |tokens| {
+                <span class="self">self</span>.args.to_tokens(tokens);
+            });
         }
     }
 
@@ -6666,71 +6325,52 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprType {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprClosure {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.expr.to_tokens(tokens);
-            <span class="self">self</span>.colon_token.to_tokens(tokens);
-            <span class="self">self</span>.ty.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    </span><span class="kw">fn </span>maybe_wrap_else(tokens: <span class="kw-2">&amp;mut </span>TokenStream, else_: <span class="kw-2">&amp;</span><span class="prelude-ty">Option</span>&lt;(<span class="macro">Token!</span>[<span class="kw">else</span>], Box&lt;Expr&gt;)&gt;) {
-        <span class="kw">if let </span><span class="prelude-val">Some</span>((else_token, else_)) = else_ {
-            else_token.to_tokens(tokens);
-
-            <span class="comment">// If we are not one of the valid expressions to exist in an else
-            // clause, wrap ourselves in a block.
-            </span><span class="kw">match </span><span class="kw-2">**</span>else_ {
-                Expr::If(<span class="kw">_</span>) | Expr::Block(<span class="kw">_</span>) =&gt; {
-                    else_.to_tokens(tokens);
-                }
-                <span class="kw">_ </span>=&gt; {
-                    token::Brace::default().surround(tokens, |tokens| {
-                        else_.to_tokens(tokens);
-                    });
-                }
-            }
+            <span class="self">self</span>.lifetimes.to_tokens(tokens);
+            <span class="self">self</span>.constness.to_tokens(tokens);
+            <span class="self">self</span>.movability.to_tokens(tokens);
+            <span class="self">self</span>.asyncness.to_tokens(tokens);
+            <span class="self">self</span>.capture.to_tokens(tokens);
+            <span class="self">self</span>.or1_token.to_tokens(tokens);
+            <span class="self">self</span>.inputs.to_tokens(tokens);
+            <span class="self">self</span>.or2_token.to_tokens(tokens);
+            <span class="self">self</span>.output.to_tokens(tokens);
+            <span class="self">self</span>.body.to_tokens(tokens);
         }
     }
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprLet {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprConst {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.let_token.to_tokens(tokens);
-            <span class="self">self</span>.pat.to_tokens(tokens);
-            <span class="self">self</span>.eq_token.to_tokens(tokens);
-            wrap_bare_struct(tokens, <span class="kw-2">&amp;</span><span class="self">self</span>.expr);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprIf {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.if_token.to_tokens(tokens);
-            wrap_bare_struct(tokens, <span class="kw-2">&amp;</span><span class="self">self</span>.cond);
-            <span class="self">self</span>.then_branch.to_tokens(tokens);
-            maybe_wrap_else(tokens, <span class="kw-2">&amp;</span><span class="self">self</span>.else_branch);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprWhile {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.label.to_tokens(tokens);
-            <span class="self">self</span>.while_token.to_tokens(tokens);
-            wrap_bare_struct(tokens, <span class="kw-2">&amp;</span><span class="self">self</span>.cond);
-            <span class="self">self</span>.body.brace_token.surround(tokens, |tokens| {
+            <span class="self">self</span>.const_token.to_tokens(tokens);
+            <span class="self">self</span>.block.brace_token.surround(tokens, |tokens| {
                 inner_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-                tokens.append_all(<span class="kw-2">&amp;</span><span class="self">self</span>.body.stmts);
+                tokens.append_all(<span class="kw-2">&amp;</span><span class="self">self</span>.block.stmts);
             });
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprContinue {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.continue_token.to_tokens(tokens);
+            <span class="self">self</span>.label.to_tokens(tokens);
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprField {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.base.to_tokens(tokens);
+            <span class="self">self</span>.dot_token.to_tokens(tokens);
+            <span class="self">self</span>.member.to_tokens(tokens);
         }
     }
 
@@ -6751,6 +6391,76 @@
         }
     }
 
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprGroup {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.group_token.surround(tokens, |tokens| {
+                <span class="self">self</span>.expr.to_tokens(tokens);
+            });
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprIf {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.if_token.to_tokens(tokens);
+            wrap_bare_struct(tokens, <span class="kw-2">&amp;</span><span class="self">self</span>.cond);
+            <span class="self">self</span>.then_branch.to_tokens(tokens);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>((else_token, else_)) = <span class="kw-2">&amp;</span><span class="self">self</span>.else_branch {
+                else_token.to_tokens(tokens);
+                <span class="comment">// If we are not one of the valid expressions to exist in an else
+                // clause, wrap ourselves in a block.
+                </span><span class="kw">match </span><span class="kw-2">**</span>else_ {
+                    Expr::If(<span class="kw">_</span>) | Expr::Block(<span class="kw">_</span>) =&gt; else_.to_tokens(tokens),
+                    <span class="kw">_ </span>=&gt; token::Brace::default().surround(tokens, |tokens| else_.to_tokens(tokens)),
+                }
+            }
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprIndex {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.expr.to_tokens(tokens);
+            <span class="self">self</span>.bracket_token.surround(tokens, |tokens| {
+                <span class="self">self</span>.index.to_tokens(tokens);
+            });
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprInfer {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.underscore_token.to_tokens(tokens);
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprLet {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.let_token.to_tokens(tokens);
+            <span class="self">self</span>.pat.to_tokens(tokens);
+            <span class="self">self</span>.eq_token.to_tokens(tokens);
+            wrap_bare_struct(tokens, <span class="kw-2">&amp;</span><span class="self">self</span>.expr);
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprLit {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.lit.to_tokens(tokens);
+        }
+    }
+
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
     </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprLoop {
@@ -6762,6 +6472,14 @@
                 inner_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
                 tokens.append_all(<span class="kw-2">&amp;</span><span class="self">self</span>.body.stmts);
             });
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprMacro {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.mac.to_tokens(tokens);
         }
     }
 
@@ -6789,169 +6507,26 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprAsync {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprMethodCall {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.async_token.to_tokens(tokens);
-            <span class="self">self</span>.capture.to_tokens(tokens);
-            <span class="self">self</span>.block.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprAwait {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.base.to_tokens(tokens);
+            <span class="self">self</span>.receiver.to_tokens(tokens);
             <span class="self">self</span>.dot_token.to_tokens(tokens);
-            <span class="self">self</span>.await_token.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprTryBlock {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.try_token.to_tokens(tokens);
-            <span class="self">self</span>.block.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprYield {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.yield_token.to_tokens(tokens);
-            <span class="self">self</span>.expr.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprClosure {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.movability.to_tokens(tokens);
-            <span class="self">self</span>.asyncness.to_tokens(tokens);
-            <span class="self">self</span>.capture.to_tokens(tokens);
-            <span class="self">self</span>.or1_token.to_tokens(tokens);
-            <span class="self">self</span>.inputs.to_tokens(tokens);
-            <span class="self">self</span>.or2_token.to_tokens(tokens);
-            <span class="self">self</span>.output.to_tokens(tokens);
-            <span class="self">self</span>.body.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprUnsafe {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.unsafe_token.to_tokens(tokens);
-            <span class="self">self</span>.block.brace_token.surround(tokens, |tokens| {
-                inner_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-                tokens.append_all(<span class="kw-2">&amp;</span><span class="self">self</span>.block.stmts);
+            <span class="self">self</span>.method.to_tokens(tokens);
+            <span class="self">self</span>.turbofish.to_tokens(tokens);
+            <span class="self">self</span>.paren_token.surround(tokens, |tokens| {
+                <span class="self">self</span>.args.to_tokens(tokens);
             });
         }
     }
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprBlock {
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprParen {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.label.to_tokens(tokens);
-            <span class="self">self</span>.block.brace_token.surround(tokens, |tokens| {
-                inner_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-                tokens.append_all(<span class="kw-2">&amp;</span><span class="self">self</span>.block.stmts);
+            <span class="self">self</span>.paren_token.surround(tokens, |tokens| {
+                <span class="self">self</span>.expr.to_tokens(tokens);
             });
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprAssign {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.left.to_tokens(tokens);
-            <span class="self">self</span>.eq_token.to_tokens(tokens);
-            <span class="self">self</span>.right.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprAssignOp {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.left.to_tokens(tokens);
-            <span class="self">self</span>.op.to_tokens(tokens);
-            <span class="self">self</span>.right.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprField {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.base.to_tokens(tokens);
-            <span class="self">self</span>.dot_token.to_tokens(tokens);
-            <span class="self">self</span>.member.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>Member {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            <span class="kw">match </span><span class="self">self </span>{
-                Member::Named(ident) =&gt; ident.to_tokens(tokens),
-                Member::Unnamed(index) =&gt; index.to_tokens(tokens),
-            }
-        }
-    }
-
-    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>Index {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            <span class="kw">let </span><span class="kw-2">mut </span>lit = Literal::i64_unsuffixed(i64::from(<span class="self">self</span>.index));
-            lit.set_span(<span class="self">self</span>.span);
-            tokens.append(lit);
-        }
-    }
-
-    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprIndex {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.expr.to_tokens(tokens);
-            <span class="self">self</span>.bracket_token.surround(tokens, |tokens| {
-                <span class="self">self</span>.index.to_tokens(tokens);
-            });
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>RangeLimits {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            <span class="kw">match </span><span class="self">self </span>{
-                RangeLimits::HalfOpen(t) =&gt; t.to_tokens(tokens),
-                RangeLimits::Closed(t) =&gt; t.to_tokens(tokens),
-            }
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprRange {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.from.to_tokens(tokens);
-            <span class="self">self</span>.limits.to_tokens(tokens);
-            <span class="self">self</span>.to.to_tokens(tokens);
         }
     }
 
@@ -6965,70 +6540,23 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprRange {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.start.to_tokens(tokens);
+            <span class="self">self</span>.limits.to_tokens(tokens);
+            <span class="self">self</span>.end.to_tokens(tokens);
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
     </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprReference {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
             <span class="self">self</span>.and_token.to_tokens(tokens);
             <span class="self">self</span>.mutability.to_tokens(tokens);
             <span class="self">self</span>.expr.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprBreak {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.break_token.to_tokens(tokens);
-            <span class="self">self</span>.label.to_tokens(tokens);
-            <span class="self">self</span>.expr.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprContinue {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.continue_token.to_tokens(tokens);
-            <span class="self">self</span>.label.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprReturn {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.return_token.to_tokens(tokens);
-            <span class="self">self</span>.expr.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprMacro {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.mac.to_tokens(tokens);
-        }
-    }
-
-    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
-    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprStruct {
-        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.path.to_tokens(tokens);
-            <span class="self">self</span>.brace_token.surround(tokens, |tokens| {
-                <span class="self">self</span>.fields.to_tokens(tokens);
-                <span class="kw">if let </span><span class="prelude-val">Some</span>(dot2_token) = <span class="kw-2">&amp;</span><span class="self">self</span>.dot2_token {
-                    dot2_token.to_tokens(tokens);
-                } <span class="kw">else if </span><span class="self">self</span>.rest.is_some() {
-                    <span class="macro">Token!</span>[..](Span::call_site()).to_tokens(tokens);
-                }
-                <span class="self">self</span>.rest.to_tokens(tokens);
-            });
         }
     }
 
@@ -7047,21 +6575,28 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprGroup {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprReturn {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.group_token.surround(tokens, |tokens| {
-                <span class="self">self</span>.expr.to_tokens(tokens);
-            });
+            <span class="self">self</span>.return_token.to_tokens(tokens);
+            <span class="self">self</span>.expr.to_tokens(tokens);
         }
     }
 
-    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprParen {
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprStruct {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.paren_token.surround(tokens, |tokens| {
-                <span class="self">self</span>.expr.to_tokens(tokens);
+            path::printing::print_path(tokens, <span class="kw-2">&amp;</span><span class="self">self</span>.qself, <span class="kw-2">&amp;</span><span class="self">self</span>.path);
+            <span class="self">self</span>.brace_token.surround(tokens, |tokens| {
+                <span class="self">self</span>.fields.to_tokens(tokens);
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(dot2_token) = <span class="kw-2">&amp;</span><span class="self">self</span>.dot2_token {
+                    dot2_token.to_tokens(tokens);
+                } <span class="kw">else if </span><span class="self">self</span>.rest.is_some() {
+                    <span class="macro">Token!</span>[..](Span::call_site()).to_tokens(tokens);
+                }
+                <span class="self">self</span>.rest.to_tokens(tokens);
             });
         }
     }
@@ -7078,23 +6613,74 @@
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>Label {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprTryBlock {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
-            <span class="self">self</span>.name.to_tokens(tokens);
-            <span class="self">self</span>.colon_token.to_tokens(tokens);
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.try_token.to_tokens(tokens);
+            <span class="self">self</span>.block.to_tokens(tokens);
         }
     }
 
     <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
-    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>FieldValue {
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprTuple {
         <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
             outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
-            <span class="self">self</span>.member.to_tokens(tokens);
-            <span class="kw">if let </span><span class="prelude-val">Some</span>(colon_token) = <span class="kw-2">&amp;</span><span class="self">self</span>.colon_token {
-                colon_token.to_tokens(tokens);
-                <span class="self">self</span>.expr.to_tokens(tokens);
-            }
+            <span class="self">self</span>.paren_token.surround(tokens, |tokens| {
+                <span class="self">self</span>.elems.to_tokens(tokens);
+                <span class="comment">// If we only have one argument, we need a trailing comma to
+                // distinguish ExprTuple from ExprParen.
+                </span><span class="kw">if </span><span class="self">self</span>.elems.len() == <span class="number">1 </span>&amp;&amp; !<span class="self">self</span>.elems.trailing_punct() {
+                    &lt;<span class="macro">Token!</span>[,]&gt;::default().to_tokens(tokens);
+                }
+            });
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprUnary {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.op.to_tokens(tokens);
+            <span class="self">self</span>.expr.to_tokens(tokens);
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprUnsafe {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.unsafe_token.to_tokens(tokens);
+            <span class="self">self</span>.block.brace_token.surround(tokens, |tokens| {
+                inner_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+                tokens.append_all(<span class="kw-2">&amp;</span><span class="self">self</span>.block.stmts);
+            });
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprWhile {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.label.to_tokens(tokens);
+            <span class="self">self</span>.while_token.to_tokens(tokens);
+            wrap_bare_struct(tokens, <span class="kw-2">&amp;</span><span class="self">self</span>.cond);
+            <span class="self">self</span>.body.brace_token.surround(tokens, |tokens| {
+                inner_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+                tokens.append_all(<span class="kw-2">&amp;</span><span class="self">self</span>.body.stmts);
+            });
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>ExprYield {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.yield_token.to_tokens(tokens);
+            <span class="self">self</span>.expr.to_tokens(tokens);
         }
     }
 
@@ -7113,6 +6699,57 @@
             <span class="self">self</span>.comma.to_tokens(tokens);
         }
     }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>FieldValue {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            outer_attrs_to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>.attrs, tokens);
+            <span class="self">self</span>.member.to_tokens(tokens);
+            <span class="kw">if let </span><span class="prelude-val">Some</span>(colon_token) = <span class="kw-2">&amp;</span><span class="self">self</span>.colon_token {
+                colon_token.to_tokens(tokens);
+                <span class="self">self</span>.expr.to_tokens(tokens);
+            }
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>Index {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            <span class="kw">let </span><span class="kw-2">mut </span>lit = Literal::i64_unsuffixed(i64::from(<span class="self">self</span>.index));
+            lit.set_span(<span class="self">self</span>.span);
+            tokens.append(lit);
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>Label {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            <span class="self">self</span>.name.to_tokens(tokens);
+            <span class="self">self</span>.colon_token.to_tokens(tokens);
+        }
+    }
+
+    <span class="attr">#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>Member {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            <span class="kw">match </span><span class="self">self </span>{
+                Member::Named(ident) =&gt; ident.to_tokens(tokens),
+                Member::Unnamed(index) =&gt; index.to_tokens(tokens),
+            }
+        }
+    }
+
+    <span class="attr">#[cfg(feature = <span class="string">&quot;full&quot;</span>)]
+    #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;printing&quot;</span>)))]
+    </span><span class="kw">impl </span>ToTokens <span class="kw">for </span>RangeLimits {
+        <span class="kw">fn </span>to_tokens(<span class="kw-2">&amp;</span><span class="self">self</span>, tokens: <span class="kw-2">&amp;mut </span>TokenStream) {
+            <span class="kw">match </span><span class="self">self </span>{
+                RangeLimits::HalfOpen(t) =&gt; t.to_tokens(tokens),
+                RangeLimits::Closed(t) =&gt; t.to_tokens(tokens),
+            }
+        }
+    }
 }
-</code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</code></pre></div></section></main></body></html>

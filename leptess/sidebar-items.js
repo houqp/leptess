@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"enum":[["Variable","Enum representing different variable options accepted by Tesseract"]],"mod":[["capi",""],["leptonica","Low level wrapper for Leptonica C API"],["tesseract","Low level wrapper for Tesseract C API"]],"struct":[["LepTess","High level wrapper for Tesseract and Leptonica"]]};
+window.SIDEBAR_ITEMS = {"enum":["Variable"],"mod":["capi","leptonica","tesseract"],"struct":["LepTess"]};

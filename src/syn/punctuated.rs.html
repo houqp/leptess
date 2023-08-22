@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/syn-1.0.107/src/punctuated.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>punctuated.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-1f7d512b176f0f72.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-124a1ca42af929b6.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-6827029ac823cab7.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-ebce58d0a40c3431.css"><link rel="stylesheet" disabled href="../../static.files/dark-f23faae4a2daf9a6.css"><link rel="stylesheet" disabled href="../../static.files/ayu-8af5e100b21cd173.css"><script id="default-settings" ></script><script src="../../static.files/storage-d43fa987303ecbbb.js"></script><script defer src="../../static.files/source-script-5cf2e01a42cc9858.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-c55e1eb52e1886b4.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><div class="width-limiter"><nav class="sub"><a class="sub-logo-container" href="../../syn/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-5ec35bf9ca753509.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/index.crates.io-6f17d22bba15001f/syn-2.0.29/src/punctuated.rs`."><title>punctuated.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-f3501f0f5ae15dfb.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.71.1 (eb26296b5 2023-08-03)" data-search-js="search-4926e5fc22a5646a.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../../static.files/source-script-11255107d0a65077.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-f0540c1d82cde29b.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../syn/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1085,7 +1085,28 @@
 <a href="#1085" id="1085">1085</a>
 <a href="#1086" id="1086">1086</a>
 <a href="#1087" id="1087">1087</a>
-</pre><pre class="rust"><code><span class="doccomment">//! A punctuated sequence of syntax tree nodes separated by punctuation.
+<a href="#1088" id="1088">1088</a>
+<a href="#1089" id="1089">1089</a>
+<a href="#1090" id="1090">1090</a>
+<a href="#1091" id="1091">1091</a>
+<a href="#1092" id="1092">1092</a>
+<a href="#1093" id="1093">1093</a>
+<a href="#1094" id="1094">1094</a>
+<a href="#1095" id="1095">1095</a>
+<a href="#1096" id="1096">1096</a>
+<a href="#1097" id="1097">1097</a>
+<a href="#1098" id="1098">1098</a>
+<a href="#1099" id="1099">1099</a>
+<a href="#1100" id="1100">1100</a>
+<a href="#1101" id="1101">1101</a>
+<a href="#1102" id="1102">1102</a>
+<a href="#1103" id="1103">1103</a>
+<a href="#1104" id="1104">1104</a>
+<a href="#1105" id="1105">1105</a>
+<a href="#1106" id="1106">1106</a>
+<a href="#1107" id="1107">1107</a>
+<a href="#1108" id="1108">1108</a>
+</pre></div><pre class="rust"><code><span class="doccomment">//! A punctuated sequence of syntax tree nodes separated by punctuation.
 //!
 //! Lots of things in Rust are punctuated sequences.
 //!
@@ -1113,7 +1134,6 @@
 </span><span class="kw">use </span>std::hash::{Hash, Hasher};
 <span class="attr">#[cfg(any(feature = <span class="string">&quot;full&quot;</span>, feature = <span class="string">&quot;derive&quot;</span>))]
 </span><span class="kw">use </span>std::iter;
-<span class="kw">use </span>std::iter::FromIterator;
 <span class="kw">use </span>std::ops::{Index, IndexMut};
 <span class="kw">use </span>std::option;
 <span class="kw">use </span>std::slice;
@@ -1125,8 +1145,8 @@
 <span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::token::Token;
 
-<span class="doccomment">/// A punctuated sequence of syntax tree nodes of type `T` separated by
-/// punctuation of type `P`.
+<span class="doccomment">/// **A punctuated sequence of syntax tree nodes of type `T` separated by
+/// punctuation of type `P`.**
 ///
 /// Refer to the [module documentation] for details about punctuated sequences.
 ///
@@ -1138,17 +1158,7 @@
 
 <span class="kw">impl</span>&lt;T, P&gt; Punctuated&lt;T, P&gt; {
     <span class="doccomment">/// Creates an empty punctuated sequence.
-    </span><span class="attr">#[cfg(not(syn_no_const_vec_new))]
     </span><span class="kw">pub const fn </span>new() -&gt; <span class="self">Self </span>{
-        Punctuated {
-            inner: Vec::new(),
-            last: <span class="prelude-val">None</span>,
-        }
-    }
-
-    <span class="doccomment">/// Creates an empty punctuated sequence.
-    </span><span class="attr">#[cfg(syn_no_const_vec_new)]
-    </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self </span>{
         Punctuated {
             inner: Vec::new(),
             last: <span class="prelude-val">None</span>,
@@ -1238,7 +1248,7 @@
     }
 
     <span class="doccomment">/// Appends a syntax tree node onto the end of this punctuated sequence. The
-    /// sequence must previously have a trailing punctuation.
+    /// sequence must already have a trailing punctuation, or be empty.
     ///
     /// Use [`push`] instead if the punctuated sequence may or may not already
     /// have trailing punctuation.
@@ -1247,8 +1257,8 @@
     ///
     /// # Panics
     ///
-    /// Panics if the sequence does not already have a trailing punctuation when
-    /// this method is called.
+    /// Panics if the sequence is nonempty and does not already have a trailing
+    /// punctuation.
     </span><span class="kw">pub fn </span>push_value(<span class="kw-2">&amp;mut </span><span class="self">self</span>, value: T) {
         <span class="macro">assert!</span>(
             <span class="self">self</span>.empty_or_trailing(),
@@ -1282,6 +1292,18 @@
             <span class="self">self</span>.last.take().map(|t| Pair::End(<span class="kw-2">*</span>t))
         } <span class="kw">else </span>{
             <span class="self">self</span>.inner.pop().map(|(t, p)| Pair::Punctuated(t, p))
+        }
+    }
+
+    <span class="doccomment">/// Removes the trailing punctuation from this punctuated sequence, or
+    /// `None` if there isn&#39;t any.
+    </span><span class="kw">pub fn </span>pop_punct(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;P&gt; {
+        <span class="kw">if </span><span class="self">self</span>.last.is_some() {
+            <span class="prelude-val">None
+        </span>} <span class="kw">else </span>{
+            <span class="kw">let </span>(t, p) = <span class="self">self</span>.inner.pop()<span class="question-mark">?</span>;
+            <span class="self">self</span>.last = <span class="prelude-val">Some</span>(Box::new(t));
+            <span class="prelude-val">Some</span>(p)
         }
     }
 
@@ -1347,9 +1369,6 @@
     ///
     /// Parsing continues until the end of this parse stream. The entire content
     /// of this parse stream must consist of `T` and `P`.
-    ///
-    /// *This function is available only if Syn is built with the `&quot;parsing&quot;`
-    /// feature.*
     </span><span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">pub fn </span>parse_terminated(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt;
@@ -1368,9 +1387,6 @@
     /// to be parsed.
     ///
     /// [`parse_terminated`]: Punctuated::parse_terminated
-    ///
-    /// *This function is available only if Syn is built with the `&quot;parsing&quot;`
-    /// feature.*
     </span><span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">pub fn </span>parse_terminated_with(
@@ -1405,9 +1421,6 @@
     /// the stream. This method returns upon parsing a `T` and observing that it
     /// is not followed by a `P`, even if there are remaining tokens in the
     /// stream.
-    ///
-    /// *This function is available only if Syn is built with the `&quot;parsing&quot;`
-    /// feature.*
     </span><span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">pub fn </span>parse_separated_nonempty(input: ParseStream) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>&gt;
@@ -1426,9 +1439,6 @@
     /// the entire content of this stream.
     ///
     /// [`parse_separated_nonempty`]: Punctuated::parse_separated_nonempty
-    ///
-    /// *This function is available only if Syn is built with the `&quot;parsing&quot;`
-    /// feature.*
     </span><span class="attr">#[cfg(feature = <span class="string">&quot;parsing&quot;</span>)]
     #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;parsing&quot;</span>)))]
     </span><span class="kw">pub fn </span>parse_separated_nonempty_with(
@@ -1466,6 +1476,11 @@
             inner: <span class="self">self</span>.inner.clone(),
             last: <span class="self">self</span>.last.clone(),
         }
+    }
+
+    <span class="kw">fn </span>clone_from(<span class="kw-2">&amp;mut </span><span class="self">self</span>, other: <span class="kw-2">&amp;</span><span class="self">Self</span>) {
+        <span class="self">self</span>.inner.clone_from(<span class="kw-2">&amp;</span>other.inner);
+        <span class="self">self</span>.last.clone_from(<span class="kw-2">&amp;</span>other.last);
     }
 }
 
@@ -1546,29 +1561,37 @@
 <span class="kw">impl</span>&lt;T, P&gt; FromIterator&lt;Pair&lt;T, P&gt;&gt; <span class="kw">for </span>Punctuated&lt;T, P&gt; {
     <span class="kw">fn </span>from_iter&lt;I: IntoIterator&lt;Item = Pair&lt;T, P&gt;&gt;&gt;(i: I) -&gt; <span class="self">Self </span>{
         <span class="kw">let </span><span class="kw-2">mut </span>ret = Punctuated::new();
-        ret.extend(i);
+        do_extend(<span class="kw-2">&amp;mut </span>ret, i.into_iter());
         ret
     }
 }
 
-<span class="kw">impl</span>&lt;T, P&gt; Extend&lt;Pair&lt;T, P&gt;&gt; <span class="kw">for </span>Punctuated&lt;T, P&gt; {
+<span class="kw">impl</span>&lt;T, P&gt; Extend&lt;Pair&lt;T, P&gt;&gt; <span class="kw">for </span>Punctuated&lt;T, P&gt;
+<span class="kw">where
+    </span>P: Default,
+{
     <span class="kw">fn </span>extend&lt;I: IntoIterator&lt;Item = Pair&lt;T, P&gt;&gt;&gt;(<span class="kw-2">&amp;mut </span><span class="self">self</span>, i: I) {
-        <span class="macro">assert!</span>(
-            <span class="self">self</span>.empty_or_trailing(),
-            <span class="string">&quot;Punctuated::extend: Punctuated is not empty or does not have a trailing punctuation&quot;</span>,
-        );
+        <span class="kw">if </span>!<span class="self">self</span>.empty_or_trailing() {
+            <span class="self">self</span>.push_punct(P::default());
+        }
+        do_extend(<span class="self">self</span>, i.into_iter());
+    }
+}
 
-        <span class="kw">let </span><span class="kw-2">mut </span>nomore = <span class="bool-val">false</span>;
-        <span class="kw">for </span>pair <span class="kw">in </span>i {
-            <span class="kw">if </span>nomore {
-                <span class="macro">panic!</span>(<span class="string">&quot;Punctuated extended with items after a Pair::End&quot;</span>);
-            }
-            <span class="kw">match </span>pair {
-                Pair::Punctuated(a, b) =&gt; <span class="self">self</span>.inner.push((a, b)),
-                Pair::End(a) =&gt; {
-                    <span class="self">self</span>.last = <span class="prelude-val">Some</span>(Box::new(a));
-                    nomore = <span class="bool-val">true</span>;
-                }
+<span class="kw">fn </span>do_extend&lt;T, P, I&gt;(punctuated: <span class="kw-2">&amp;mut </span>Punctuated&lt;T, P&gt;, i: I)
+<span class="kw">where
+    </span>I: Iterator&lt;Item = Pair&lt;T, P&gt;&gt;,
+{
+    <span class="kw">let </span><span class="kw-2">mut </span>nomore = <span class="bool-val">false</span>;
+    <span class="kw">for </span>pair <span class="kw">in </span>i {
+        <span class="kw">if </span>nomore {
+            <span class="macro">panic!</span>(<span class="string">&quot;Punctuated extended with items after a Pair::End&quot;</span>);
+        }
+        <span class="kw">match </span>pair {
+            Pair::Punctuated(a, b) =&gt; punctuated.inner.push((a, b)),
+            Pair::End(a) =&gt; {
+                punctuated.last = <span class="prelude-val">Some</span>(Box::new(a));
+                nomore = <span class="bool-val">true</span>;
             }
         }
     }
@@ -1806,16 +1829,11 @@
 ///
 /// [module documentation]: self
 </span><span class="kw">pub struct </span>Iter&lt;<span class="lifetime">&#39;a</span>, T: <span class="lifetime">&#39;a</span>&gt; {
-    <span class="comment">// The `Item = &amp;&#39;a T` needs to be specified to support rustc 1.31 and older.
-    // On modern compilers we would be able to write just IterTrait&lt;&#39;a, T&gt; where
-    // Item can be inferred unambiguously from the supertrait.
-    </span>inner: Box&lt;NoDrop&lt;<span class="kw">dyn </span>IterTrait&lt;<span class="lifetime">&#39;a</span>, T, Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt; + <span class="lifetime">&#39;a</span>&gt;&gt;,
+    inner: Box&lt;NoDrop&lt;<span class="kw">dyn </span>IterTrait&lt;<span class="lifetime">&#39;a</span>, T&gt; + <span class="lifetime">&#39;a</span>&gt;&gt;,
 }
 
-<span class="kw">trait </span>IterTrait&lt;<span class="lifetime">&#39;a</span>, T: <span class="lifetime">&#39;a</span>&gt;:
-    DoubleEndedIterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt; + ExactSizeIterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt;
-{
-    <span class="kw">fn </span>clone_box(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Box&lt;NoDrop&lt;<span class="kw">dyn </span>IterTrait&lt;<span class="lifetime">&#39;a</span>, T, Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt; + <span class="lifetime">&#39;a</span>&gt;&gt;;
+<span class="kw">trait </span>IterTrait&lt;<span class="lifetime">&#39;a</span>, T: <span class="lifetime">&#39;a</span>&gt;: Iterator&lt;Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt; + DoubleEndedIterator + ExactSizeIterator {
+    <span class="kw">fn </span>clone_box(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Box&lt;NoDrop&lt;<span class="kw">dyn </span>IterTrait&lt;<span class="lifetime">&#39;a</span>, T&gt; + <span class="lifetime">&#39;a</span>&gt;&gt;;
 }
 
 <span class="kw">struct </span>PrivateIter&lt;<span class="lifetime">&#39;a</span>, T: <span class="lifetime">&#39;a</span>, P: <span class="lifetime">&#39;a</span>&gt; {
@@ -1914,7 +1932,7 @@
         + TrivialDrop
         + <span class="lifetime">&#39;a</span>,
 {
-    <span class="kw">fn </span>clone_box(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Box&lt;NoDrop&lt;<span class="kw">dyn </span>IterTrait&lt;<span class="lifetime">&#39;a</span>, T, Item = <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>T&gt; + <span class="lifetime">&#39;a</span>&gt;&gt; {
+    <span class="kw">fn </span>clone_box(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Box&lt;NoDrop&lt;<span class="kw">dyn </span>IterTrait&lt;<span class="lifetime">&#39;a</span>, T&gt; + <span class="lifetime">&#39;a</span>&gt;&gt; {
         Box::new(NoDrop::new(<span class="self">self</span>.clone()))
     }
 }
@@ -2097,6 +2115,21 @@
 
 <span class="attr">#[cfg(feature = <span class="string">&quot;clone-impls&quot;</span>)]
 #[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;clone-impls&quot;</span>)))]
+</span><span class="kw">impl</span>&lt;T, P&gt; Pair&lt;<span class="kw-2">&amp;</span>T, <span class="kw-2">&amp;</span>P&gt; {
+    <span class="kw">pub fn </span>cloned(<span class="self">self</span>) -&gt; Pair&lt;T, P&gt;
+    <span class="kw">where
+        </span>T: Clone,
+        P: Clone,
+    {
+        <span class="kw">match </span><span class="self">self </span>{
+            Pair::Punctuated(t, p) =&gt; Pair::Punctuated(t.clone(), p.clone()),
+            Pair::End(t) =&gt; Pair::End(t.clone()),
+        }
+    }
+}
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;clone-impls&quot;</span>)]
+#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;clone-impls&quot;</span>)))]
 </span><span class="kw">impl</span>&lt;T, P&gt; Clone <span class="kw">for </span>Pair&lt;T, P&gt;
 <span class="kw">where
     </span>T: Clone,
@@ -2108,6 +2141,15 @@
             Pair::End(t) =&gt; Pair::End(t.clone()),
         }
     }
+}
+
+<span class="attr">#[cfg(feature = <span class="string">&quot;clone-impls&quot;</span>)]
+#[cfg_attr(doc_cfg, doc(cfg(feature = <span class="string">&quot;clone-impls&quot;</span>)))]
+</span><span class="kw">impl</span>&lt;T, P&gt; Copy <span class="kw">for </span>Pair&lt;T, P&gt;
+<span class="kw">where
+    </span>T: Copy,
+    P: Copy,
+{
 }
 
 <span class="kw">impl</span>&lt;T, P&gt; Index&lt;usize&gt; <span class="kw">for </span>Punctuated&lt;T, P&gt; {
@@ -2172,5 +2214,4 @@
         }
     }
 }
-</code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="syn" data-themes="" data-resource-suffix="" data-rustdoc-version="1.67.1 (d5a82bbd2 2023-02-07)" data-search-js="search-444266647c4dba98.js" data-settings-js="settings-bebeae96e00e4617.js" data-settings-css="settings-af96d9e2fc13e081.css" ></div></body></html>
+</code></pre></div></section></main></body></html>
