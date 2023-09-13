@@ -11,9 +11,13 @@ license = "MIT"
 documentation = "https://houqp.github.io/leptess/leptess/index.html"
 
 [dependencies]
-tesseract-plumbing = "~0.8"
+tesseract-plumbing = "~0.11"
 thiserror = "1"
 
 [dev-dependencies]
-image = "0.24.2"
+image = "0.24.7"
 regex = "1.4.3"
+
+[features]
+default = ["tesseract_5_2"]
+tesseract_5_2 = ["tesseract-plumbing/tesseract_5_2"]
