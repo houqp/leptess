@@ -50,8 +50,8 @@ impl TessApi {
     /// set_image clears all recognition results, and sets the rectangle to the full image, so it
     /// may be followed immediately by a `[Self::get_utf8_text]`, and it will automatically perform
     /// recognition.
-    pub fn set_image(&mut self, img: &leptonica::Pix) {
-        self.raw.set_image_2(&img.raw)
+    pub fn set_image(&mut self, img: impl AsRef<tesseract_plumbing::leptonica_plumbing::Pix>) {
+        self.raw.set_image_2(img.as_ref())
     }
 
     /// Get the dimensions of the currently loaded image, or None if no image is loaded.

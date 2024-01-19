@@ -23,6 +23,12 @@ impl Pix {
     }
 }
 
+impl AsRef<leptonica_plumbing::Pix> for Pix {
+    fn as_ref(&self) -> &leptonica_plumbing::Pix {
+        &self.raw
+    }
+}
+
 #[derive(thiserror::Error, Debug)]
 pub enum PixError {
     #[error("Failed to read image from {}", .0)]
