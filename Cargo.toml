@@ -11,7 +11,7 @@ license = "MIT"
 documentation = "https://houqp.github.io/leptess/leptess/index.html"
 
 [dependencies]
-tesseract-plumbing = "~0.11"
+tesseract-plumbing = {version = "~0.11", default-features = false}
 thiserror = "1"
 leptonica-plumbing = "~1.3.0"
 
